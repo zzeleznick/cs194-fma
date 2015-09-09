@@ -21,7 +21,7 @@ After running a few sample from the starter python skeleton code, I began to tak
 
 h3(anchor#intermission). Early Results
 
-|\2=. Output Images, Original Sizes, & Displacement Vectors |
+|\2=. Output Images, Original Sizes, & Displacement Vectors[1] |
 | !/images/output/out_cathedral.jpg(Cathedral)!:http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg | !/images/output/out_tobolsk.jpg(Tobolsk)!:http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg |
 |=. Cathedral (1024, 390) |=. Tobolsk (1024, 396) |
 |=. Green =  <2, -2>;  Red =   <6, -3> |=. Green =  <3, -4>;  Red =   <3, -7> |
@@ -29,14 +29,48 @@ h3(anchor#intermission). Early Results
 |=. Nativity (1024, 395) |=. Settlers (1024, 396) |
 |=. Green =  <1, -4>;  Red =   <0, -6> |=. Green = <0, 0>;  Red = <-1, 1>  |
 | !/images/output/out_monastery.jpg(Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg | !/images/output/de_out_monastery.jpg(White-Balanced Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/de_out_monastery.jpg |
-|=. Monastery (1024, 391) |=. White-Balanced Monastery (1024, 391)[1] |
+|=. Monastery (1024, 391) |=. White-Balanced Monastery (1024, 391)[2] |
 |=. Green = <2, -10>;  Red = <2, -11> |=. Green = <2, -10>;  Red = <2, -11>   |
 
 h3(anchor#learnedlessons1). Early Results Lessons Learned
 
 After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.
 
-fn1. I was quite excited to test out my white-balance algorithm -- so exicted in fact that I hadn't even finished my image pyramid implementation yet! This bell & whistle was achieved by finding the @max(sum(r,g,b values))@ along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See "White Balance":https://en.wikipedia.org/wiki/White_balance for more.
+h3(anchor#imagepyramid). Round 2: Image Pyramid
+
+The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger TIF files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with. #todo.
+
+|\2=. Output Images, Original Sizes, & Displacement Vectors[1] |
+| !/images/output/bridge.jpg(Bridge)!:http://zzeleznick.github.io/cs194-fma/images/output/bridge.jpg | !/images/output/emir.jpg(Emir)!:http://zzeleznick.github.io/cs194-fma/images/output/emir.jpg |
+|=. Bridge (9675, 3742) |=. Emir (9627, 3702) |
+|=. Green =  <7, -33>;  Red =   <9, -38> |=. Green =  <14, -17>;  Red =   <30, -18> |
+| !/images/output/harvesters.jpg(Harvesters)!:http://zzeleznick.github.io/cs194-fma/images/output/harvesters.jpg | !/images/output/icon.jpg(Icon)!:http://zzeleznick.github.io/cs194-fma/images/output/icon.jpg |
+|=. Harvesters (9656, 3683) |=. Icon (9656, 3683) |
+|=. Green =  <0, 8>;  Red =   <2, 5> |=. Green = <15, -17>;  Red = <17, -28>  |
+| !/images/output/lady.jpg(Lady)!:http://zzeleznick.github.io/cs194-fma/images/output/lady.jpg | !/images/output/melons.jpg(Melons)!:http://zzeleznick.github.io/cs194-fma/images/output/melons.jpg |
+|=. Monastery (9637, 3761) |=. Melons (9724, 3770) |
+|=. Green = <0, -6>;  Red = <5, -10> |=. Green = <0, 13>;  Red = <8, 22>   |
+| !/images/output/onion_church.jpg(Onion Church)!:http://zzeleznick.github.io/cs194-fma/images/output/onion_church.jpg | !/images/output/self_portrait.jpg(Self Portrait)!:http://zzeleznick.github.io/cs194-fma/images/output/self_portrait.jpg |
+|=. Onion Church (9646, 3781) |=. Self Portrait (9754, 3810) |
+|=. Green = <4, -13>;  Red = <9, -17> |=. Green = <8, 6>;  Red = <13, 9>   |
+
+
+workshop.jpg
+village.jpg
+turkmen.jpg
+train.jpg
+three_generations.jpg
+
+
+
+
+
+
+
+
+fn1. Displacement Vectors are given as <dx, dy>, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.
+
+fn2. I was quite excited to test out my white-balance algorithm -- so exicted in fact that I hadn't even finished my image pyramid implementation yet! This bell & whistle was achieved by finding the @max(sum(r,g,b values))@ along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See "White Balance":https://en.wikipedia.org/wiki/White_balance for more.
 @code snippets here@
 
 

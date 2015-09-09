@@ -30,7 +30,7 @@
 <h3 class="anchor" id="intermission">Early Results</h3>
 <table>
 	<tr>
-		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors </td>
+		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
 	</tr>
 	<tr>
 		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg"><img src="/images/output/out_cathedral.jpg" title="Cathedral" alt="Cathedral" /></a> </td>
@@ -62,7 +62,7 @@
 	</tr>
 	<tr>
 		<td style="text-align:center;">Monastery (1024, 391) </td>
-		<td style="text-align:center;">White-Balanced Monastery (1024, 391)<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
+		<td style="text-align:center;">White-Balanced Monastery (1024, 391)<sup class="footnote" id="fnr2"><a href="#fn2">2</a></sup> </td>
 	</tr>
 	<tr>
 		<td style="text-align:center;">Green = &lt;2, -10&gt;;  Red = &lt;2, -11&gt; </td>
@@ -71,7 +71,68 @@
 </table>
 <h3 class="anchor" id="learnedlessons1">Early Results Lessons Learned</h3>
 <p>After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&amp;W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.</p>
-<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.<br />
+<h3 class="anchor" id="imagepyramid">Round 2: Image Pyramid</h3>
+<p>The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger <span class="caps">TIF</span> files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with. #todo.</p>
+<table>
+	<tr>
+		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/bridge.jpg"><img src="/images/output/bridge.jpg" title="Bridge" alt="Bridge" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/emir.jpg"><img src="/images/output/emir.jpg" title="Emir" alt="Emir" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Bridge (9675, 3742) </td>
+		<td style="text-align:center;">Emir (9627, 3702) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green =  &lt;7, -33&gt;;  Red =   &lt;9, -38&gt; </td>
+		<td style="text-align:center;">Green =  &lt;14, -17&gt;;  Red =   &lt;30, -18&gt; </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/harvesters.jpg"><img src="/images/output/harvesters.jpg" title="Harvesters" alt="Harvesters" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/icon.jpg"><img src="/images/output/icon.jpg" title="Icon" alt="Icon" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Harvesters (9656, 3683) </td>
+		<td style="text-align:center;">Icon (9656, 3683) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green =  &lt;0, 8&gt;;  Red =   &lt;2, 5&gt; </td>
+		<td style="text-align:center;">Green = &lt;15, -17&gt;;  Red = &lt;17, -28&gt;  </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/lady.jpg"><img src="/images/output/lady.jpg" title="Lady" alt="Lady" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/melons.jpg"><img src="/images/output/melons.jpg" title="Melons" alt="Melons" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Monastery (9637, 3761) </td>
+		<td style="text-align:center;">Melons (9724, 3770) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green = &lt;0, -6&gt;;  Red = &lt;5, -10&gt; </td>
+		<td style="text-align:center;">Green = &lt;0, 13&gt;;  Red = &lt;8, 22&gt;   </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/onion_church.jpg"><img src="/images/output/onion_church.jpg" title="Onion Church" alt="Onion Church" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/self_portrait.jpg"><img src="/images/output/self_portrait.jpg" title="Self Portrait" alt="Self Portrait" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Onion Church (9646, 3781) </td>
+		<td style="text-align:center;">Self Portrait (9754, 3810) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green = &lt;4, -13&gt;;  Red = &lt;9, -17&gt; </td>
+		<td style="text-align:center;">Green = &lt;8, 6&gt;;  Red = &lt;13, 9&gt;   </td>
+	</tr>
+</table>
+<p>workshop.jpg<br />
+village.jpg<br />
+turkmen.jpg<br />
+train.jpg<br />
+three_generations.jpg</p>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Displacement Vectors are given as &lt;dx, dy&gt;, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.</p>
+<p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.<br />
 <code>code snippets here</code></p>
     </section>
 </div>
