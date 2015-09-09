@@ -77,7 +77,6 @@ The first images we tested were relatively small, with a max size of 405,504 pix
 fn1. Displacement Vectors are given as <dx, dy>, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.
 
 fn2. I was quite excited to test out my white-balance algorithm -- so exicted in fact that I hadn't even finished my image pyramid implementation yet! This bell & whistle was achieved by finding the @max(sum(r,g,b values))@ along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See "White Balance":https://en.wikipedia.org/wiki/White_balance for more.
-@code snippets here@
 
 fn3. Enhanced via an auto-contrast adjustment in which each pixel(x,y) was scaled by p(x,y)^1.5, and then normalized.
 
