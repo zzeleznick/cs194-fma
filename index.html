@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>CS194-ZZ by zzeleznick</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>CS194-ZZ</h1>
+        <p>Image Manipulation and Computational Photography</p>
+
+        <p class="view"><a href="https://github.com/zzeleznick/cs194-fma">View the Project on GitHub <small>zzeleznick/cs194-fma</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/zzeleznick/cs194-fma/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/zzeleznick/cs194-fma/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/zzeleznick/cs194-fma">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h3>
+<a id="cs194-26-cs294-26-project-1" class="anchor" href="#cs194-26-cs294-26-project-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>CS194-26 (CS294-26): Project 1</h3>
+
+<h3>
+<a id="main-files" class="anchor" href="#main-files" aria-hidden="true"><span class="octicon octicon-link"></span></a>Main Files</h3>
+
+<ol>
+<li><p>main.py  -&gt; runs larger images with auto-cropping, an image pyramid for speed, and alignment via edge-detection.
+           Additional bells &amp; whistles (b&amp;W) enabled with optional param "true" --&gt; auto white-balance, auto-contrast with</p></li>
+<li><p>sobel.py -&gt; b&amp;W: code for auto-cropping (via sobel edge detection), and custom sobel edge production</p></li>
+<li><p>balance.py -&gt; b&amp;W: code for white-balancing, and applying color filters for fun!</p></li>
+<li><p>contrast.py -&gt; b&amp;W: code for enhancing saturation via scaled intensities</p></li>
+<li><p>imageAlign.py -&gt; code for aligning images</p></li>
+<li><p>boundingBox.py -&gt; adapted code for graphical debugging of cropping</p></li>
+<li><p>small.py  -&gt; an early file that was used for the small images. (discontinued)</p></li>
+</ol>
+
+<h3>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h3>
+
+<pre><code>&gt; python main.py
+    Produces generated output for bridge.tif
+&gt; python main.py INDEX
+    Produces generated output for db[INDEX] image
+&gt; python main.py INDEX true
+     Produces generated output for db[INDEX] image + white-balanced image and auto-contrast image
+</code></pre>
+
+<h3>
+<a id="history" class="anchor" href="#history" aria-hidden="true"><span class="octicon octicon-link"></span></a>History</h3>
+
+<p>#TODO</p>
+
+<h3>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h3>
+
+<pre><code>Zachary Zeleznick
+
++ Thanks to Deepak, Emily for encouragement!
+</code></pre>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/zzeleznick">zzeleznick</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
