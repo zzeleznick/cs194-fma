@@ -13,12 +13,30 @@ Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлов�
 
 h3(anchor#approach). %(octicon octicon-link)Approach%
 
-### Here is my page. Keep bulleting
+I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.
 
-## end no more.
+For alignment, the first function I implemented to test the "goodness of fit" was the sum of squared displacement (ssd). In python, this was extremely simple to code @sum(sum((image1-image2)**2))@ and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like "emir.tif" required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.
 
-*I don't know how to markdown!
+After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.
 
+h3(anchor#intermission). Early Results
+
+|\2=. Output Images, Original Sizes, & Displacement Vectors |
+| !/images/output/out_cathedral.jpg(Cathedral)!:http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg | !/images/output/out_tobolsk.jpg(Tobolsk)!:http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg |
+|=. Cathedral (1024, 390) |=. Tobolsk (1024, 396) |
+|=. Green =  <2, -2>;  Red =   <6, -3> |=. Green =  <3, -4>;  Red =   <3, -7> |
+| !/images/output/out_nativity.jpg(Nativity)!:http://zzeleznick.github.io/cs194-fma/images/output/out_nativity.jpg | !/images/output/out_settlers.jpg(Settlers)!:http://zzeleznick.github.io/cs194-fma/images/output/out_settlers.jpg |
+|=. Nativity (1024, 395) |=. Settlers (1024, 396) |
+|=. Green =  <1, -4>;  Red =   <0, -6> |=. Green = <0, 0>;  Red = <-1, 1>  |
+| !/images/output/out_monastery.jpg(Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg | !/images/output/de_out_monastery.jpg(White-Balanced Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/de_out_monastery.jpg |
+|=. Monastery (1024, 391) |=. White-Balanced Monastery (1024, 391)[1] |
+|=. Green = <2, -10>;  Red = <2, -11> |=. Green = <2, -10>;  Red = <2, -11>   |
+
+h3(anchor#learnedlessons1). Early Results Lessons Learned
+
+After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.
+
+fn1. I was quite excited to test out my white-balance algorithm -- so exicted in fact that I hadn't even finished my image pyramid implementation yet! This bell & whistle was achieved by finding the @max(sum(r,g,b values))@ along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See "White Balance":https://en.wikipedia.org/wiki/White_balance for more.
 @code snippets here@
 
 

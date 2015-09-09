@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Images of the Russian Empire</title>
+    <meta name="author" content="Zachary Zeleznick">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/github-light.css" media="screen">
+</head>
+<body>
+
+    <section class="page-header-small">
+      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h2 class="project-tagline">Images of the Russian Empire</h2>
+      <h3 class="project-subline">Colorizing the Prokudin-Gorskii Photo Collection</h2>
+    </section>
+
+<div id="post">
+    <section class="main-content">
+        <h2>Images of the Russian Empire</h2>
+<h3 class="anchor" id="main"><span class="octicon octicon-link">Background</span></h3>
+<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar&#8217;s special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges&#8230; thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later &#8212; he envisioned special projectors to be installed in &quot;multimedia&quot;classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his <span class="caps">RGB</span> glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available on-line.</p>
+<h3 class="anchor" id="approach"><span class="octicon octicon-link">Approach</span></h3>
+<p>I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.</p>
+<p>For alignment, the first function I implemented to test the &#8220;goodness of fit&#8221; was the sum of squared displacement (ssd). In python, this was extremely simple to code <code>sum(sum((image1-image2)**2))</code> and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like &#8220;emir.tif&#8221; required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.</p>
+<p>After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.</p>
+<h3 class="anchor" id="intermission">Early Results</h3>
+<table>
+	<tr>
+		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg"><img src="/images/output/out_cathedral.jpg" title="Cathedral" alt="Cathedral" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg"><img src="/images/output/out_tobolsk.jpg" title="Tobolsk" alt="Tobolsk" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Cathedral (1024, 390) </td>
+		<td style="text-align:center;">Tobolsk (1024, 396) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green =  &lt;2, -2&gt;;  Red =   &lt;6, -3&gt; </td>
+		<td style="text-align:center;">Green =  &lt;3, -4&gt;;  Red =   &lt;3, -7&gt; </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_nativity.jpg"><img src="/images/output/out_nativity.jpg" title="Nativity" alt="Nativity" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_settlers.jpg"><img src="/images/output/out_settlers.jpg" title="Settlers" alt="Settlers" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Nativity (1024, 395) </td>
+		<td style="text-align:center;">Settlers (1024, 396) </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green =  &lt;1, -4&gt;;  Red =   &lt;0, -6&gt; </td>
+		<td style="text-align:center;">Green = &lt;0, 0&gt;;  Red = &lt;-1, 1&gt;  </td>
+	</tr>
+	<tr>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg"><img src="/images/output/out_monastery.jpg" title="Monastery" alt="Monastery" /></a> </td>
+		<td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/de_out_monastery.jpg"><img src="/images/output/de_out_monastery.jpg" title="White-Balanced Monastery" alt="White-Balanced Monastery" /></a> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Monastery (1024, 391) </td>
+		<td style="text-align:center;">White-Balanced Monastery (1024, 391)<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
+	</tr>
+	<tr>
+		<td style="text-align:center;">Green = &lt;2, -10&gt;;  Red = &lt;2, -11&gt; </td>
+		<td style="text-align:center;">Green = &lt;2, -10&gt;;  Red = &lt;2, -11&gt;   </td>
+	</tr>
+</table>
+<h3 class="anchor" id="learnedlessons1">Early Results Lessons Learned</h3>
+<p>After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&amp;W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.</p>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.<br />
+<code>code snippets here</code></p>
+    </section>
+</div>
+
+<!--div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+  </ul>
+</div-->
+
+</body>
+</html>
