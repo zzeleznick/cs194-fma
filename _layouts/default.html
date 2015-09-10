@@ -5,10 +5,17 @@
     <title>{{ page.title }}</title>
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="/cs194-fma/stylesheets/normalize.css" media="screen">
+    {% capture path %}{{ site.github_path }}{% endcapture %}
+    {% assign css1 = "stylesheets/normalize.css" %}
+    {% assign css2 = "stylesheets/stylesheet.css" %}
+    {% assign css3 = "stylesheets/github-light.css" %}
+    {% assign css1 = path | append: css1 %}
+    {% assign css2 = path | append: css2 %}
+    {% assign css3 = path | append: css3 %}
+    <link rel="stylesheet" type="text/css" href= {{ css1 }}  media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="/cs194-fma/stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="/cs194-fma/stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href= {{ css2 }}  media="screen">
+    <link rel="stylesheet" type="text/css" href= {{ css3 }}  media="screen">
 </head>
 <body>
 
