@@ -4,9 +4,14 @@ title: Images of the Russian Empire
 subtitle: Colorizing the Prokudin-Gorskii Photo Collection
 im2: "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg"
 images: site.images
+eecs_images: site.eecs_images
+eecs_path: site.eecs_path
+#im1: &eecs_path + &site.eecs_images[0]
 ---
 
 h2. {{ page.title }}
+
+h2. {{ page.im1 }}
 
 h3(anchor#main). %(octicon octicon-link)I. Background%
 
@@ -23,14 +28,8 @@ After running a few sample from the starter python skeleton code, I began to tak
 
 h3(anchor#intermission). III. Early Results
 
-{% comment %}
-{% include halves-row.html im1="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" im2 = "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" %}
-{% assign im2 = "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" %}
-{% assign im3 = "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" %}
-{% endcomment %}
-
-
 {% include thirds-row.html im1= page.im2 im2 = page.im2 im3 = page.im2 %}
+
 
 
 {% comment %}
@@ -46,26 +45,6 @@ h3(anchor#intermission). III. Early Results
             </div>
         {% endfor %}
 </div-->
-{% endcomment %}
-
-{% comment %}
-<!--notextile>
-<script type="text/javascript">
-function callback(a){ return function(){ console.log("Running salvattore"); }}
-var a = "world";
-setTimeout(callback(a), 300);
-a = "Stac Overflow";
-salvattore.init();
-</script>
-</notextile-->
-{% endcomment %}
-
-{% capture size %} {{site.images | size }} {% endcapture %}
-
-
-
-{% comment %}
-{% include thirds-row.html im1="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" im2 = "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" im3 = "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" %}
 {% endcomment %}
 
 |\2=. Output Images, Original Sizes, & Displacement Vectors[1] |
