@@ -1,8 +1,48 @@
 # explicitly defining variables from http://jekyllrb.com/docs/configuration/
-github_path: "cs194-fma/"
-#"http://0.0.0.0:4000/"
-#cs194-fma/
-#
+github_path: "http://0.0.0.0:4000/"
+#"http://0.0.0.0:4000/"  #for local dev
+#"cs194-fma/"  #for github pages
+#"" #for upload to eecs
+
+images:
+- title: Cathedral
+  ref:  images/output/out_cathedral.jpg
+  link: http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg
+  data:
+  - size: "(1024, 390)"
+    vector: "Green =  <2, -2>;  Red =   <6, -3>"
+- title: Tobolsk
+  ref:  images/output/out_tobolsk.jpg
+  link: "http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg"
+  data:
+  - size: "(1024, 396)"
+    vector: "Green =  <3, -4>;  Red =   <3, -7>"
+- title: Nativity
+  ref:  images/output/out_nativity.jpg
+  link: http://zzeleznick.github.io/cs194-fma/images/output/out_nativity.jpg
+  data:
+  - size: "(1024, 395)"
+    vector: "Green =  <1, -4>;  Red =   <0, -6>"
+- title: Settlers
+  ref:  images/output/out_settlers.jpg
+  link: http://zzeleznick.github.io/cs194-fma/images/output/out_settlers.jpg
+  data:
+  - size: "(1024, 395)"
+    vector: "Green = <0, 0>;  Red = <-1, 1>"
+- title: Monastery
+  ref:  images/output/out_monastery.jpg
+  link: http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg
+  data:
+  - size: "(1024, 391)"
+    vector: "Green = <2, -10>;  Red = <2, -11>"
+- title: White-Balanced Monastery
+  ref:  images/output/out_monastery.jpg
+  link: http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg
+  data:
+  - size: "(1024, 391)[2]"
+    vector: "Green = <2, -10>;  Red = <2, -11>"
+
+
 
 # Where things are
 source:       .

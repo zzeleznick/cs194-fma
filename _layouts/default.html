@@ -6,16 +6,19 @@
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% capture path %}{{ site.github_path }}{% endcapture %}
-    {% assign css1 = "stylesheets/normalize.css" %}
-    {% assign css2 = "stylesheets/stylesheet.css" %}
-    {% assign css3 = "stylesheets/github-light.css" %}
-    {% assign css1 = path | append: css1 %}
-    {% assign css2 = path | append: css2 %}
-    {% assign css3 = path | append: css3 %}
+    {% assign css1 = path | append: "stylesheets/normalize.css" %}
+    {% assign css2 = path | append: "stylesheets/stylesheet.css" %}
+    {% assign css3 = path | append: "stylesheets/github-light.css" %}
+    {% assign js1 = path | append: "javascripts/scale.fix.js" %}
+    {% assign js2 = path | append: "javascripts/salvattore.js" %}
+
     <link rel="stylesheet" type="text/css" href= {{ css1 }}  media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href= {{ css2 }}  media="screen">
     <link rel="stylesheet" type="text/css" href= {{ css3 }}  media="screen">
+    <script type="text/javascript" src={{js1}}></script>
+    <script type="text/javascript" src={{js2}}></script>
+
 </head>
 <body>
 

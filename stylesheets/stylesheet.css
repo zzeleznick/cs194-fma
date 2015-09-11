@@ -19,6 +19,66 @@ li {
   line-height: 2;
 }
 
+a.sm img{
+  width: 30%;
+}
+
+.col-lg-2{
+  width: 50%;
+  display: inline;
+  *zoom: 1;
+  -webkit-border-horizontal-spacing: 2px;
+  -webkit-border-vertical-spacing: 2px;
+}
+
+.col-lg-3, .col-lg-3 img {
+  width: 33.33333333333%;
+  display: inline;
+  *zoom: 1;
+  -webkit-border-horizontal-spacing: 2px;
+  -webkit-border-vertical-spacing: 2px;
+}
+
+.row {
+  width: 100%;
+}
+/*
+td:contains-selector(a.sm) {  text-align: center; }
+td:contains-selector(a) {  background-color: red; }
+td > a.sm { background-color: red; }
+td! > a.sm{ text-align: center; }
+td a.sm:parent {text-align: center; }
+a.sm:parent {text-align: center; } */
+
+/* Begin http://salvattore.com */
+
+@media screen and (max-width: 480px){
+  #grid[data-columns]::before {
+    content: '1 .column.size-1of1';
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #grid[data-columns]::before {
+    content: '2 .column.size-1of2';
+  }
+}
+@media screen and (min-width: 769px) {
+  #grid[data-columns]::before {
+    content: '3 .column.size-1of3';
+  }
+}
+
+/* Again, you’re free to use and define the classes: */
+.column { float: left; }
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.333%; }
+
+
+/* End http://salvattore.com */
+
+
 .footnote {
   font-size: 12px;
   color: gray;
@@ -196,7 +256,7 @@ li {
     margin-top: 0; }
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
-.main-content table {
+.main-content table{
   display: block;
   width: 100%;
   overflow: auto;
@@ -206,7 +266,8 @@ li {
     font-weight: bold; }
   .main-content table th, .main-content table td {
     padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
+    border: 1px solid #e9ebec;
+    text-align: center; }
 .main-content dl {
   padding: 0; }
   .main-content dl dt {
