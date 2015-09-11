@@ -17,6 +17,18 @@ eecs_images:
 - title: Monastery
   ref:  monastery.jpg
 
+extra_images:
+- title: Bridge Over Ekaterininsko
+  ref:  gamma_bridgeOverEkaterininskoe.jpg
+- title: Chapel and Cross
+  ref:  gamma_chapelAndCross.jpg
+- title: Palace
+  ref:  gamma_formerPalace.jpg
+- title: Lava River
+  ref:  gamma_lavaRiver.jpg
+- title: Lava River and Boat
+  ref:  gamma_lavaRiverAndBoat.jpg
+
 
 images:
 - title: Cathedral
