@@ -204,6 +204,10 @@ for i in range(start, end):
         edge_r = i  #found our right edge
 ...
 </pre>
+<div class="pure-g">
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/emir.tif"><img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/emir.tif" alt="" /></a></div>
+     <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/output/cropped_emir.jpg"><img src="http://0.0.0.0:4000/cropped_emir.tif" alt="" /></a></div>
+</div>
 <p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://www.loc.gov/pictures/collection/prok/" > http://www.loc.gov/pictures/collection/prok/ </a></p>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Displacement Vectors are given as &lt;dx, dy&gt;, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.</p>
 <p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.</p>
