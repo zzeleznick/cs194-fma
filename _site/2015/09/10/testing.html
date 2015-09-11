@@ -36,18 +36,27 @@
         <h2>Images of the Russian Empire</h2>
 <h2></h2>
 <h3 class="anchor" id="main"><span class="octicon octicon-link">I. Background</span></h3>
-<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar&#8217;s special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges&#8230; thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later &#8212; he envisioned special projectors to be installed in &quot;multimedia&quot;classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his <span class="caps">RGB</span> glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available on-line.</p>
+<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar&#8217;s special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges&#8230; thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later &#8212; he envisioned special projectors to be installed in &quot;multimedia&quot;classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his <span class="caps">RGB</span> glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available online<sup class="footnote" id="fnr0"><a href="#fn0">0</a></sup>.</p>
+<h3 class="anchor" id="inputs"><div class="center octicon octicon-link"> Original Glass Slides </div></h3>
+<div class="pure-g">
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" alt="" /></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/tobolsk.jpg" alt="" /></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/nativity.jpg" alt="" /></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/settlers.jpg" alt="" /></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/monastery.jpg" alt="" /></div>
+</div>
+<div class="pure-g">
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Cathedral    </div>
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Tobolsk    </div>
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Nativity    </div>
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Settlers    </div>
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Monastery    </div>
+</div>
 <h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Approach</span></h3>
 <p>I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.</p>
 <p>For alignment, the first function I implemented to test the &#8220;goodness of fit&#8221; was the sum of squared displacement (ssd). In python, this was extremely simple to code <code>sum(sum((image1-image2)**2))</code> and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like &#8220;emir.tif&#8221; required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.</p>
 <p>After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.</p>
 <h3 class="anchor" id="intermission"><span class="caps">III</span>. Early Results</h3>
-<div class="pure-g">
-    <div class="pure-u-1-3 pure-u-md-1-3"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" alt="" />  </div>
-    <div class="pure-u-1-3 pure-u-md-1-3"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" alt="" />  </div>
-    <div class="pure-u-1-3 pure-u-md-1-3">  <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" alt="" /> </div>
-</div>
-<p><!-- via http://purecss.io/grids/ --></p>
 <table>
 	<tr>
 		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
@@ -92,7 +101,7 @@
 <h3 class="anchor" id="learnedlessons1">IV. Early Results Lessons Learned</h3>
 <p>After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&amp;W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.</p>
 <h3 class="anchor" id="imagepyramid">V. Image Pyramid</h3>
-<p>The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger <span class="caps">TIF</span> files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with. #todo.</p>
+<p>The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger <span class="caps">TIF</span> files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with.</p>
 <table>
 	<tr>
 		<td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
@@ -182,9 +191,24 @@
 		<td style="text-align:center;">Green =  &lt;14, -17&gt;;  Red =   &lt;30, -18&gt; </td>
 	</tr>
 </table>
+<h3 class="anchor" id="cropping">VI. Cropping</h3>
+<p>For my image cropping algorithm, I first conservatively trimmed the top and bottom by 1%, and then left and right sides of the image by 2.5%. Here, the goal was to remove the majority of the noise from the image, but since each image has different boundaries where the useful pixels begin, automatic cropping cannot be done independently of the pixel values. I first tried cropping rows and columns on the basis of deviation from the row and column norm. I approximated that a true dark frame edge on a row_i would have a sum below some constant plus the mean (e.g.<br />
+<pre><code>def TrueDarkEdge(i, image, k):
+sum(image[i]) &lt; k + mean( [ mean(image[row]) for row in range(image.shape[0]) ] )</code></pre><br />
+However, with some stray pale edges, I had to include a second test with deviations above the mean, and this became very verbose as I checked all 4 sides of each image. Secondly, the equation wasn’t as precise as I intended, and left a lot of wiggle room for optimization. Without setting a boundary on the number of rows and columns the algorithm could crop, the script produced inconsistent output image quality.</p>
+<p>With my next iteration, I passed in a section of the input image’s sobel edge map, and cropped again on deviation from the mean, but instead used the values of the pixels from the edges. This enabled me to detect edges irrespective of color from the original image, and produced cleaner masks.<sup class="footnote" id="fnr4"><a href="#fn4">4</a></sup></p>
+<pre>...
+tolerance = edges.shape[0] * ( np.mean(edges[1:-1, 1:-1]) + np.std(edges) * (1+adjustment))
+for i in range(start, end):
+    if sum(sum(edges[4:-4, i-1:i])) &gt; tolerance:
+        edge_r = i  #found our right edge
+...
+</pre>
+<p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://www.loc.gov/pictures/collection/prok/" > http://www.loc.gov/pictures/collection/prok/ </a></p>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Displacement Vectors are given as &lt;dx, dy&gt;, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.</p>
 <p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.</p>
 <p class="footnote" id="fn3"><a href="#fnr3"><sup>3</sup></a> Enhanced via an auto-contrast adjustment in which each pixel(x,y) was scaled by p(x,y)^1.5, and then normalized.</p>
+<p class="footnote" id="fn4"><a href="#fnr4"><sup>4</sup></a> Note that the values on the boundaries of the edge map should be discarded in calculation of the mean.s</p>
     </section>
 </div>
 

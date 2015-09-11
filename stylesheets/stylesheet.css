@@ -23,6 +23,13 @@ a.sm img{
   width: 30%;
 }
 
+.center {
+  text-align: center;
+  margin: 0, auto;
+  -webkit-align-content: center;
+  -webkit-align-self: center;
+}
+
 .col-lg-2{
   width: 50%;
   display: inline;
