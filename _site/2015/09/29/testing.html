@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Images of the Russian Empire</title>
+    <title>Fun with Frequencies</title>
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
@@ -27,30 +27,32 @@
 
     <section class="page-header-small">
       <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
-      <h2 class="project-tagline">Images of the Russian Empire</h2>
-      <h3 class="project-subline">Colorizing the Prokudin-Gorskii Photo Collection</h2>
+      <h2 class="project-tagline">Fun with Frequencies</h2>
+      <h3 class="project-subline">Creating Hybrid Images and More</h2>
     </section>
 
 <div id="post">
     <section class="main-content">
-        <h2>Images of the Russian Empire</h2>
-<h2></h2>
-<h3 class="anchor" id="main"><span class="octicon octicon-link">I. Background</span></h3>
-<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar&#8217;s special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges&#8230; thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later &#8212; he envisioned special projectors to be installed in &quot;multimedia&quot;classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his <span class="caps">RGB</span> glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available online<sup class="footnote" id="fnr0"><a href="#fn0">0</a></sup>.</p>
-<h3 class="anchor" id="inputs"><div class="center octicon octicon-link"> Original Glass Slides </div></h3>
+        <h3 class="anchor" id="main"><span class="octicon octicon-link">I. Warm Up</span></h3>
+<p>In this part of the excercise, we used an unsharp mask in attempt to sharpen a blurry images. I used a blurred version of the Grand Canyon as the base and added a scaled high-frequency version of the image to sharpen the picture details.</p>
 <div class="pure-g">
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg" alt="" /></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/tobolsk.jpg" alt="" /></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/nativity.jpg" alt="" /></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/settlers.jpg" alt="" /></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <img src="http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/monastery.jpg" alt="" /></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/blurred_blurred_grand-canyon.jpg"><img src="http://0.0.0.0:4000/images/p3/blurred_blurred_grand-canyon.jpg" title="Grand Canyon Original" alt="Grand Canyon Original" /></a></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg"><img src="http://0.0.0.0:4000/images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg"><img src="http://0.0.0.0:4000/images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
 </div>
 <div class="pure-g">
-    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Cathedral    </div>
-    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Tobolsk    </div>
-    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Nativity    </div>
-    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Settlers    </div>
-    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> Monastery    </div>
+<div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+Grand Canyon Original <br>
+
+</div>
+<div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+Grand Canyon Sharpened <br>
+Alpha Value: 2.8
+</div>
+<div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+Grand Canyon Sharpened <br>
+Alpha Value: 4.0
+</div>
 </div>
 <h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Approach</span></h3>
 <p>I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.</p>
