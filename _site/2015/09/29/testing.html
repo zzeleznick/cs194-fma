@@ -131,6 +131,26 @@ Donald Trump Lowpass
 Donald Trump
 </div>
 </div>
+<p>Note the loss of higher frequencies in our first filtered image of Trump, as the intensity congregates along the x-axis. In our second filter, note the relative weakening of low frequencies, as there exists a gap near the low intensity regions.</p>
+<h3 class="center"> Donald Trump <span class="caps">FFT</span> </h3>
+<div class="pure-g">
+<div class="pure-u-1-4 pure-u-md-1-4 center">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fftTrump-Bite.jpg"><img src="http://0.0.0.0:4000/images/p3/1-fftTrump-Bite.jpg" title="DT 1 FFT" alt="DT 1 FFT" /></a>
+DT 1 <span class="caps">FFT</span>
+</div>
+<div class="pure-u-1-4 pure-u-md-1-4 center">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fft-lowTrump-Bite.jpg"><img src="http://0.0.0.0:4000/images/p3/1-fft-lowTrump-Bite.jpg" title="DT Lowpass FFT" alt="DT Lowpass FFT" /></a>
+DT Lowpass <span class="caps">FFT</span>
+</div>
+<div class="pure-u-1-4 pure-u-md-1-4 center">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fftTrump-Point.jpg"><img src="http://0.0.0.0:4000/images/p3/2-fftTrump-Point.jpg" title="DT 2 FFT" alt="DT 2 FFT" /></a>
+DT 2 <span class="caps">FFT</span>
+</div>
+<div class="pure-u-1-4 pure-u-md-1-4 center">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fft-highTrump-Point.jpg"><img src="http://0.0.0.0:4000/images/p3/2-fft-highTrump-Point.jpg" title="DT 2 Highpass FFT" alt="DT 2 Highpass FFT" /></a>
+DT 2 Highpass <span class="caps">FFT</span>
+</div>
+</div>
 <p>Here, image alignment was my biggest issue, and choosing portraits with similar positioning would have greatly increased the quality of the hybrid images shown.</p>
 <h3 class="anchor" id="intermission"><span class="caps">III</span>. Laplacian and Gaussian Stacks</h3>
 <p>Similar to an image pyramid, we can generate a Gaussian stack by applying Gaussian filters of increasing σ on the original image. Once we create our Gaussians, we can generate a Laplacian stack by subtracting adjacent levels of the Gaussian stack from the original image. Here, we have generated Gaussian and Laplacian stacks with σ = [0, 2, 4, 8, 16]</p>
@@ -318,7 +338,14 @@ Donald Trump
 </div>
 </div>
 <h3 class="anchor" id="learnedlessons1">IV. Multiresolution Blending</h3>
-<p>Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.</p>
+<p>Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.</p>
+<pre><code>Step la. Build Laplacian pyramids LA and LB for images A and B respectively.
+Step lb. Build a Gaussian pyramid GR for the region image R.
+Step 2. Form a combined pyramid LS from LA and LB using nodes of GR as weights.
+        For each l, i, j:
+                 LSl(i, j) = GRl(i, j)LAl(i, j) + (1 - GRl(i, j))LBl(i, j).
+Step 3. Obtain the splined image S by expanding and summing the levels of LS.
+</code></pre>
 <h4 class='center'> Pope at the Beach </h4>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
@@ -383,6 +410,7 @@ Blended 8 Levels
 </div>
 </div>
 <p>Color was challenging to blend, and in the case of my image on Mars, the results were less attractive due to the variation in color patterns.</p>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> http://persci.mit.edu/pub_pdfs/spline83.pdf</p>
 <p>- Zachary Zeleznick</p>
     </section>
 </div>

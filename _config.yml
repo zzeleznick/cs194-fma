@@ -52,6 +52,17 @@ p3_hybrid_images:
 - title: Donald Trump
   ref: Trump-Bite.jpg
 
+p3_hybrid_fft:
+- title: DT 1 FFT
+  ref: 1-fftTrump-Bite.jpg
+- title: DT Lowpass FFT
+  ref: 1-fft-lowTrump-Bite.jpg
+- title: DT 2 FFT
+  ref: 2-fftTrump-Point.jpg
+- title: DT 2 Highpass FFT
+  ref: 2-fft-highTrump-Point.jpg
+
+
 p3_stack_images:
 
 - title: Albert-Monroe Gaussian

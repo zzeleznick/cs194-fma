@@ -74,6 +74,18 @@ Combining two images that can be perceived from one picture is no easy feat, but
 {% endfor %}
 </div>
 
+Note the loss of higher frequencies in our first filtered image of Trump, as the intensity congregates along the x-axis. In our second filter, note the relative weakening of low frequencies, as there exists a gap near the low intensity regions.
+
+<h3 class="center"> Donald Trump FFT </h3>
+<div class="pure-g">
+{% for image in site.p3_hybrid_fft%}
+    <div class="pure-u-1-4 pure-u-md-1-4 center">
+     !{{ site.github_path | escape  }}{{site.p3_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p3_path}}{{image.ref}}
+     {{image.title}}
+     </div>
+{% endfor %}
+</div>
+
 Here, image alignment was my biggest issue, and choosing portraits with similar positioning would have greatly increased the quality of the hybrid images shown.
 
 h3(anchor#intermission). III. Laplacian and Gaussian Stacks
@@ -162,7 +174,15 @@ Similar to an image pyramid, we can generate a Gaussian stack by applying Gaussi
 
 h3(anchor#learnedlessons1). IV. Multiresolution Blending
 
-Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.
+Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image[1]. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.
+
+<pre><code>Step la. Build Laplacian pyramids LA and LB for images A and B respectively.
+Step lb. Build a Gaussian pyramid GR for the region image R.
+Step 2. Form a combined pyramid LS from LA and LB using nodes of GR as weights.
+        For each l, i, j:
+                 LSl(i, j) = GRl(i, j)LAl(i, j) + (1 - GRl(i, j))LBl(i, j).
+Step 3. Obtain the splined image S by expanding and summing the levels of LS.
+</code></pre>
 
 <h4 class='center'> Pope at the Beach </h4>
 
@@ -200,5 +220,7 @@ Now that we have seen Gaussian and Laplacian Stacks in action, we can now use ma
 </div>
 
 Color was challenging to blend, and in the case of my image on Mars, the results were less attractive due to the variation in color patterns.
+
+fn1. http://persci.mit.edu/pub_pdfs/spline83.pdf
 
 - Zachary Zeleznick
