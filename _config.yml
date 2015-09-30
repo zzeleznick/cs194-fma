@@ -17,6 +17,46 @@ p3_images:
   alpha: 4.0
   ref:  unsharp_5_4.0_blurred_blurred_grand-canyon.jpg
 
+p3_hybrid_images:
+- title: Alpaca
+  ref: Alpaca.jpg
+- title: Alpaca Highpass
+  ref: highpass_Alpaca.jpg
+- title: Taypaca
+  ref: final_Alpaca.jpg
+- title: Taylor Lowpass
+  ref: lowpass_Jacob-Black.jpg
+- title: Taylor
+  ref: Jacob-Black.jpg
+
+- title: Caitlyn Jenner
+  ref: Caitlyn-Jenner.jpg
+- title: Caitlyn Jenner Highpass
+  ref: highpass_Caitlyn-Jenner.jpg
+- title: Caice Jenner
+  ref: final_Caitlyn-Jenner.jpg
+- title: Bruce Jenner Lowpass
+  ref: lowpass_Bruce-Jenner.jpg
+- title: Bruce Jenner
+  ref: Bruce-Jenner.jpg
+
+
+- title: Donald Trump
+  ref: Trump-Point.jpg
+- title: Donald Trump Highpass
+  ref: highpass_Trump-Point.jpg
+- title: Donald Trump
+  ref: final_Trump-Point.jpg
+- title: Donald Trump Lowpass
+  ref: lowpass_Trump-Bite.jpg
+- title: Donald Trump
+  ref: Trump-Bite.jpg
+
+
+
+
+
+
 
 
 

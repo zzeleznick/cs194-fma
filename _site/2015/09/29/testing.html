@@ -54,10 +54,83 @@ Grand Canyon Sharpened <br>
 Alpha Value: 4.0
 </div>
 </div>
-<h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Approach</span></h3>
-<p>I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.</p>
-<p>For alignment, the first function I implemented to test the &#8220;goodness of fit&#8221; was the sum of squared displacement (ssd). In python, this was extremely simple to code <code>sum(sum((image1-image2)**2))</code> and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like &#8220;emir.tif&#8221; required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.</p>
-<p>After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.</p>
+<p>As you can see this method is less than ideal, since the images become more grainy and lose some saturation in tradeoff for the increased sharpness.</p>
+<h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Hybrid Images</span></h3>
+<p>Combining two images that can be perceived from one picture is no easy feat, but with our enhanced understanding of lowpass and highpass filtering, our limits of creativity are now only bounded by image alignment.</p>
+<div class="pure-g">
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Alpaca.jpg"><img src="http://0.0.0.0:4000/images/p3/Alpaca.jpg" title="Alpaca" alt="Alpaca" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Alpaca.jpg"><img src="http://0.0.0.0:4000/images/p3/highpass_Alpaca.jpg" title="Alpaca Highpass" alt="Alpaca Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Alpaca.jpg"><img src="http://0.0.0.0:4000/images/p3/final_Alpaca.jpg" title="Taypaca" alt="Taypaca" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Jacob-Black.jpg"><img src="http://0.0.0.0:4000/images/p3/lowpass_Jacob-Black.jpg" title="Taylor Lowpass" alt="Taylor Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Jacob-Black.jpg"><img src="http://0.0.0.0:4000/images/p3/Jacob-Black.jpg" title="Taylor" alt="Taylor" /></a></div>
+</div>
+<div class="pure-g">
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Alpaca
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Alpaca Highpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Taypaca
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Taylor Lowpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Taylor
+</div>
+</div>
+<p><br>
+<div class="pure-g"></p>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Caitlyn-Jenner.jpg"><img src="http://0.0.0.0:4000/images/p3/Caitlyn-Jenner.jpg" title="Caitlyn Jenner" alt="Caitlyn Jenner" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Caitlyn-Jenner.jpg"><img src="http://0.0.0.0:4000/images/p3/highpass_Caitlyn-Jenner.jpg" title="Caitlyn Jenner Highpass" alt="Caitlyn Jenner Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Caitlyn-Jenner.jpg"><img src="http://0.0.0.0:4000/images/p3/final_Caitlyn-Jenner.jpg" title="Caice Jenner" alt="Caice Jenner" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Bruce-Jenner.jpg"><img src="http://0.0.0.0:4000/images/p3/lowpass_Bruce-Jenner.jpg" title="Bruce Jenner Lowpass" alt="Bruce Jenner Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Bruce-Jenner.jpg"><img src="http://0.0.0.0:4000/images/p3/Bruce-Jenner.jpg" title="Bruce Jenner" alt="Bruce Jenner" /></a></div>
+</div>
+<div class="pure-g">
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Caitlyn Jenner
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Caitlyn Jenner Highpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Caice Jenner
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Bruce Jenner Lowpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Bruce Jenner
+</div>
+</div>
+<p><br>
+<div class="pure-g"></p>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Point.jpg"><img src="http://0.0.0.0:4000/images/p3/Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Trump-Point.jpg"><img src="http://0.0.0.0:4000/images/p3/highpass_Trump-Point.jpg" title="Donald Trump Highpass" alt="Donald Trump Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Trump-Point.jpg"><img src="http://0.0.0.0:4000/images/p3/final_Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Trump-Bite.jpg"><img src="http://0.0.0.0:4000/images/p3/lowpass_Trump-Bite.jpg" title="Donald Trump Lowpass" alt="Donald Trump Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Bite.jpg"><img src="http://0.0.0.0:4000/images/p3/Trump-Bite.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+</div>
+<div class="pure-g">
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Donald Trump
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Donald Trump Highpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Donald Trump
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Donald Trump Lowpass
+</div>
+<div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+Donald Trump
+</div>
+</div>
 <h3 class="anchor" id="intermission"><span class="caps">III</span>. Early Results</h3>
 <table>
 	<tr>

@@ -2,7 +2,6 @@
 layout: post
 title: Fun with Frequencies
 subtitle: Creating Hybrid Images and More
-im2: "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg"
 images: site.images
 ---
 
@@ -26,20 +25,57 @@ In this part of the excercise, we used an unsharp mask in attempt to sharpen a b
 {% endfor %}
 </div>
 
-h3(anchor#approach). %(octicon octicon-link)II. Approach%
+As you can see this method is less than ideal, since the images become more grainy and lose some saturation in tradeoff for the increased sharpness.
 
-I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.
+h3(anchor#approach). %(octicon octicon-link)II. Hybrid Images%
 
-For alignment, the first function I implemented to test the "goodness of fit" was the sum of squared displacement (ssd). In python, this was extremely simple to code @sum(sum((image1-image2)**2))@ and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like "emir.tif" required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.
+Combining two images that can be perceived from one picture is no easy feat, but with our enhanced understanding of lowpass and highpass filtering, our limits of creativity are now only bounded by image alignment.
 
-After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:0%}
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> !{{ site.github_path | escape  }}{{site.p3_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p3_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+    {{image.title}}
+    </div>
+{% endfor %}
+</div>
+
+<br>
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:5%}
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> !{{ site.github_path | escape  }}{{site.p3_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p3_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:5%}
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+    {{image.title}}
+    </div>
+{% endfor %}
+</div>
+
+<br>
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:10%}
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> !{{ site.github_path | escape  }}{{site.p3_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p3_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+<div class="pure-g">
+{% for image in site.p3_hybrid_images limit: 5 offset:10%}
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
+    {{image.title}}
+    </div>
+{% endfor %}
+</div>
 
 h3(anchor#intermission). III. Early Results
 
-
-{% comment %}
-{% include thirds-row.html im1= page.im2 im2 = page.im2 im3 = page.im2 %}
-{% endcomment %}
 
 {% comment %}
 <!--div id="grid" class = "gg" data-columns>
