@@ -52,6 +52,174 @@ p3_hybrid_images:
 - title: Donald Trump
   ref: Trump-Bite.jpg
 
+p3_stack_images:
+
+- title: Albert-Monroe Gaussian
+  val: 0
+  ref: blur_0_Albert-Monroe.jpg
+- title: Albert-Monroe Gaussian
+  val: 2
+  ref: blur_1_Albert-Monroe.jpg
+- title: Albert-Monroe Gaussian
+  val: 4
+  ref: blur_2_Albert-Monroe.jpg
+- title: Albert-Monroe Gaussian
+  val: 8
+  ref: blur_3_Albert-Monroe.jpg
+- title: Albert-Monroe Gaussian
+  val: 16
+  ref: blur_4_Albert-Monroe.jpg
+
+- title: Albert-Monroe Laplacian
+  val: 0
+  ref: high_0_Albert-Monroe.jpg
+- title: Albert-Monroe Laplacian
+  val: 2
+  ref: high_1_Albert-Monroe.jpg
+- title: Albert-Monroe Laplacian
+  val: 4
+  ref: high_2_Albert-Monroe.jpg
+- title: Albert-Monroe Laplacian
+  val: 8
+  ref: high_3_Albert-Monroe.jpg
+- title: Albert-Monroe Laplacian
+  val: 16
+  ref: high_4_Albert-Monroe.jpg
+
+
+- title: Taypaca Gaussian
+  val: 0
+  ref: blur_0_final_Alpaca.jpg
+- title: Taypaca Gaussian
+  val: 2
+  ref: blur_1_final_Alpaca.jpg
+- title: Taypacaa Gaussian
+  val: 4
+  ref: blur_2_final_Alpaca.jpg
+- title: Taypaca Gaussian
+  val: 8
+  ref: blur_3_final_Alpaca.jpg
+- title: Taypaca Gaussian
+  val: 16
+  ref: blur_4_final_Alpaca.jpg
+
+- title: Taypaca Laplacian
+  val: 0
+  ref: high_0_final_Alpaca.jpg
+- title: Taypaca Laplacian
+  val: 2
+  ref: high_1_final_Alpaca.jpg
+- title: Taypaca Laplacian
+  val: 4
+  ref: high_2_final_Alpaca.jpg
+- title: Taypaca Laplacian
+  val: 8
+  ref: high_3_final_Alpaca.jpg
+- title: Taypaca Laplacian
+  val: 16
+  ref: high_4_final_Alpaca.jpg
+
+- title: Brain Gaussian
+  val: 0
+  ref: blur_0_Brain.jpg
+- title: Brain Gaussian
+  val: 2
+  ref: blur_1_Brain.jpg
+- title: Brain Gaussian
+  val: 4
+  ref: blur_2_Brain.jpg
+- title: Brain Gaussian
+  val: 8
+  ref: blur_3_Brain.jpg
+- title: Brain Gaussian
+  val: 16
+  ref: blur_4_Brain.jpg
+
+- title: Brain Laplacian
+  val: 0
+  ref: high_0_Brain.jpg
+- title: Brain Laplacian
+  val: 2
+  ref: high_1_Brain.jpg
+- title: Brain Laplacian
+  val: 4
+  ref: high_2_Brain.jpg
+- title: Brain Laplacian
+  val: 8
+  ref: high_3_Brain.jpg
+- title: Brain Laplacian
+  val: 16
+  ref: high_4_Brain.jpg
+
+- title: Lincoln Gaussian
+  val: 0
+  ref: blur_0_Lincoln.jpg
+- title: Lincoln Gaussian
+  val: 2
+  ref: blur_1_Lincoln.jpg
+- title: Lincoln Gaussian
+  val: 4
+  ref: blur_2_Lincoln.jpg
+- title: Lincoln Gaussian
+  val: 8
+  ref: blur_3_Lincoln.jpg
+- title: Lincoln Gaussian
+  val: 16
+  ref: blur_4_Lincoln.jpg
+
+- title: Lincoln Laplacian
+  val: 0
+  ref: high_0_Lincoln.jpg
+- title: Lincoln Laplacian
+  val: 2
+  ref: high_1_Lincoln.jpg
+- title: Lincoln Laplacian
+  val: 4
+  ref: high_2_Lincoln.jpg
+- title: Lincoln Laplacian
+  val: 8
+  ref: high_3_Lincoln.jpg
+- title: Lincoln Laplacian
+  val: 16
+  ref: high_4_Lincoln.jpg
+
+
+p3_mask_images:
+- title: Beach
+  ref: Beach.jpg
+- title: Mask Pope
+  ref: Mask-Pope.jpg
+- title: Pope
+  ref: Pope.jpg
+- title: Blended 7 Levels
+  ref: blended_6_Beach.jpg
+- title: Blended 11 Levels
+  ref: blended_10_Beach.jpg
+
+- title: Apple
+  ref: apple.jpeg
+- title: Orange
+  ref: orange.jpeg
+- title: Blended 5 Levels
+  ref: blended_4_apple.jpeg
+- title: Blended 10 Levels
+  ref: blended_9_apple.jpeg
+
+- title: Mars
+  ref: Mars2.jpg
+- title: Mask Zach
+  ref: Mask-Zach.jpg
+- title: Zach
+  ref: Zach-puppy.jpg
+- title: Blended 8 Levels
+  ref: blended_8_Mars2.jpg
+
+
+
+
+
+
+
 
 
 
