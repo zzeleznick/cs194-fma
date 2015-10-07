@@ -226,6 +226,57 @@ p3_mask_images:
   ref: blended_8_Mars2.jpg
 
 
+## P4 IMAGES ##
+
+
+p4_path: 'images/p4/'
+
+p4_stonehenge:
+- title:
+  ref: stonehenge/100h_seams_remove_stonehenge-lightning.jpg
+  dimensions:
+- title:
+  ref: stonehenge/200v_seams_remove_stonehenge-lightning.jpg
+  dimensions:
+- title:
+  ref: stonehenge/200v_seams_remove_stonehenge-night.jpg
+  dimensions:
+- title:
+  ref: stonehenge/300h_seams_remove_stonehenge.jpg
+  dimensions:
+- title:
+  ref: stonehenge/300v_seams_remove_stonehenge-night.jpg
+  dimensions:
+- title:
+  ref: stonehenge/600v_seams_remove_stonehenge.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_0__300_stonehenge-night.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_100__200_stonehenge-lightning.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_100__200_stonehenge.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_200__300_stonehenge-night.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_300__0_stonehenge.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_300__300_stonehenge-lightning.jpg
+  dimensions:
+- title:
+  ref: stonehenge/scharr_300__600_stonehenge.jpg
+  dimensions:
+- title:
+  ref: stonehenge/stonehenge-lightning-300-300-cropped
+  dimensions:
+- title:
+  ref: stonehenge/stonehenge-lightning-scaled-croped-300-300
+  dimensions:
 
 
 
@@ -233,6 +284,24 @@ p3_mask_images:
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## END OF P4 ##
 
 
 
