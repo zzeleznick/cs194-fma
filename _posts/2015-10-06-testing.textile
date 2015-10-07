@@ -10,20 +10,59 @@ h3(anchor#main). %(octicon octicon-link)I. Introduction%
 
 In this part of the excercise, we used an unsharp mask in attempt to sharpen a blurry images. I used a blurred version of the Grand Canyon as the base and added a scaled high-frequency version of the image to sharpen the picture details.
 
+<h3 class="center"> Seam Removal on Stonehenge </h3>
 <div class="pure-g">
-{% for image in site.p3_images limit: 3 offset:0%}
-    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p3_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p3_path}}{{image.ref}}</div>
+{% for image in site.p4_stonehenge limit: 2 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
 {% endfor %}
 </div>
 
 <div class="pure-g">
-{% for image in site.p3_images limit: 3 offset:0%}
-    <div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+{% for image in site.p4_stonehenge limit: 2 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
     {{image.title}} <br>
-    {% if image.alpha != 0 %} Alpha Value: {{image.alpha}} {% endif %}
     </div>
 {% endfor %}
+</div> <br>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 3 offset:2%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
 </div>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 3 offset:2%}
+    <div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 3 offset:5%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 3 offset:8%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 3 offset:11%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+
+
+
+
 
 As you can see this method is less than ideal, since the images become more grainy and lose some saturation in tradeoff for the increased sharpness.
 

@@ -232,55 +232,51 @@ p3_mask_images:
 p4_path: 'images/p4/'
 
 p4_stonehenge:
-- title:
-  ref: stonehenge/100h_seams_remove_stonehenge-lightning.jpg
-  dimensions:
-- title:
-  ref: stonehenge/200v_seams_remove_stonehenge-lightning.jpg
-  dimensions:
-- title:
-  ref: stonehenge/200v_seams_remove_stonehenge-night.jpg
-  dimensions:
-- title:
+- title: 300 Horizontal Seams Removed
   ref: stonehenge/300h_seams_remove_stonehenge.jpg
-  dimensions:
-- title:
-  ref: stonehenge/300v_seams_remove_stonehenge-night.jpg
-  dimensions:
-- title:
+  dimensions: [1600, 1067]
+- title: 600 Horizontal Seams Removed
   ref: stonehenge/600v_seams_remove_stonehenge.jpg
-  dimensions:
+  dimensions: [1600, 1067]
+- title: Lightning at Stonehenge
+  sub: 100 Horizontal Seams
+  ref: stonehenge/100h_seams_remove_stonehenge-lightning.jpg
+  dimensions: [1244, 800]
+- title: Lightning at Stonehenge
+  ref: stonehenge/200v_seams_remove_stonehenge-lightning.jpg
+  dimensions:  [1244, 800]
+- title: Lightning at Stonehenge
+  ref: stonehenge/200v_seams_remove_stonehenge-night.jpg
+  dimensions: [470, 538]
 - title:
   ref: stonehenge/scharr_0__300_stonehenge-night.jpg
-  dimensions:
+  dimensions: [320, 388]
 - title:
-  ref: stonehenge/scharr_100__200_stonehenge-lightning.jpg
-  dimensions:
+  ref: stonehenge/scharr_150__200_stonehenge-night.jpg
+  dimensions: [420, 238]
+- title:
+  ref: stonehenge/scharr_100__0_stonehenge-night.jpg
+  dimensions:  [470, 438]
 - title:
   ref: stonehenge/scharr_100__200_stonehenge.jpg
-  dimensions:
-- title:
-  ref: stonehenge/scharr_200__300_stonehenge-night.jpg
-  dimensions:
+  dimensions: [1400, 967]
 - title:
   ref: stonehenge/scharr_300__0_stonehenge.jpg
-  dimensions:
-- title:
-  ref: stonehenge/scharr_300__300_stonehenge-lightning.jpg
-  dimensions:
+  dimensions: [1600, 767]
 - title:
   ref: stonehenge/scharr_300__600_stonehenge.jpg
-  dimensions:
+  dimensions:  [1300, 767]
 - title:
-  ref: stonehenge/stonehenge-lightning-300-300-cropped
-  dimensions:
+  ref: stonehenge/scharr_300__300_stonehenge-lightning.jpg
+  dimensions:  [944, 500]
 - title:
-  ref: stonehenge/stonehenge-lightning-scaled-croped-300-300
-  dimensions:
+  ref: stonehenge/stonehenge-lightning-300-300-cropped.jpg
+  dimensions:  [944, 500]
+- title:
+  ref: stonehenge/stonehenge-lightning-scaled-croped-300-300.jpg
+  dimensions: [944, 500]
 
-
-
-
+p4_general:
 
 
 
