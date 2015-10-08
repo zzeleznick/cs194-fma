@@ -6,20 +6,18 @@
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href= stylesheets/normalize.css  media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href= stylesheets/stylesheet.css  media="screen">
-    <link rel="stylesheet" type="text/css" href= stylesheets/github-light.css  media="screen">
-    <link rel="stylesheet" type="text/css" href= stylesheets/grid.css  media="screen">
-    <!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"-->
-    <script type="text/javascript" src=javascripts/scale.fix.js></script>
-    <script type="text/javascript" src=javascripts/salvattore.js></script>
+    <link rel="stylesheet" type="text/css" href= "../stylesheets/normalize.css"  media="screen">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" type="text/css">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="../stylesheets/grid.css"  media="screen">
+    <script type="text/javascript" src="javascripts/scale.fix.js"></script>
 
 </head>
 <body>
 
     <section class="page-header-small">
-      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h1 class="project-name"><a href="http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
       <h2 class="project-tagline">Fun with Frequencies</h2>
       <h3 class="project-subline">Creating Hybrid Images and More</h2>
     </section>
@@ -29,9 +27,9 @@
         <h3 class="anchor" id="main"><span class="octicon octicon-link">I. Warm Up</span></h3>
 <p>In this part of the excercise, we used an unsharp mask in attempt to sharpen a blurry images. I used a blurred version of the Grand Canyon as the base and added a scaled high-frequency version of the image to sharpen the picture details.</p>
 <div class="pure-g">
-    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/blurred_blurred_grand-canyon.jpg"><img src="images/p3/blurred_blurred_grand-canyon.jpg" title="Grand Canyon Original" alt="Grand Canyon Original" /></a></div>
-    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg"><img src="images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
-    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg"><img src="images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/blurred_blurred_grand-canyon.jpg"><img src="../images/p3/blurred_blurred_grand-canyon.jpg" title="Grand Canyon Original" alt="Grand Canyon Original" /></a></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg"><img src="../images/p3/unsharp_4_2.828_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg"><img src="../images/p3/unsharp_5_4.0_blurred_blurred_grand-canyon.jpg" title="Grand Canyon Sharpened" alt="Grand Canyon Sharpened" /></a></div>
 </div>
 <div class="pure-g">
 <div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
@@ -51,11 +49,11 @@ Alpha Value: 4.0
 <h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Hybrid Images</span></h3>
 <p>Combining two images that can be perceived from one picture is no easy feat, but with our enhanced understanding of lowpass and highpass filtering, our limits of creativity are now only bounded by image alignment.</p>
 <div class="pure-g">
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Alpaca.jpg"><img src="images/p3/Alpaca.jpg" title="Alpaca" alt="Alpaca" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Alpaca.jpg"><img src="images/p3/highpass_Alpaca.jpg" title="Alpaca Highpass" alt="Alpaca Highpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Alpaca.jpg"><img src="images/p3/final_Alpaca.jpg" title="Taypaca" alt="Taypaca" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Jacob-Black.jpg"><img src="images/p3/lowpass_Jacob-Black.jpg" title="Taylor Lowpass" alt="Taylor Lowpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Jacob-Black.jpg"><img src="images/p3/Jacob-Black.jpg" title="Taylor" alt="Taylor" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Alpaca.jpg"><img src="../images/p3/Alpaca.jpg" title="Alpaca" alt="Alpaca" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Alpaca.jpg"><img src="../images/p3/highpass_Alpaca.jpg" title="Alpaca Highpass" alt="Alpaca Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Alpaca.jpg"><img src="../images/p3/final_Alpaca.jpg" title="Taypaca" alt="Taypaca" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Jacob-Black.jpg"><img src="../images/p3/lowpass_Jacob-Black.jpg" title="Taylor Lowpass" alt="Taylor Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Jacob-Black.jpg"><img src="../images/p3/Jacob-Black.jpg" title="Taylor" alt="Taylor" /></a></div>
 </div>
 <div class="pure-g">
 <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
@@ -76,11 +74,11 @@ Taylor
 </div>
 <p><br>
 <div class="pure-g"></p>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Caitlyn-Jenner.jpg"><img src="images/p3/Caitlyn-Jenner.jpg" title="Caitlyn Jenner" alt="Caitlyn Jenner" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Caitlyn-Jenner.jpg"><img src="images/p3/highpass_Caitlyn-Jenner.jpg" title="Caitlyn Jenner Highpass" alt="Caitlyn Jenner Highpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Caitlyn-Jenner.jpg"><img src="images/p3/final_Caitlyn-Jenner.jpg" title="Caice Jenner" alt="Caice Jenner" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Bruce-Jenner.jpg"><img src="images/p3/lowpass_Bruce-Jenner.jpg" title="Bruce Jenner Lowpass" alt="Bruce Jenner Lowpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Bruce-Jenner.jpg"><img src="images/p3/Bruce-Jenner.jpg" title="Bruce Jenner" alt="Bruce Jenner" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Caitlyn-Jenner.jpg"><img src="../images/p3/Caitlyn-Jenner.jpg" title="Caitlyn Jenner" alt="Caitlyn Jenner" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Caitlyn-Jenner.jpg"><img src="../images/p3/highpass_Caitlyn-Jenner.jpg" title="Caitlyn Jenner Highpass" alt="Caitlyn Jenner Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Caitlyn-Jenner.jpg"><img src="../images/p3/final_Caitlyn-Jenner.jpg" title="Caice Jenner" alt="Caice Jenner" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Bruce-Jenner.jpg"><img src="../images/p3/lowpass_Bruce-Jenner.jpg" title="Bruce Jenner Lowpass" alt="Bruce Jenner Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Bruce-Jenner.jpg"><img src="../images/p3/Bruce-Jenner.jpg" title="Bruce Jenner" alt="Bruce Jenner" /></a></div>
 </div>
 <div class="pure-g">
 <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
@@ -101,11 +99,11 @@ Bruce Jenner
 </div>
 <p><br>
 <div class="pure-g"></p>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Point.jpg"><img src="images/p3/Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Trump-Point.jpg"><img src="images/p3/highpass_Trump-Point.jpg" title="Donald Trump Highpass" alt="Donald Trump Highpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Trump-Point.jpg"><img src="images/p3/final_Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Trump-Bite.jpg"><img src="images/p3/lowpass_Trump-Bite.jpg" title="Donald Trump Lowpass" alt="Donald Trump Lowpass" /></a></div>
-    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Bite.jpg"><img src="images/p3/Trump-Bite.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Point.jpg"><img src="../images/p3/Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/highpass_Trump-Point.jpg"><img src="../images/p3/highpass_Trump-Point.jpg" title="Donald Trump Highpass" alt="Donald Trump Highpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/final_Trump-Point.jpg"><img src="../images/p3/final_Trump-Point.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/lowpass_Trump-Bite.jpg"><img src="../images/p3/lowpass_Trump-Bite.jpg" title="Donald Trump Lowpass" alt="Donald Trump Lowpass" /></a></div>
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p3/Trump-Bite.jpg"><img src="../images/p3/Trump-Bite.jpg" title="Donald Trump" alt="Donald Trump" /></a></div>
 </div>
 <div class="pure-g">
 <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center">
@@ -128,19 +126,19 @@ Donald Trump
 <h3 class="center"> Donald Trump <span class="caps">FFT</span> </h3>
 <div class="pure-g">
 <div class="pure-u-1-4 pure-u-md-1-4 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fftTrump-Bite.jpg"><img src="images/p3/1-fftTrump-Bite.jpg" title="DT 1 FFT" alt="DT 1 FFT" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fftTrump-Bite.jpg"><img src="../images/p3/1-fftTrump-Bite.jpg" title="DT 1 FFT" alt="DT 1 FFT" /></a>
 DT 1 <span class="caps">FFT</span>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fft-lowTrump-Bite.jpg"><img src="images/p3/1-fft-lowTrump-Bite.jpg" title="DT Lowpass FFT" alt="DT Lowpass FFT" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/1-fft-lowTrump-Bite.jpg"><img src="../images/p3/1-fft-lowTrump-Bite.jpg" title="DT Lowpass FFT" alt="DT Lowpass FFT" /></a>
 DT Lowpass <span class="caps">FFT</span>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fftTrump-Point.jpg"><img src="images/p3/2-fftTrump-Point.jpg" title="DT 2 FFT" alt="DT 2 FFT" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fftTrump-Point.jpg"><img src="../images/p3/2-fftTrump-Point.jpg" title="DT 2 FFT" alt="DT 2 FFT" /></a>
 DT 2 <span class="caps">FFT</span>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fft-highTrump-Point.jpg"><img src="images/p3/2-fft-highTrump-Point.jpg" title="DT 2 Highpass FFT" alt="DT 2 Highpass FFT" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/2-fft-highTrump-Point.jpg"><img src="../images/p3/2-fft-highTrump-Point.jpg" title="DT 2 Highpass FFT" alt="DT 2 Highpass FFT" /></a>
 DT 2 Highpass <span class="caps">FFT</span>
 </div>
 </div>
@@ -151,44 +149,44 @@ DT 2 Highpass <span class="caps">FFT</span>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 0 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Albert-Monroe.jpg"><img src="images/p3/blur_0_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Albert-Monroe.jpg"><img src="../images/p3/blur_0_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 2 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Albert-Monroe.jpg"><img src="images/p3/blur_1_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Albert-Monroe.jpg"><img src="../images/p3/blur_1_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 4 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Albert-Monroe.jpg"><img src="images/p3/blur_2_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Albert-Monroe.jpg"><img src="../images/p3/blur_2_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 8 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Albert-Monroe.jpg"><img src="images/p3/blur_3_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Albert-Monroe.jpg"><img src="../images/p3/blur_3_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 16 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Albert-Monroe.jpg"><img src="images/p3/blur_4_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Albert-Monroe.jpg"><img src="../images/p3/blur_4_Albert-Monroe.jpg" title="Albert-Monroe Gaussian" alt="Albert-Monroe Gaussian" /></a>
 </div>
 </div>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Albert-Monroe.jpg"><img src="images/p3/high_0_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Albert-Monroe.jpg"><img src="../images/p3/high_0_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
 (sigma = 0 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Albert-Monroe.jpg"><img src="images/p3/high_1_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Albert-Monroe.jpg"><img src="../images/p3/high_1_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
 (sigma = 2 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Albert-Monroe.jpg"><img src="images/p3/high_2_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Albert-Monroe.jpg"><img src="../images/p3/high_2_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
 (sigma = 4 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Albert-Monroe.jpg"><img src="images/p3/high_3_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Albert-Monroe.jpg"><img src="../images/p3/high_3_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
 (sigma = 8 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Albert-Monroe.jpg"><img src="images/p3/high_4_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Albert-Monroe.jpg"><img src="../images/p3/high_4_Albert-Monroe.jpg" title="Albert-Monroe Laplacian" alt="Albert-Monroe Laplacian" /></a>
 (sigma = 16 )
 </div>
 </div>
@@ -197,44 +195,44 @@ DT 2 Highpass <span class="caps">FFT</span>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 0 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_final_Alpaca.jpg"><img src="images/p3/blur_0_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_final_Alpaca.jpg"><img src="../images/p3/blur_0_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 2 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_final_Alpaca.jpg"><img src="images/p3/blur_1_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_final_Alpaca.jpg"><img src="../images/p3/blur_1_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 4 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_final_Alpaca.jpg"><img src="images/p3/blur_2_final_Alpaca.jpg" title="Taypacaa Gaussian" alt="Taypacaa Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_final_Alpaca.jpg"><img src="../images/p3/blur_2_final_Alpaca.jpg" title="Taypacaa Gaussian" alt="Taypacaa Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 8 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_final_Alpaca.jpg"><img src="images/p3/blur_3_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_final_Alpaca.jpg"><img src="../images/p3/blur_3_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 16 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_final_Alpaca.jpg"><img src="images/p3/blur_4_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_final_Alpaca.jpg"><img src="../images/p3/blur_4_final_Alpaca.jpg" title="Taypaca Gaussian" alt="Taypaca Gaussian" /></a>
 </div>
 </div>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_final_Alpaca.jpg"><img src="images/p3/high_0_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_final_Alpaca.jpg"><img src="../images/p3/high_0_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
 (sigma = 0 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_final_Alpaca.jpg"><img src="images/p3/high_1_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_final_Alpaca.jpg"><img src="../images/p3/high_1_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
 (sigma = 2 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_final_Alpaca.jpg"><img src="images/p3/high_2_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_final_Alpaca.jpg"><img src="../images/p3/high_2_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
 (sigma = 4 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_final_Alpaca.jpg"><img src="images/p3/high_3_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_final_Alpaca.jpg"><img src="../images/p3/high_3_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
 (sigma = 8 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_final_Alpaca.jpg"><img src="images/p3/high_4_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_final_Alpaca.jpg"><img src="../images/p3/high_4_final_Alpaca.jpg" title="Taypaca Laplacian" alt="Taypaca Laplacian" /></a>
 (sigma = 16 )
 </div>
 </div>
@@ -243,44 +241,44 @@ DT 2 Highpass <span class="caps">FFT</span>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 0 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Brain.jpg"><img src="images/p3/blur_0_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Brain.jpg"><img src="../images/p3/blur_0_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 2 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Brain.jpg"><img src="images/p3/blur_1_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Brain.jpg"><img src="../images/p3/blur_1_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 4 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Brain.jpg"><img src="images/p3/blur_2_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Brain.jpg"><img src="../images/p3/blur_2_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 8 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Brain.jpg"><img src="images/p3/blur_3_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Brain.jpg"><img src="../images/p3/blur_3_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 16 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Brain.jpg"><img src="images/p3/blur_4_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Brain.jpg"><img src="../images/p3/blur_4_Brain.jpg" title="Brain Gaussian" alt="Brain Gaussian" /></a>
 </div>
 </div>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Brain.jpg"><img src="images/p3/high_0_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Brain.jpg"><img src="../images/p3/high_0_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
 (sigma = 0 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Brain.jpg"><img src="images/p3/high_1_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Brain.jpg"><img src="../images/p3/high_1_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
 (sigma = 2 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Brain.jpg"><img src="images/p3/high_2_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Brain.jpg"><img src="../images/p3/high_2_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
 (sigma = 4 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Brain.jpg"><img src="images/p3/high_3_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Brain.jpg"><img src="../images/p3/high_3_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
 (sigma = 8 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Brain.jpg"><img src="images/p3/high_4_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Brain.jpg"><img src="../images/p3/high_4_Brain.jpg" title="Brain Laplacian" alt="Brain Laplacian" /></a>
 (sigma = 16 )
 </div>
 </div>
@@ -289,44 +287,44 @@ DT 2 Highpass <span class="caps">FFT</span>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 0 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Lincoln.jpg"><img src="images/p3/blur_0_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_0_Lincoln.jpg"><img src="../images/p3/blur_0_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 2 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Lincoln.jpg"><img src="images/p3/blur_1_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_1_Lincoln.jpg"><img src="../images/p3/blur_1_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 4 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Lincoln.jpg"><img src="images/p3/blur_2_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_2_Lincoln.jpg"><img src="../images/p3/blur_2_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 8 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Lincoln.jpg"><img src="images/p3/blur_3_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_3_Lincoln.jpg"><img src="../images/p3/blur_3_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 (sigma = 16 )
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Lincoln.jpg"><img src="images/p3/blur_4_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blur_4_Lincoln.jpg"><img src="../images/p3/blur_4_Lincoln.jpg" title="Lincoln Gaussian" alt="Lincoln Gaussian" /></a>
 </div>
 </div>
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Lincoln.jpg"><img src="images/p3/high_0_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_0_Lincoln.jpg"><img src="../images/p3/high_0_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
 (sigma = 0 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Lincoln.jpg"><img src="images/p3/high_1_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_1_Lincoln.jpg"><img src="../images/p3/high_1_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
 (sigma = 2 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Lincoln.jpg"><img src="images/p3/high_2_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_2_Lincoln.jpg"><img src="../images/p3/high_2_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
 (sigma = 4 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Lincoln.jpg"><img src="images/p3/high_3_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_3_Lincoln.jpg"><img src="../images/p3/high_3_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
 (sigma = 8 )
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Lincoln.jpg"><img src="images/p3/high_4_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/high_4_Lincoln.jpg"><img src="../images/p3/high_4_Lincoln.jpg" title="Lincoln Laplacian" alt="Lincoln Laplacian" /></a>
 (sigma = 16 )
 </div>
 </div>
@@ -343,23 +341,23 @@ Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 <div class="pure-g">
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 Beach
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Beach.jpg"><img src="images/p3/Beach.jpg" title="Beach" alt="Beach" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Beach.jpg"><img src="../images/p3/Beach.jpg" title="Beach" alt="Beach" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 Mask Pope
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mask-Pope.jpg"><img src="images/p3/Mask-Pope.jpg" title="Mask Pope" alt="Mask Pope" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mask-Pope.jpg"><img src="../images/p3/Mask-Pope.jpg" title="Mask Pope" alt="Mask Pope" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 Pope
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Pope.jpg"><img src="images/p3/Pope.jpg" title="Pope" alt="Pope" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Pope.jpg"><img src="../images/p3/Pope.jpg" title="Pope" alt="Pope" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 Blended 7 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_6_Beach.jpg"><img src="images/p3/blended_6_Beach.jpg" title="Blended 7 Levels" alt="Blended 7 Levels" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_6_Beach.jpg"><img src="../images/p3/blended_6_Beach.jpg" title="Blended 7 Levels" alt="Blended 7 Levels" /></a>
 </div>
 <div class="pure-u-1-5 pure-u-md-1-5 center">
 Blended 11 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_10_Beach.jpg"><img src="images/p3/blended_10_Beach.jpg" title="Blended 11 Levels" alt="Blended 11 Levels" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_10_Beach.jpg"><img src="../images/p3/blended_10_Beach.jpg" title="Blended 11 Levels" alt="Blended 11 Levels" /></a>
 </div>
 </div>
 <p><br></p>
@@ -367,19 +365,19 @@ Blended 11 Levels
 <div class="pure-g">
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Apple
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/apple.jpeg"><img src="images/p3/apple.jpeg" title="Apple" alt="Apple" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/apple.jpeg"><img src="../images/p3/apple.jpeg" title="Apple" alt="Apple" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Orange
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/orange.jpeg"><img src="images/p3/orange.jpeg" title="Orange" alt="Orange" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/orange.jpeg"><img src="../images/p3/orange.jpeg" title="Orange" alt="Orange" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Blended 5 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_4_apple.jpeg"><img src="images/p3/blended_4_apple.jpeg" title="Blended 5 Levels" alt="Blended 5 Levels" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_4_apple.jpeg"><img src="../images/p3/blended_4_apple.jpeg" title="Blended 5 Levels" alt="Blended 5 Levels" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Blended 10 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_9_apple.jpeg"><img src="images/p3/blended_9_apple.jpeg" title="Blended 10 Levels" alt="Blended 10 Levels" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_9_apple.jpeg"><img src="../images/p3/blended_9_apple.jpeg" title="Blended 10 Levels" alt="Blended 10 Levels" /></a>
 </div>
 </div>
 <p><br></p>
@@ -387,19 +385,19 @@ Blended 10 Levels
 <div class="pure-g">
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Mars
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mars2.jpg"><img src="images/p3/Mars2.jpg" title="Mars" alt="Mars" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mars2.jpg"><img src="../images/p3/Mars2.jpg" title="Mars" alt="Mars" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Mask Zach
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mask-Zach.jpg"><img src="images/p3/Mask-Zach.jpg" title="Mask Zach" alt="Mask Zach" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mask-Zach.jpg"><img src="../images/p3/Mask-Zach.jpg" title="Mask Zach" alt="Mask Zach" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Zach
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Zach-puppy.jpg"><img src="images/p3/Zach-puppy.jpg" title="Zach" alt="Zach" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Zach-puppy.jpg"><img src="../images/p3/Zach-puppy.jpg" title="Zach" alt="Zach" /></a>
 </div>
 <div class="pure-u-1-4 pure-u-md-1-4 center">
 Blended 8 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_8_Mars2.jpg"><img src="images/p3/blended_8_Mars2.jpg" title="Blended 8 Levels" alt="Blended 8 Levels" /></a>
+<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_8_Mars2.jpg"><img src="../images/p3/blended_8_Mars2.jpg" title="Blended 8 Levels" alt="Blended 8 Levels" /></a>
 </div>
 </div>
 <p>Color was challenging to blend, and in the case of my image on Mars, the results were less attractive due to the variation in color patterns.</p>
