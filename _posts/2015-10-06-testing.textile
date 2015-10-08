@@ -202,6 +202,25 @@ In this part of the excercise, we used an unsharp mask in attempt to sharpen a b
 </div>
 
 
+
+<h4 class='center'> The case for intelligent mask design </h4>
+
+
+<div class="pure-g">
+{% for image in site.p4_pc limit: 6 offset:0%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_pc limit: 6 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-1 pure-u-md-1-1 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div><br>
+
+
+
 As you can see this method is less than ideal, since the images become more grainy and lose some saturation in tradeoff for the increased sharpness.
 
 h3(anchor#approach). %(octicon octicon-link)II. Hybrid Images%

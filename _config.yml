@@ -330,8 +330,44 @@ p4_hw:
   ref: baseExamples/hw/scharr_0__200_homework.jpg
 
 
+p4_port:
+- title: 100 Horizontal Seams Added
+  ref: baseExamples/hw/scharr_-100__0_homework.jpg
+- title: 200 Horizontal Seams Shown
+  ref: baseExamples/hw/200h_seams_remove_homework.jpg
+- title: Original Image
+  ref: originals/homework.jpg
+- title: 200 Vertical Seams Shown
+  ref: baseExamples/hw/200v_seams_remove_homework.jpg
+- title: 200 Vertical Seams Added
+  ref: baseExamples/hw/scharr_0__-200_homework.jpg
+- title: 200 Vertical Seams Removed
+  ref: baseExamples/hw/scharr_0__200_homework.jpg
+
+
+
+p4_pc:
+- title: 100 Horizontal Seam Removal Display
+  ref: specialExamples/pCompare/100hRemoval.jpg
+- title: 100 Horizontal Seam Removal Results
+  ref: specialExamples/pCompare/100hRemovalOutput.jpg
+- title: 300 Vertical Seam Protected Removal Display
+  ref: specialExamples/pCompare/300vRemoval.jpg
+- title: 300 Vertical Seam Protected Removal Results
+  ref: specialExamples/pCompare/300vRemovalOutput.jpg
+- title: 300 Vertical Seam Directed Removal Display
+  ref: specialExamples/pCompare/300vRemovalAnti.jpg
+- title: 300 Vertical Seam Directed Removal Results
+  ref: specialExamples/pCompare/300vRemovalAntiOutput.jpg
+
+
+
 
 p4_general:
+
+
+
+
 
 
 #'''
