@@ -34,7 +34,15 @@ comment {
 
 .gist table{
   display: inline-table !important;
+  /*table-layout: fixed !important;
+  word-break: break-all !important;
+  word-wrap: break-word !important;*/
 }
+
+.gist tr, td{
+  text-align: left !important;
+}
+
 
 .gist h4{
   color: #039099 !important;
