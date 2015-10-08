@@ -283,8 +283,8 @@ p4_stonehenge_lightning:
   dimensions: [944, 500]
 
 p4_stonehenge_night:
-- title:  300 Horizontal Seams Shown
-  ref: stonehenge/300h_seams_remove_stonehenge-night.jpg
+- title:  100 Horizontal Seams Shown
+  ref: stonehenge/100h_seams_remove_stonehenge-night.jpg
   dimensions: [620, 388]
 
 - title: 200 Vertical Seams Shown
@@ -295,32 +295,40 @@ p4_stonehenge_night:
   ref: stonehenge/stonehenge-night-collage.jpg
   dimensions: [320, 388]
 
+p4_stary:
+- title: Stary Night Original
+  ref: originals/staryNight.jpg
 
+- title: 100 Horizontal Seams Shown
+  ref: baseExamples/staryNight/100h_seams_remove_staryNight.jpg
+
+- title: 100 Horizontal Seams Removed
+  ref: baseExamples/staryNight/scharr_100__0_staryNight.jpg
+
+- title: 200 Horizontal Seams Removed
+  ref: baseExamples/staryNight/scharr_200__0_staryNight.jpg
+
+- title: 300 Horizontal Seams Removed
+  ref: baseExamples/staryNight/scharr_300__0_staryNight.jpg
+
+- title: 455 Horizontal Seams Removed
+  ref: baseExamples/staryNight/sobel_455__0_staryNight.jpg
 
 p4_general:
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#'''
+#scharr_250__250_fireworks.jpg
+#250h_seams_remove_fireworks.jpg
+#250v_seams_remove_fireworks.jpg
+#scharr_200__-300_fireworks.jpg
+#300v_seams_remove_fireworks.jpg
+#200h_seams_remove_fireworks.jpg
+#'''
 
 
 
 ## END OF P4 ##
-
-
 
 
 
