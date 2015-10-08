@@ -28,6 +28,10 @@ a.sm img{
   line-height: 0
 }
 
+comment {
+  display: none;
+}
+
 .center {
   text-align: center;
   margin: 0, auto;
