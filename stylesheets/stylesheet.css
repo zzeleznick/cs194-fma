@@ -23,6 +23,11 @@ a.sm img{
   width: 30%;
 }
 
+.no-vspace > p{
+  vertical-align: center;
+  line-height: 0
+}
+
 .center {
   text-align: center;
   margin: 0, auto;

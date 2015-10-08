@@ -296,7 +296,7 @@ p4_stonehenge_night:
   dimensions: [320, 388]
 
 p4_stary:
-- title: Stary Night Original
+- title: Starry Night Original
   ref: originals/staryNight.jpg
 
 - title: 100 Horizontal Seams Shown
@@ -312,7 +312,24 @@ p4_stary:
   ref: baseExamples/staryNight/scharr_300__0_staryNight.jpg
 
 - title: 455 Horizontal Seams Removed
-  ref: baseExamples/staryNight/sobel_455__0_staryNight.jpg
+  ref: baseExamples/staryNight/sobel_450__0_staryNight.jpg
+
+
+p4_hw:
+- title: 100 Horizontal Seams Added
+  ref: baseExamples/hw/scharr_-100__0_homework.jpg
+- title: 200 Horizontal Seams Shown
+  ref: baseExamples/hw/200h_seams_remove_homework.jpg
+- title: Original Image
+  ref: originals/homework.jpg
+- title: 200 Vertical Seams Shown
+  ref: baseExamples/hw/200v_seams_remove_homework.jpg
+- title: 200 Vertical Seams Added
+  ref: baseExamples/hw/scharr_0__-200_homework.jpg
+- title: 200 Vertical Seams Removed
+  ref: baseExamples/hw/scharr_0__200_homework.jpg
+
+
 
 p4_general:
 
