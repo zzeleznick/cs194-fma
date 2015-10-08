@@ -397,7 +397,8 @@ p4_alg:
   ref:             alg/DP5.png
 
 
-p4_general:
+p4_docs: 'pj4/docs/'
+p4_logs: 'pj4/logs/'
 
 
 

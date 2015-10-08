@@ -53,6 +53,11 @@ comment {
   margin-bottom: 1.3em !important;
 }
 
+h2.center, h3.center, h4.center {
+  margin-bottom: 1.25rem !important;
+}
+
+
 .center {
   text-align: center;
   margin: 0, auto;

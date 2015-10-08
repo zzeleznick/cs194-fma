@@ -33,7 +33,8 @@ or insertion, depending on the desired output size.
 
 1) Improving the run time of my algorithm for increased throughput and decreased latency
 
-2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing
+2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing. See the timing logs <a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_logs}}>here.</a>
+
 
 3) Generating smooth masks for seam insertion and removal to preserve areas of interest.
 
@@ -62,10 +63,11 @@ and would successively remove or insert seams until the image was of the desired
     </div>
 {% endfor %}
 </div>
-
 <notextile>
+    For a closer look at the implementation details, check out the <a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_docs}}>README </a>
+    for my package.
+</notextile> <br><br>
 
-</notextile>
 
 
 <!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script-->
@@ -198,7 +200,7 @@ such as the columns and reduced in size via an energy function. While there are 
 the high relative weight of the grass, a mask of feature-weight system would be able to compensate for this skew
 towards removing the sky.
 </notextile>
-<br>
+<br> <br>
 
 
 <h2 class="center"> IV. Seam Removal on Starry Night </h2>
@@ -220,7 +222,7 @@ Abstract paintings are really cool to play with, especially since artifacts crea
 energy maps are difficult to point out. Even removing 450 horizontal seams from the image does not produce
 any noticeable damage.
 </notextile>
-<br>
+<br><br>
 
 <h3 class="center">  V. (Bells & Whistles) Seam Removal & Seam Insertion on my Homeowork </h3>
 
@@ -271,9 +273,9 @@ Rather than removing seams with the lowest cumulative cost, one can insert them 
 increase scale. Notice how the whitespace changes between the regular and contrasted images. Even at high levels
 of seam removal, the text is as readable as it was to begin with.
 </notextile>
-<br>
+<br> <br>
 
-<h4 class='center'>  VI. (Bells & Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4>
+<h4 class='center'>  VI. (Bells & Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4> <br>
 
 <div class="pure-g">
 <div class="pure-u-1-2 pure-u-md-1 center">
@@ -324,11 +326,12 @@ While creating a rough vector mask of the person helped to preserve his face (or
 without generating a smooth 2D mask, the shape of the seam removed will be jagged due to sharp gradients of change.
 For the preservative mask, I combined the weight of the edges and a scaled version of the mask to prevent paths from passing
 through the region. For the targeted removal mask, I lowered regions in which a pixel could pass through. Seam insertion, which
-I ran after masking, can be largely run analogously, since you do not want to keep inserting the same pixels to the same
-place.
+I programmed after incorporating a masking or anti-masking parameter shared many similar
+implementation details, since after finding a seam, you want to preserve those pixels as to prevent
+repeated insertion of the same seam. Without modifying the energy map to reflect this constraint, the produced images
+have noticeable blurring as though someone dragged a clone tool over one seam.
 </notextile>
-<br>
-<br>
+<br><br>
 
 <h3 class='center'> VIII. (Bells & Whistles ) Mask on the Moon </h3>
 
@@ -344,7 +347,7 @@ place.
 <notextile>
 Mask design can be used
 </notextile>
-
+<br><br>
 
 <h3 class='center'> IX. Failure Cases </h3>
 
@@ -401,6 +404,12 @@ fn8. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/arc
 
 
 fn9. "Girl with Hair Ribbon, 1965 by Roy Lichtenstein":http://www.lichtensteinfoundation.org/0278.htm
+
+
+
+<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_logs}}> <h5 class="center"> See the logs produced for my test files </h5> </a>
+
+<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_docs}}> <h5 class="center"> Read More about my Code </h5></a>
 
 
 <comment>
