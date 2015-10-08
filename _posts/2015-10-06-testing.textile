@@ -16,6 +16,7 @@ images: site.images
 
 h2(anchor#main). %(octicon octicon-link)I. Introduction%
 
+
 <notextile>
 Despite the relative ease of cropping and scaling, valuable information tends to be lost as we shrink
 down image proportions. With mobile devices now having more computational power (and more memory) than all
@@ -38,7 +39,7 @@ or insertion, depending on the desired output size.
 
 
 
-<h3>  II. Seam Removal and Visual Displays </h3>
+<h2>  II. Seam Removal and Visual Displays </h2>
 <notextile>
 As mentioned by Avidan in the seam carving paper, determination of an energy function to base seam removals is
 a critical component for program success. However, defining the cost matrix for each image is contextually dependent
@@ -47,7 +48,7 @@ one pixel from each row for a vertical seam) such that the total cost of a seam 
 and would successively remove or insert seams until the image was of the desired output size.
 </notextile>
 
-<h4> Quicky & Dirty Explanation of my Algorithm[1] </h4>
+<h3> Quicky & Dirty Explanation of my Algorithm[1] </h3>
 
 <div class="pure-g">
 {% for image in site.p4_alg offset:0%}
@@ -66,12 +67,11 @@ and would successively remove or insert seams until the image was of the desired
 
 </notextile>
 
-<script src="https://gist.github.com/nisrulz/11c0d63428b108f10c83.js"></script>
+
+<!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script-->
 
 
-
-
-<h4 class="center"> Seam Removal on Stonehenge[1] </h4>
+<h2 class="center"> III. Seam Removal on Stonehenge </h2>
 
 <div class="pure-g">
 {% for image in site.p4_stonehenge limit: 2 offset:0%}
@@ -192,8 +192,16 @@ and would successively remove or insert seams until the image was of the desired
 {% endfor %}
 </div> <br>
 
+<notextile>
+Stonehenge in addition to be a great historic site, is a prime example of how information can be preserved,
+such as the columns and reduced in size via an energy function. While there are some artifacts, namely due to
+the high relative weight of the grass, a mask of feature-weight system would be able to compensate for this skew
+towards removing the sky.
+</notextile>
 
-<h3 class="center"> Seam Removal on Starry Night </h3>
+
+
+<h2 class="center"> IV. Seam Removal on Starry Night </h2>
 
 <div class="pure-g">
 <div class="pure-u-1-2 pure-u-md-1-2 no-vspace">
@@ -207,7 +215,14 @@ and would successively remove or insert seams until the image was of the desired
 </div>
 </div> <br>
 
-<h3 class="center"> Seam Removal & Seam Insertion[1] on my Homeowork </h3>
+<notextile>
+Abstract paintings are really cool to play with, especially since artifacts created by poor mask design or
+energy maps are difficult to point out. Even removing 450 horizontal seams from the image does not produce
+any noticeable damage.
+</notextile>
+
+
+<h3 class="center">  V. (Bells & Whistles) Seam Removal & Seam Insertion on my Homeowork </h3>
 
 <div class="pure-g">
 {% for image in site.p4_hw limit: 2 offset:0%}
@@ -251,8 +266,14 @@ and would successively remove or insert seams until the image was of the desired
 </div>
 </div> <br>
 
+<notextile>
+Rather than removing seams with the lowest cumulative cost, one can insert them back into the image to
+increase scale. Notice how the whitespace changes between the regular and contrasted images. Even at high levels
+of seam removal, the text is as readable as it was to begin with.
+</notextile>
 
-<h4 class='center'> An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4>
+
+<h4 class='center'>  VI. (Bells & Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4>
 
 <div class="pure-g">
 <div class="pure-u-1-2 pure-u-md-1 center">
@@ -263,9 +284,20 @@ and would successively remove or insert seams until the image was of the desired
 </div>
 </div>
 
+<notextile>
+Here, I experimented by combining computational techniques with photoshop on an oil and magna art piece by Roy Lichtenstein[8]
+Beginning at the top-left corner, I took the original image and performed 250 vertical
+seam insertions followed by 200 horizontal seam insertions using a @scharr@ filter from @skimage@, followed
+by a manual saturation enhancement to make the colors pop.  The bottom-left image was also a vertical seam insertion,
+which can be gleaned from the insertion of white space that reduce average color intensity of the image.
+No saturation levels were adjusted, but the image was scaled in photoshop to match the dimensions
+above. The top right image is the original piece, and the bottom right is the same piece with 200 seams
+highlighted in a neon color. Directly between the original and the seam image is a de-saturated and hue-shifted
+image, respectively, that help show the beauty of pop art.
+</notextile>
 
 
-<h4 class='center'> The case for intelligent mask design </h4>
+<h4 class='center'> VII. (Bells & Whistles )The case for intelligent mask design </h4>
 
 
 <div class="pure-g">
@@ -277,7 +309,7 @@ and would successively remove or insert seams until the image was of the desired
 {% endfor %}
 </div>
 
-<h3 class='center'> Mask on the Moon </h4>
+<h3 class='center'> Mask on the Moon </h3>
 
 <div class="pure-g">
 {% for image in site.p4_moon offset:0%}
@@ -288,16 +320,9 @@ and would successively remove or insert seams until the image was of the desired
 {% endfor %}
 </div>
 
-
-
-
-
-As you can see this method is less than ideal, since the images become more grainy and lose some saturation in tradeoff for the increased sharpness.
-
-h3(anchor#approach). %(octicon octicon-link)II. Hybrid Images%
-
-Combining two images that can be perceived from one picture is no easy feat, but with our enhanced understanding of lowpass and highpass filtering, our limits of creativity are now only bounded by image alignment.
-
+<notextile>
+Mask design can be used
+</notextile>
 
 
 <h4 class='center'> Optical Illusion Gaussian & Laplacian Stack </h4>
@@ -342,19 +367,23 @@ fn3. Storing whether the pixel was left (red), straight (yellow), or right (gree
 
 fn4. This problem is akin to trying to climb up a mountain that shrinks with each step and then trying to backtrack to find your path from your starting location. While you may have finished the proccess, you have lost crucial information. The picture should show some insight on how I solved this problem, but I would be happy to explain if you're curious.
 
-Image Attributions
+
+<!--script src="https://gist.github.com/zzeleznick/e146e30205393b4ad9ec.js"></script-->
+
+fn6. "Stonehenge by Day":http://www.premiumtours.co.uk/images/product/original/181_1.jpg
+
+fn7. "Stonehenge during Lightning Strike":https://www.flickr.com/photos/kate_williams/3229244633/
+
+fn8. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
 
 
-1. "Stonehenge by Day":http://www.premiumtours.co.uk/images/product/original/181_1.jpg
-
-2. "Stonehenge during Lightning Strike":https://www.flickr.com/photos/kate_williams/3229244633/
-
-3. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
-
-
+fn9. "Girl with Hair Ribbon, 1965 by Roy Lichtenstein":http://www.lichtensteinfoundation.org/0278.htm
 
 
 <comment>
+
+### A list!
+
 http://redcloth.org/textile/phrase-modifiers/#links
 
 I'm really excited about "RedCloth":redcloth.
@@ -362,5 +391,5 @@ I love it so much, I think I'll name my first child "RedCloth":redcloth.
 [redcloth]http://redcloth.org
  </comment>
 
-
-- Zachary Zeleznick
+<br>
+<h5 class='center'>  - Zachary Zeleznick </h5>
