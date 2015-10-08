@@ -1,9 +1,11 @@
 ---
-layout: post
-title: test
+layout: gist
+title: Logs For Seam-Carving Project
+subtitle: The Magic of Python
 categories: []
 tags: []
 published: True
-
 ---
 
+
+<script src="https://gist.github.com/zzeleznick/e146e30205393b4ad9ec.js"></script>

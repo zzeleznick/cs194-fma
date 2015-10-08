@@ -346,9 +346,8 @@ Mask design can be used
 </notextile>
 
 
-h3(anchor#learnedlessons1). IV. Multiresolution Blending
+<h3 class='center'> IX. Failure Cases </h3>
 
-Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image[1]. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.
 
 <pre><code>Step la. Build Laplacian pyramids LA and LB for images A and B respectively.
 Step lb. Build a Gaussian pyramid GR for the region image R.
@@ -371,7 +370,15 @@ Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 {% endfor %}
 </div>
 
-Color was challenging to blend, and in the case of my image on Mars, the results were less attractive due to the variation in color patterns.
+
+
+{% comment %}
+Failure cases
+Precomputation
+Demo
+Timing
+{% endcomment %}
+
 
 fn0. "Seam Carving for Content-Aware Image Resizing":http://portal.acm.org/citation.cfm?id=1276390
 
