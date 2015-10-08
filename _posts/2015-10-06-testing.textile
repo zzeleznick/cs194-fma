@@ -66,6 +66,9 @@ and would successively remove or insert seams until the image was of the desired
 
 </notextile>
 
+<script src="https://gist.github.com/nisrulz/11c0d63428b108f10c83.js"></script>
+
+
 
 
 <h4 class="center"> Seam Removal on Stonehenge[1] </h4>
