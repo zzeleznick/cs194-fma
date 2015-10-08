@@ -198,7 +198,7 @@ such as the columns and reduced in size via an energy function. While there are 
 the high relative weight of the grass, a mask of feature-weight system would be able to compensate for this skew
 towards removing the sky.
 </notextile>
-
+<br>
 
 
 <h2 class="center"> IV. Seam Removal on Starry Night </h2>
@@ -213,14 +213,14 @@ towards removing the sky.
 !{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/scharr_200__0_staryNight.jpg('200 Horizontal Seam Removal')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/scharr_200__0_staryNight.jpg
 !{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/sobel_450__0_staryNight.jpg('455 Horizontal Seam Removal')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/sobel_450__0_staryNight.jpg
 </div>
-</div> <br>
+</div>
 
 <notextile>
 Abstract paintings are really cool to play with, especially since artifacts created by poor mask design or
 energy maps are difficult to point out. Even removing 450 horizontal seams from the image does not produce
 any noticeable damage.
 </notextile>
-
+<br>
 
 <h3 class="center">  V. (Bells & Whistles) Seam Removal & Seam Insertion on my Homeowork </h3>
 
@@ -264,14 +264,14 @@ any noticeable damage.
 <div class="pure-u-1-3 pure-u-md-1-3 center">
     200 Vertical Seams Removed<br>
 </div>
-</div> <br>
+</div>
 
 <notextile>
 Rather than removing seams with the lowest cumulative cost, one can insert them back into the image to
 increase scale. Notice how the whitespace changes between the regular and contrasted images. Even at high levels
 of seam removal, the text is as readable as it was to begin with.
 </notextile>
-
+<br>
 
 <h4 class='center'>  VI. (Bells & Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4>
 
@@ -287,7 +287,7 @@ of seam removal, the text is as readable as it was to begin with.
 <notextile>
 Here, I experimented by combining computational techniques with photoshop on an oil and magna art piece by Roy Lichtenstein[8]
 Beginning at the top-left corner, I took the original image and performed 250 vertical
-seam insertions followed by 200 horizontal seam insertions using a @scharr@ filter from @skimage@, followed
+seam insertions followed by 200 horizontal seam insertions using a </notextile> @scharr@ filter from @skimage@, <notextile> followed
 by a manual saturation enhancement to make the colors pop.  The bottom-left image was also a vertical seam insertion,
 which can be gleaned from the insertion of white space that reduce average color intensity of the image.
 No saturation levels were adjusted, but the image was scaled in photoshop to match the dimensions
@@ -295,9 +295,19 @@ above. The top right image is the original piece, and the bottom right is the sa
 highlighted in a neon color. Directly between the original and the seam image is a de-saturated and hue-shifted
 image, respectively, that help show the beauty of pop art.
 </notextile>
+<br>
 
-
-<h4 class='center'> VII. (Bells & Whistles )The case for intelligent mask design </h4>
+<h3 class='center'> VII. (Bells & Whistles) The case for intelligent mask design </h3>
+<br>
+<notextile>
+While we have seen a curated selection of stunning scenery and abstract art, we have yet to see the algorithm
+take on human faces. We are naturally trained to be attuned to nonverbal cues such as the simple nod for understanding,
+to sense aversion in gaze, and more critically, recognizing friend from family from foe.
+</notextile> <br> <br>
+<notextile>
+The first three examples compare the results of a 100 horizontal seam removal, with 2 different masks, and the naive
+impementation. Notice the artifacts produced by the non-smoothed mask in the following images.
+</notextile>
 
 
 <div class="pure-g">
@@ -309,7 +319,18 @@ image, respectively, that help show the beauty of pop art.
 {% endfor %}
 </div>
 
-<h3 class='center'> Mask on the Moon </h3>
+<notextile>
+While creating a rough vector mask of the person helped to preserve his face (or remove it for a targeted seam removal),
+without generating a smooth 2D mask, the shape of the seam removed will be jagged due to sharp gradients of change.
+For the preservative mask, I combined the weight of the edges and a scaled version of the mask to prevent paths from passing
+through the region. For the targeted removal mask, I lowered regions in which a pixel could pass through. Seam insertion, which
+I ran after masking, can be largely run analogously, since you do not want to keep inserting the same pixels to the same
+place.
+</notextile>
+<br>
+<br>
+
+<h3 class='center'> VIII. (Bells & Whistles ) Mask on the Moon </h3>
 
 <div class="pure-g">
 {% for image in site.p4_moon offset:0%}
@@ -325,10 +346,6 @@ Mask design can be used
 </notextile>
 
 
-<h4 class='center'> Optical Illusion Gaussian & Laplacian Stack </h4>
-
-
-
 h3(anchor#learnedlessons1). IV. Multiresolution Blending
 
 Now that we have seen Gaussian and Laplacian Stacks in action, we can now use masks and blend two composite images together. The first mask I implemented was a trivial blend using a vertical seam and a sum of each levels along the laplacian pyramids between each image[1]. Next, I created my own mask, which I then mapped to a Gaussian stack and repeated the process.
@@ -341,11 +358,10 @@ Step 2. Form a combined pyramid LS from LA and LB using nodes of GR as weights.
 Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 </code></pre>
 
-<h4 class='center'> Pope at the Beach </h4>
 
 <br>
 
-<h4 class='center'> Failure Case: Zach on Mars </h4>
+<h4 class='center'> Failure Case: </h4>
 <div class="pure-g">
 {% for image in site.p3_mask_images limit: 4 offset:9%}
     <div class="pure-u-1-4 pure-u-md-1-4 center">
