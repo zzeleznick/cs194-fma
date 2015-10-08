@@ -231,50 +231,71 @@ p3_mask_images:
 
 p4_path: 'images/p4/'
 
+
 p4_stonehenge:
-- title: 300 Horizontal Seams Removed
+- title: 300 Horizontal Seams Shown
   ref: stonehenge/300h_seams_remove_stonehenge.jpg
   dimensions: [1600, 1067]
-- title: 600 Horizontal Seams Removed
+- title: 600 Vetical Seams Shown
   ref: stonehenge/600v_seams_remove_stonehenge.jpg
   dimensions: [1600, 1067]
-- title: Lightning at Stonehenge
-  sub: 100 Horizontal Seams
-  ref: stonehenge/100h_seams_remove_stonehenge-lightning.jpg
-  dimensions: [1244, 800]
-- title: Lightning at Stonehenge
-  ref: stonehenge/200v_seams_remove_stonehenge-lightning.jpg
-  dimensions:  [1244, 800]
-- title: Lightning at Stonehenge
-  ref: stonehenge/200v_seams_remove_stonehenge-night.jpg
-  dimensions: [470, 538]
-- title:
-  ref: stonehenge/scharr_0__300_stonehenge-night.jpg
-  dimensions: [320, 388]
-- title:
-  ref: stonehenge/scharr_150__200_stonehenge-night.jpg
-  dimensions: [420, 238]
-- title:
-  ref: stonehenge/scharr_100__0_stonehenge-night.jpg
-  dimensions:  [470, 438]
-- title:
-  ref: stonehenge/scharr_100__200_stonehenge.jpg
-  dimensions: [1400, 967]
-- title:
+
+- title:  300 Horizontal Seams Removed
   ref: stonehenge/scharr_300__0_stonehenge.jpg
   dimensions: [1600, 767]
-- title:
+- title: Y-Scaled to 767, X-Cropped
+  ref: stonehenge/stonehenge-0-300.jpg
+  dimensions: [1600, 767]
+
+- title: 200 Vertical, 100 Horizontal Seams Removed
+  ref: stonehenge/scharr_100__200_stonehenge.jpg
+  dimensions: [1400, 967]
+- title: Y-Scaled to 967px, X-Cropped
+  ref: stonehenge/stonehenge-100-200.jpg
+  dimensions: [1400, 967]
+
+
+- title: 300 Vertical Seams Removed
   ref: stonehenge/scharr_300__600_stonehenge.jpg
-  dimensions:  [1300, 767]
-- title:
+  dimensions:  [1000, 767]
+- title: Y-Scaled to 967px, X-Cropped
+  ref: stonehenge/stonehenge-300-600.jpg
+  dimensions:  [1000, 767]
+
+
+p4_stonehenge_lightning:
+- title: 100 Horizontal Seams Shown
+  ref: stonehenge/100h_seams_remove_stonehenge-lightning.jpg
+  dimensions: [1244, 800]
+- title: 200  Vertical Seams Shown
+  ref: stonehenge/200v_seams_remove_stonehenge-lightning.jpg
+  dimensions:  [1244, 800]
+
+
+- title: 300 Vertical, 300 Horizontal Seams Removal
   ref: stonehenge/scharr_300__300_stonehenge-lightning.jpg
   dimensions:  [944, 500]
-- title:
+- title:  X&Y-Cropped by 300px each
   ref: stonehenge/stonehenge-lightning-300-300-cropped.jpg
   dimensions:  [944, 500]
-- title:
+- title: X-Scaled to 994PX, Y-Cropped
   ref: stonehenge/stonehenge-lightning-scaled-croped-300-300.jpg
   dimensions: [944, 500]
+
+p4_stonehenge_night:
+- title:  300 Horizontal Seams Shown
+  ref: stonehenge/300h_seams_remove_stonehenge-night.jpg
+  dimensions: [620, 388]
+
+- title: 200 Vertical Seams Shown
+  ref: stonehenge/200v_seams_remove_stonehenge-night.jpg
+  dimensions: [620, 388]
+
+- title: Stonehenge Photo Collage
+  ref: stonehenge/stonehenge-night-collage.jpg
+  dimensions: [320, 388]
+
+
 
 p4_general:
 
@@ -398,7 +419,7 @@ gems:      []
 
 # Conversion
 markdown:    kramdown
-highlighter: rouge
+highlighter: pygments
 lsi:         false
 excerpt_separator: "\n\n"
 
