@@ -359,6 +359,33 @@ p4_pc:
   ref: specialExamples/pCompare/300vRemovalAnti.jpg
 - title: 300 Vertical Seam Directed Removal Results
   ref: specialExamples/pCompare/300vRemovalAntiOutput.jpg
+- title: Mask used (Gaussian curve, vector path, none)
+  ref: specialExamples/pCompare/masks.jpg
+
+p4_moon:
+- title: 100 Horizontal Seam Removal Display
+  ref: specialExamples/moo/h100maskedseams.jpg
+- title: 100 Horizontal Seam Removal Results
+  ref: specialExamples/moo/h100masked.jpg
+- title: 200 Vertical Seam Protected Removal Display
+  ref: specialExamples/moo/v200maskedseams.jpg
+- title: 200 Vertical Seam Protected Removal Results
+  ref: specialExamples/moo/v200masked.jpg
+- title: 200 Vertical Seam Poor Removal Display
+  ref: specialExamples/moo/v200submaskedseams.jpg
+- title: 200 Vertical Seam Poor Removal Results
+  ref: specialExamples/moo/v200submasked.jpg
+- title: Mask used (Blended Gaussian, Gaussian, Vector path, None)
+  ref: specialExamples/moo/masks.jpg
+
+
+
+
+
+
+
+
+
 
 
 
