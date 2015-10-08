@@ -5,12 +5,71 @@ subtitle: Seam Removal, Seam Insertion and More
 images: site.images
 ---
 
+{% comment %}
+{% dchart %}
+| title of first table  | Unit of given values | comments on the table as a whole |
+| 09.09.2013            |                =1000 | comment on this specific element |
+| 10.10.2013            |               =+1000 | comment on this specific element |
+| 11.11.2013            |                +1000 | comment on this specific element |
+{% enddchart %}
+{% endcomment %}
 
-h3(anchor#main). %(octicon octicon-link)I. Introduction%
+h2(anchor#main). %(octicon octicon-link)I. Introduction%
 
-This project was fun.
+<notextile>
+Despite the relative ease of cropping and scaling, valuable information tends to be lost as we shrink
+down image proportions. With mobile devices now having more computational power (and more memory) than all
+the computers used to guide the Apollo 11's 1969 mission,it comes as no surprise that we are able to
+take photos at ultra-resolution and than shrink to our hearts' content. Yet, by harnessing the power of
+seam carving, we are able to preserve critical information and image detail that would otherwise be lost.
+Furthermore, we can dynamically resize images to better fit the area of interest to a variety of different
+screen sizes and resolutions. Following the lead of Shai Avidan and Ariel Shamir
+</notextile>[0]<notextile>, I used tailored energy functions to find seams within in image for removal
+or insertion, depending on the desired output size.
+</notextile>
 
-<h3 class="center"> Seam Removal on Stonehenge </h3>
+<h4> Brief Overview of Key Challenges </h4>
+
+1) Improving the run time of my algorithm for increased throughput and decreased latency
+
+2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing
+
+3) Generating smooth masks for seam insertion and removal to preserve areas of interest.
+
+
+
+<h3>  II. Seam Removal and Visual Displays </h3>
+<notextile>
+As mentioned by Avidan in the seam carving paper, determination of an energy function to base seam removals is
+a critical component for program success. However, defining the cost matrix for each image is contextually dependent
+and can be very computationally intensive to fully explore each path. The gist of the algorithm presented is to find a path (that passes exactly through
+one pixel from each row for a vertical seam) such that the total cost of a seam is minimized. I typically used a sobel edge detection filter to find seams within in image
+and would successively remove or insert seams until the image was of the desired output size.
+</notextile>
+
+<h4> Quicky & Dirty Explanation of my Algorithm[1] </h4>
+
+<div class="pure-g">
+{% for image in site.p4_alg offset:0%}
+    <div class="pure-u-1-3 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}
+
+        {% if image.ref == 'alg/DP2.png' %}  {{image.title}}[2]
+         {% elsif image.ref == 'alg/DP3.png' %} {{image.title}}[3]
+         {% elsif image.ref == 'alg/DP5.png' %} {{image.title}}[4]
+         {% else %} {{image.title}} {% endif %}
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+
+<notextile>
+
+</notextile>
+
+
+
+<h4 class="center"> Seam Removal on Stonehenge[1] </h4>
+
 <div class="pure-g">
 {% for image in site.p4_stonehenge limit: 2 offset:0%}
     <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
@@ -76,7 +135,7 @@ This project was fun.
 {% endfor %}
 </div>
 
-<h3 class="center"> Seam Removal on Stonehenge Lightning Shot </h3>
+<h3 class="center"> Seam Removal on Stonehenge Lightning Shot[2] </h3>
 
 <div class="pure-g">
 {% for image in site.p4_stonehenge_lightning limit: 2 offset:0%}
@@ -103,7 +162,7 @@ This project was fun.
 {% endfor %}
 </div> <br>
 
-<h3 class="center"> Seam Removal on Stonehenge at Night </h3>
+<h3 class="center"> Seam Removal on Stonehenge at Night[3] </h3>
 
 <div class="pure-g">
 {% for image in site.p4_stonehenge_night limit: 2 offset:0%}
@@ -270,12 +329,24 @@ Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 
 Color was challenging to blend, and in the case of my image on Mars, the results were less attractive due to the variation in color patterns.
 
-fn1. Note about seam insertion
+fn0. "Seam Carving for Content-Aware Image Resizing":http://portal.acm.org/citation.cfm?id=1276390
+
+fn1. While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as @argmin@, @amin@, and @np.delete@
+
+fn2. The cumulative energy paths were based from applying an edge detection filter that mapped pixel gradients to preserve high-contrast features.
+
+fn3. Storing whether the pixel was left (red), straight (yellow), or right (green) was a recomended strategy for runtime optimization, but was more helpful for crude seam visualizations.
+
+fn4. This problem is akin to trying to climb up a mountain that shrinks with each step and then trying to backtrack to find your path from your starting location. While you may have finished the proccess, you have lost crucial information. The picture should show some insight on how I solved this problem, but I would be happy to explain if you're curious.
 
 Image Attributions
+
+
 1. "Stonehenge by Day":http://www.premiumtours.co.uk/images/product/original/181_1.jpg
-2. "Stonehenge by Night":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
-3. "Stonehenge during Lightning Strike":http://famouswonders.com/wp-content/uploads/2009/02/stonehenge-lightning.jpg
+
+2. "Stonehenge during Lightning Strike":https://www.flickr.com/photos/kate_williams/3229244633/
+
+3. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
 
 
 

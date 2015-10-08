@@ -1,0 +1,11 @@
+<comment>
+http://redcloth.org/textile/phrase-modifiers/#links
+
+I'm really excited about "RedCloth":redcloth.
+I love it so much, I think I'll name my first child "RedCloth":redcloth.
+[redcloth]http://redcloth.org
+ </comment>
+
+HELLLO!
+
+- Zachary Zeleznick

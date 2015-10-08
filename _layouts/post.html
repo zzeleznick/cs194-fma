@@ -1,6 +1,14 @@
 ---
 layout: default
 ---
+{% stylesheet morris.css %}
+<!- Jekyll Date Chart related libraries and JavaScript -!>
+<!--script>window.jQuery || document.write(unescape('%3Cscript src="javascripts/jquery.min.js"%3E%3C/script%3E'))</script-->
+{% javascript jquery.min.js %}
+{% javascript raphael %}
+{% javascript morris %}
+{% javascript jekyll_date_chart.js %}
+<!- Via https://github.com/GSI/jekyll_date_chart -!>
 <div id="post">
     <section class="main-content">
         {{ content }}

@@ -380,7 +380,22 @@ p4_moon:
 
 
 p4_failures:
--
+
+
+p4_alg:
+- title: Finding a Seam with DP
+  ref:            alg/DP.png
+- title: A Bottom-up Approach
+  ref:            alg/DP1.png
+- title: Using Cumulative Cost Paths
+  ref:            alg/DP2.png
+- title: Indexing the Shift
+  ref:            alg/DP3.png
+- title: Tracing back the Path
+  ref:            alg/DP4.png
+- title:   Storing Indices of Deletion
+  ref:             alg/DP5.png
+
 
 p4_general:
 
@@ -479,6 +494,8 @@ data_dir:     ./_data
 includes_dir: ./_includes
 collections:  null
 
+#http://jekyllbootstrap.com/usage/blog-configuration.html
+
 # Handling Reading
 safe:         false
 include:      [".htaccess"]
@@ -496,6 +513,9 @@ unpublished: false
 # Plugins
 whitelist: []
 gems:      []
+
+# 10.8 --> reading_time
+# 10.8 --> pageless_redirects, https://github.com/nquinlan/jekyll-pageless-redirects
 
 # Conversion
 markdown:    kramdown
