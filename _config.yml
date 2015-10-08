@@ -298,7 +298,7 @@ p4_stonehenge_night:
 p4_stary:
 - title: Stary Night Original
   ref: originals/staryNight.jpg
-
+  #/images/p4/orginals/staryNight.jpg
 - title: 100 Horizontal Seams Shown
   ref: baseExamples/staryNight/100h_seams_remove_staryNight.jpg
 
