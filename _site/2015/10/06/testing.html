@@ -390,9 +390,12 @@ Standard rescaling would be more appropriate in this case.
 <ol>
 	<li>Use objects and classes instead of passing around variables in global scope for handling images as objects and retaining importanting information such as name and sizing conventions</li>
 	<li>Use small test cases and modular design to save time.</li>
-	<li>If you are doing a visual project, make sure to do visual testing.<br />
-<br></li>
+	<li>If you are doing a visual project, make sure to do visual testing.</li>
+	<li>Vectorization can speed up <code>numpy</code> routines by a factor of 10</li>
+	<li>Precomputation trades memory for speed, but is great for preloading expected user input</li>
+	<li>The best output comes from the best input</li>
 </ol>
+<p><br></p>
 <p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://portal.acm.org/citation.cfm?id=1276390">Seam Carving for Content-Aware Image Resizing</a></p>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as <code>argmin</code>, <code>amin</code>, and <code>np.delete</code></p>
 <p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> The cumulative energy paths were based from applying an edge detection filter that mapped pixel gradients to preserve high-contrast features.</p>
