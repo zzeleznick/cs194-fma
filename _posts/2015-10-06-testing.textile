@@ -360,14 +360,14 @@ Standard rescaling would be more appropriate in this case.
 </notextile>
 
 
-<h3 class="center"> Lessons Learned: </h3>
+<h3 class="center"> 6 Lessons Learned: </h3>
 
-# Use objects and classes instead of passing around variables in global scope for handling images as objects and retaining importanting information such as name and sizing conventions
-# Use small test cases and modular design to save time.
-# If you are doing a visual project, make sure to do visual testing.
-# Vectorization can speed up @numpy@ routines by a factor of 10
-# Precomputation trades memory for speed, but is great for preloading expected user input
-# The best output comes from the best input
+# Use image objects and classes instead of passing around variables in global scope.
+# Use small test cases and modular designs to save time.
+# If you are doing a visual project, DO visual testing.
+# Vectorization can speed up @numpy@ routines by a factor of 10.
+# Precomputation trades memory for speed, but is great for preloading expected user input.
+# The best output comes from the best input.
 
 <br>
 {% comment %}

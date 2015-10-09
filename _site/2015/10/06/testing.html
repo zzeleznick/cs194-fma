@@ -386,14 +386,14 @@ cost matrix, parameterizing the values within the mask to match the desired ener
 Faces are really tough to scale down properly, especially when they fill the frame of the image.
 Standard rescaling would be more appropriate in this case.
 </p>
-<h3 class="center"> Lessons Learned: </h3>
+<h3 class="center"> 6 Lessons Learned: </h3>
 <ol>
-	<li>Use objects and classes instead of passing around variables in global scope for handling images as objects and retaining importanting information such as name and sizing conventions</li>
-	<li>Use small test cases and modular design to save time.</li>
-	<li>If you are doing a visual project, make sure to do visual testing.</li>
-	<li>Vectorization can speed up <code>numpy</code> routines by a factor of 10</li>
-	<li>Precomputation trades memory for speed, but is great for preloading expected user input</li>
-	<li>The best output comes from the best input</li>
+	<li>Use image objects and classes instead of passing around variables in global scope.</li>
+	<li>Use small test cases and modular designs to save time.</li>
+	<li>If you are doing a visual project, DO visual testing.</li>
+	<li>Vectorization can speed up <code>numpy</code> routines by a factor of 10.</li>
+	<li>Precomputation trades memory for speed, but is great for preloading expected user input.</li>
+	<li>The best output comes from the best input.</li>
 </ol>
 <p><br></p>
 <p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://portal.acm.org/citation.cfm?id=1276390">Seam Carving for Content-Aware Image Resizing</a></p>
