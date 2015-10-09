@@ -356,7 +356,11 @@ have noticeable blurring as though someone dragged a clone tool over one seam.
 Mask used (Blended Gaussian, Gaussian, Vector path, None) <br>  <br>
 </div>
 </div>
-Mask design can be used
+Here, I experimented with three different masks and compared the result to the naive implementation. In the last pair of images
+you can see how the astronaut is deformed by seam removal, constrasted with the preserve mask implementation with
+a smooth mask design. Having consistency within the X and Y direction for the mask proved quite challenging,
+as poor blending resulted in jagged edges. I went through several design iterations to refine the total energy cumulative
+cost matrix, parameterizing the values within the mask to match the desired energy map that can  protect the image.
 <p><br><br></p>
 <h3 class='center'> IX. Failure Cases </h3>
 
@@ -369,25 +373,35 @@ Step 2. Form a combined pyramid LS from LA and LB using nodes of GR as weights.
 Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 </code></pre>
 <p><br></p>
-<h4 class='center'> Failure Case: </h4>
+<h4 class='center'> Failure Cases: </h4>
 <div class="pure-g">
-<div class="pure-u-1-4 pure-u-md-1-4 center">
-Mars
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mars2.jpg"><img src="http://0.0.0.0:4000/images/p3/Mars2.jpg" title="Mars" alt="Mars" /></a>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/100h_seams_remove_jae2.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/100h_seams_remove_jae2.jpg" title="Finding a Seam with DP" alt="Finding a Seam with DP" /></a>
 </div>
-<div class="pure-u-1-4 pure-u-md-1-4 center">
-Mask Zach
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Mask-Zach.jpg"><img src="http://0.0.0.0:4000/images/p3/Mask-Zach.jpg" title="Mask Zach" alt="Mask Zach" /></a>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/100h_seams_remove_mask_jae.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/100h_seams_remove_mask_jae.jpg" title="A Bottom-up Approach" alt="A Bottom-up Approach" /></a>
 </div>
-<div class="pure-u-1-4 pure-u-md-1-4 center">
-Zach
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/Zach-puppy.jpg"><img src="http://0.0.0.0:4000/images/p3/Zach-puppy.jpg" title="Zach" alt="Zach" /></a>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/100v_seams_remove_jae2.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/100v_seams_remove_jae2.jpg" title="Using Cumulative Cost Paths" alt="Using Cumulative Cost Paths" /></a>
 </div>
-<div class="pure-u-1-4 pure-u-md-1-4 center">
-Blended 8 Levels
-<a href="http://zzeleznick.github.io/cs194-fma/images/p3/blended_8_Mars2.jpg"><img src="http://0.0.0.0:4000/images/p3/blended_8_Mars2.jpg" title="Blended 8 Levels" alt="Blended 8 Levels" /></a>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/scharr_-200__100_jae2.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/scharr_-200__100_jae2.jpg" title="Indexing the Shift" alt="Indexing the Shift" /></a>
+</div>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/sobel_100__100_jae2.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/sobel_100__100_jae2.jpg" title="Tracing back the Path" alt="Tracing back the Path" /></a>
+</div>
+<div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+<a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/useMaskForEdgeMethodCall_100__0_preserve_jae.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/useMaskForEdgeMethodCall_100__0_preserve_jae.jpg" title="Storing Indices of Deletion" alt="Storing Indices of Deletion" /></a>
 </div>
 </div>
+
+	<ol>
+		<li>Lessons Learned:</li>
+	</ol><ol>
+	<li>Use objects and classes instead of passing around variables in global scope for handling images as objects and retaining importanting information such as name and sizing conventions</li>
+	<li>Use small test cases and modular design to save time.</li>
+	<li>If you are doing a visual project, make sure to do visual testing.</li>
+</ol>
 <p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://portal.acm.org/citation.cfm?id=1276390">Seam Carving for Content-Aware Image Resizing</a></p>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as <code>argmin</code>, <code>amin</code>, and <code>np.delete</code></p>
 <p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> The cumulative energy paths were based from applying an edge detection filter that mapped pixel gradients to preserve high-contrast features.</p>

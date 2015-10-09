@@ -23,6 +23,11 @@ a.sm img{
   width: 30%;
 }
 
+.constrain {
+  max-width: 500px;
+  max-height: 500px;
+}
+
 .no-vspace > p{
   vertical-align: center;
   line-height: 0

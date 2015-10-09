@@ -236,7 +236,7 @@ p4_stonehenge:
 - title: 300 Horizontal Seams Shown
   ref: stonehenge/300h_seams_remove_stonehenge.jpg
   dimensions: [1600, 1067]
-- title: 600 Vetical Seams Shown
+- title: 600 Vertical Seams Shown
   ref: stonehenge/600v_seams_remove_stonehenge.jpg
   dimensions: [1600, 1067]
 
@@ -380,6 +380,18 @@ p4_moon:
 
 
 p4_failures:
+- title: Finding a Seam with DP
+  ref:            problemCases/faces/100h_seams_remove_jae2.jpg
+- title: A Bottom-up Approach
+  ref:            problemCases/faces/100h_seams_remove_mask_jae.jpg
+- title: Using Cumulative Cost Paths
+  ref:            problemCases/faces/100v_seams_remove_jae2.jpg
+- title: Indexing the Shift
+  ref:           problemCases/faces/scharr_-200__100_jae2.jpg
+- title: Tracing back the Path
+  ref:            problemCases/faces/sobel_100__100_jae2.jpg
+- title:   Storing Indices of Deletion
+  ref:           problemCases/faces/useMaskForEdgeMethodCall_100__0_preserve_jae.jpg
 
 
 p4_alg:
@@ -397,8 +409,8 @@ p4_alg:
   ref:             alg/DP5.png
 
 
-p4_docs: 'pj4/docs/'
-p4_logs: 'pj4/logs/'
+p4_docs: 'p4/docs/'
+p4_logs: 'p4/logs/'
 
 
 
