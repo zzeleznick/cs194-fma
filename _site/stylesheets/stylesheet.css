@@ -23,6 +23,33 @@ a.sm img{
   width: 30%;
 }
 
+h2.center, h3.center, h4.center {
+  margin-bottom: 1.25rem !important;
+
+}
+
+.gist table{
+  display: inline-table !important;
+  /*table-layout: fixed !important;
+  word-break: break-all !important;
+  word-wrap: break-word !important;*/
+}
+
+.gist tr, td{
+  text-align: left !important;
+}
+
+
+.gist h4{
+  color: #039099 !important;
+  margin-bottom: 1.2em !important;
+}
+
+.gist h3{
+  margin-bottom: 1.3em !important;
+}
+
+
 .constrain {
   max-width: 500px;
   max-height: 500px;

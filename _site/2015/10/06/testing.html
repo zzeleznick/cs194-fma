@@ -46,7 +46,7 @@ or insertion, depending on the desired output size.
 </p>
 <h4> Brief Overview of Key Challenges </h4>
 <p>1) Improving the run time of my algorithm for increased throughput and decreased latency</p>
-<p>2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing. See the timing logs <a target="_blank" href= http://0.0.0.0:4000/pj4/logs/>here.</a></p>
+<p>2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing. See the timing logs <a target="_blank" href= http://0.0.0.0:4000/p4/logs/>here.</a></p>
 <p>3) Generating smooth masks for seam insertion and removal to preserve areas of interest.</p>
 <h2>  II. Seam Removal and Visual Displays </h2>
 As mentioned by Avidan in the seam carving paper, determination of an energy function to base seam removals is
@@ -84,21 +84,21 @@ and would successively remove or insert seams until the image was of the desired
          <br />
        <br><br>    </div>
 </div>
-<p>    For a closer look at the implementation details, check out the <a target="_blank" href= http://0.0.0.0:4000/pj4/docs/>README </a>
+<p>    For a closer look at the implementation details, check out the <a target="_blank" href= http://0.0.0.0:4000/p4/docs/>README </a>
     for my package.
  <br><br></p>
 <p><!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script--></p>
 <h2 class="center"> <span class="caps">III</span>. Seam Removal on Stonehenge </h2>
 <div class="pure-g">
     <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p4/stonehenge/300h_seams_remove_stonehenge.jpg"><img src="http://0.0.0.0:4000/images/p4/stonehenge/300h_seams_remove_stonehenge.jpg" title="300 Horizontal Seams Shown" alt="300 Horizontal Seams Shown" /></a></div>
-    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p4/stonehenge/600v_seams_remove_stonehenge.jpg"><img src="http://0.0.0.0:4000/images/p4/stonehenge/600v_seams_remove_stonehenge.jpg" title="600 Vetical Seams Shown" alt="600 Vetical Seams Shown" /></a></div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p4/stonehenge/600v_seams_remove_stonehenge.jpg"><img src="http://0.0.0.0:4000/images/p4/stonehenge/600v_seams_remove_stonehenge.jpg" title="600 Vertical Seams Shown" alt="600 Vertical Seams Shown" /></a></div>
 </div>
 <div class="pure-g">
 <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
 300 Horizontal Seams Shown <br>
 </div>
 <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
-600 Vetical Seams Shown <br>
+600 Vertical Seams Shown <br>
 </div>
 <p></div> <br></p>
 <div class="pure-g">
@@ -363,17 +363,6 @@ as poor blending resulted in jagged edges. I went through several design iterati
 cost matrix, parameterizing the values within the mask to match the desired energy map that can  protect the image.
 <p><br><br></p>
 <h3 class='center'> IX. Failure Cases </h3>
-
-
-<pre><code>Step la. Build Laplacian pyramids LA and LB for images A and B respectively.
-Step lb. Build a Gaussian pyramid GR for the region image R.
-Step 2. Form a combined pyramid LS from LA and LB using nodes of GR as weights.
-        For each l, i, j:
-                 LSl(i, j) = GRl(i, j)LAl(i, j) + (1 - GRl(i, j))LBl(i, j).
-Step 3. Obtain the splined image S by expanding and summing the levels of LS.
-</code></pre>
-<p><br></p>
-<h4 class='center'> Failure Cases: </h4>
 <div class="pure-g">
 <div class="pure-u-1-3 pure-u-md-1-3 center constrain">
 <a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/100h_seams_remove_jae2.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/100h_seams_remove_jae2.jpg" title="Finding a Seam with DP" alt="Finding a Seam with DP" /></a>
@@ -393,14 +382,16 @@ Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 <div class="pure-u-1-3 pure-u-md-1-3 center constrain">
 <a href="http://zzeleznick.github.io/cs194-fma/images/p4/problemCases/faces/useMaskForEdgeMethodCall_100__0_preserve_jae.jpg"><img src="http://0.0.0.0:4000/images/p4/problemCases/faces/useMaskForEdgeMethodCall_100__0_preserve_jae.jpg" title="Storing Indices of Deletion" alt="Storing Indices of Deletion" /></a>
 </div>
-</div>
-
-	<ol>
-		<li>Lessons Learned:</li>
-	</ol><ol>
+<p></div><br>
+Faces are really tough to scale down properly, especially when they fill the frame of the image.
+Standard rescaling would be more appropriate in this case.
+</p>
+<h3 class="center"> Lessons Learned: </h3>
+<ol>
 	<li>Use objects and classes instead of passing around variables in global scope for handling images as objects and retaining importanting information such as name and sizing conventions</li>
 	<li>Use small test cases and modular design to save time.</li>
-	<li>If you are doing a visual project, make sure to do visual testing.</li>
+	<li>If you are doing a visual project, make sure to do visual testing.<br />
+<br></li>
 </ol>
 <p class="footnote" id="fn0"><a href="#fnr0"><sup>0</sup></a> <a href="http://portal.acm.org/citation.cfm?id=1276390">Seam Carving for Content-Aware Image Resizing</a></p>
 <p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as <code>argmin</code>, <code>amin</code>, and <code>np.delete</code></p>
@@ -412,8 +403,8 @@ Step 3. Obtain the splined image S by expanding and summing the levels of LS.
 <p class="footnote" id="fn7"><a href="#fnr7"><sup>7</sup></a> <a href="https://www.flickr.com/photos/kate_williams/3229244633/">Stonehenge during Lightning Strike</a></p>
 <p class="footnote" id="fn8"><a href="#fnr8"><sup>8</sup></a> <a href="http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg">Stonehenge by Mike Parker Pearson</a></p>
 <p class="footnote" id="fn9"><a href="#fnr9"><sup>9</sup></a> <a href="http://www.lichtensteinfoundation.org/0278.htm">Girl with Hair Ribbon, 1965 by Roy Lichtenstein</a></p>
-<p><a target="_blank" href= http://0.0.0.0:4000/pj4/logs/> <h5 class="center"> See the logs produced for my test files </h5> </a></p>
-<p><a target="_blank" href= http://0.0.0.0:4000/pj4/docs/> <h5 class="center"> Read More about my Code </h5></a></p>
+<p><a target="_blank" href= http://0.0.0.0:4000/p4/logs/> <h5 class="center"> See the logs produced for my test files </h5> </a></p>
+<p><a target="_blank" href= http://0.0.0.0:4000/p4/docs/> <h5 class="center"> Read More about my Code </h5></a></p>
 <comment>
 
 		<ol>
