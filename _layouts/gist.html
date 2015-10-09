@@ -1,7 +1,9 @@
 ---
 layout: default
 ---
-{% javascript jquery.min.js %}
+    {% capture path %}{{ site.github_path }}{% endcapture %}
+    {% assign js1 = path | append: "_assets/javascripts/jquery.min.js" %}
+    <script type="text/javascript" src={{js1}}></script>
 
 <div id="post">
     <section class="main-content centered">
