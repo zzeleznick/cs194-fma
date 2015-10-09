@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{% capture path %}{{ site.github_path }}{% endcapture %}
+{% assign css1 = path | append: "_assets/stylesheets/morris.min.css" %}
+{% assign js4 = path | append: "_asssets/javascripts/morris.min.js" %}
+{% assign js3 = path | append: "_assets/javascripts/raphael.min.js" %}
+{% assign js2 = path | append: "_asssets/javascripts/jekyll_date_chart.js" %}
+{% assign js1 = path | append: "_assets/javascripts/jquery.min.js" %}
+<link rel="stylesheet" type="text/css" href= {{ css1 }}  media="screen">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href= {{ css2 }}  media="screen">
+<link rel="stylesheet" type="text/css" href= {{ css3 }}  media="screen">
+<link rel="stylesheet" type="text/css" href= {{ css4 }}  media="screen">
+<!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"-->
+<script type="text/javascript" src={{js1}}></script>
+<script type="text/javascript" src={{js2}}></script>
+<script type="text/javascript" src={{js3}}></script>
+<script type="text/javascript" src={{js4}}></script>
+
+<!--script>window.jQuery || document.write(unescape('%3Cscript src="javascripts/jquery.min.js"%3E%3C/script%3E'))</script-->
+<div id="post">
+    <section class="main-content">
+        {{ content }}
+    </section>
+</div>
+
+<!--div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+  </ul>
+</div-->

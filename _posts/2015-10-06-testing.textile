@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: post_plus
 title: Context-Aware Image Resizing
 subtitle: Seam Removal, Seam Insertion and More
 images: site.images
