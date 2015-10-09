@@ -8,12 +8,12 @@ published: True
 ---
 
 {% comment %}
-<!--{% dchart %} -->
+<!-- dchart  -->
 | title of first table  | Unit of given values | comments on the table as a whole |
 | 09.09.2013            |                =1000 | comment on this specific element |
 | 10.10.2013            |               =+1000 | comment on this specific element |
 | 11.11.2013            |                +1000 | comment on this specific element |
-<!--{% enddchart %}-->
+<!-- enddchart -->
 {% endcomment %}
 
 <script src="https://gist.github.com/zzeleznick/e146e30205393b4ad9ec.js"></script>
