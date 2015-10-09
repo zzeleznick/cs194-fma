@@ -15,6 +15,90 @@ a {
   a:hover {
     text-decoration: underline; }
 
+li {
+  line-height: 2;
+}
+
+a.sm img{
+  width: 30%;
+}
+
+.no-vspace > p{
+  vertical-align: center;
+  line-height: 0
+}
+
+comment {
+  display: none;
+}
+
+.center {
+  text-align: center;
+  margin: 0, auto;
+  -webkit-align-content: center;
+  -webkit-align-self: center;
+}
+
+.col-lg-2{
+  width: 50%;
+  display: inline;
+  *zoom: 1;
+  -webkit-border-horizontal-spacing: 2px;
+  -webkit-border-vertical-spacing: 2px;
+}
+
+.col-lg-3, .col-lg-3 img {
+  width: 33.33333333333%;
+  display: inline;
+  *zoom: 1;
+  -webkit-border-horizontal-spacing: 2px;
+  -webkit-border-vertical-spacing: 2px;
+}
+
+.row {
+  width: 100%;
+}
+/*
+td:contains-selector(a.sm) {  text-align: center; }
+td:contains-selector(a) {  background-color: red; }
+td > a.sm { background-color: red; }
+td! > a.sm{ text-align: center; }
+td a.sm:parent {text-align: center; }
+a.sm:parent {text-align: center; } */
+
+/* Begin http://salvattore.com */
+
+@media screen and (max-width: 480px){
+  #grid[data-columns]::before {
+    content: '1 .column.size-1of1';
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  #grid[data-columns]::before {
+    content: '2 .column.size-1of2';
+  }
+}
+@media screen and (min-width: 769px) {
+  #grid[data-columns]::before {
+    content: '3 .column.size-1of3';
+  }
+}
+
+/* Again, you’re free to use and define the classes: */
+.column { float: left; }
+.size-1of1 { width: 100%; }
+.size-1of2 { width: 50%; }
+.size-1of3 { width: 33.333%; }
+
+
+/* End http://salvattore.com */
+
+
+.footnote {
+  font-size: 12px;
+  color: gray;
+}
 .btn {
   display: inline-block;
   margin-bottom: 1rem;
@@ -53,7 +137,7 @@ a {
       margin-top: 1rem;
       margin-left: 0; } }
 
-.page-header {
+.page-header, .page-header-small {
   color: #fff;
   text-align: center;
   background-color: #159957;
@@ -61,7 +145,10 @@ a {
 
 @media screen and (min-width: 64em) {
   .page-header {
-    padding: 5rem 6rem; } }
+    padding: 5rem 6rem; }
+  .page-header-small {
+    padding: 2rem 6rem; }
+  }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .page-header {
@@ -75,6 +162,10 @@ a {
   margin-top: 0;
   margin-bottom: 0.1rem; }
 
+.project-name a{
+   color: white;
+}
+
 @media screen and (min-width: 64em) {
   .project-name {
     font-size: 3.25rem; } }
@@ -87,21 +178,27 @@ a {
   .project-name {
     font-size: 1.75rem; } }
 
-.project-tagline {
+.project-tagline, .project-subline {
   margin-bottom: 2rem;
   font-weight: normal;
   opacity: 0.7; }
 
+.project-subline {
+  margin-bottom: 1rem;
+  margin-top: -.25rem;}
+
 @media screen and (min-width: 64em) {
-  .project-tagline {
-    font-size: 1.25rem; } }
+  .project-tagline{
+    font-size: 1.35rem; }
+  .project-subline{
+      font-size: 1.2rem;}}
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
-  .project-tagline {
+  .project-tagline, .project-subline {
     font-size: 1.15rem; } }
 
 @media screen and (max-width: 42em) {
-  .project-tagline {
+  .project-tagline, .project-subline {
     font-size: 1rem; } }
 
 .main-content :first-child {
@@ -175,7 +272,7 @@ a {
     margin-top: 0; }
   .main-content blockquote > :last-child {
     margin-bottom: 0; }
-.main-content table {
+.main-content table{
   display: block;
   width: 100%;
   overflow: auto;
@@ -185,7 +282,8 @@ a {
     font-weight: bold; }
   .main-content table th, .main-content table td {
     padding: 0.5rem 1rem;
-    border: 1px solid #e9ebec; }
+    border: 1px solid #e9ebec;
+    text-align: center; }
 .main-content dl {
   padding: 0; }
   .main-content dl dt {

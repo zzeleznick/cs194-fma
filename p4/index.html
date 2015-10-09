@@ -6,7 +6,6 @@
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
     <link rel="stylesheet" type="text/css" href="../stylesheets/normalize.css"  media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css"  media="screen">
@@ -25,14 +24,6 @@
       <h3 class="project-subline">Seam Removal, Seam Insertion and More</h2>
     </section>
 
-<link rel="stylesheet" href="/assets/morris-169d4821d0e4630c0748d2dc742d8a18.css">
-<!- Jekyll Date Chart related libraries and JavaScript -!>
-<!--script>window.jQuery || document.write(unescape('%3Cscript src="javascripts/jquery.min.js"%3E%3C/script%3E'))</script-->
-<script src="../assets/jquery.min-8ddfde3977cecfd4a7f6f9fd367076ac.js"></script>
-<script src="../assets/raphael-acf3f6fcc1644169e505e02b75e86214.js"></script>
-<script src="../assets/morris-c5b266055d83d906b0e0cbdb61d3abad.js"></script>
-<script src="../assets/jekyll_date_chart-676b08588946913eeb5c4ee2096fb937.js"></script>
-<!- Via https://github.com/GSI/jekyll_date_chart -!>
 <div id="post">
     <section class="main-content">
         <h2 class="anchor" id="main"><span class="octicon octicon-link">I. Introduction</span></h2>
@@ -48,7 +39,7 @@ or insertion, depending on the desired output size.
 </p>
 <h4> Brief Overview of Key Challenges </h4>
 <p>1) Improving the run time of my algorithm for increased throughput and decreased latency</p>
-<p>2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing</p>
+<p>2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing. See the timing logs <a target="_blank" href="/pj4/logs/">here.</a></p>
 <p>3) Generating smooth masks for seam insertion and removal to preserve areas of interest.</p>
 <h2>  II. Seam Removal and Visual Displays </h2>
 As mentioned by Avidan in the seam carving paper, determination of an energy function to base seam removals is
@@ -86,7 +77,9 @@ and would successively remove or insert seams until the image was of the desired
          <br />
        <br><br>    </div>
 </div>
-
+<p>    For a closer look at the implementation details, check out the <a target="_blank" href="/pj4/docs/">README </a>
+    for my package.
+ <br><br></p>
 <p><!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script--></p>
 <h2 class="center"> <span class="caps">III</span>. Seam Removal on Stonehenge </h2>
 <div class="pure-g">
@@ -195,7 +188,7 @@ Stonehenge in addition to be a great historic site, is a prime example of how in
 such as the columns and reduced in size via an energy function. While there are some artifacts, namely due to
 the high relative weight of the grass, a mask of feature-weight system would be able to compensate for this skew
 towards removing the sky.
-<p><br></p>
+<p><br> <br></p>
 <h2 class="center"> IV. Seam Removal on Starry Night </h2>
 <div class="pure-g">
 <div class="pure-u-1-2 pure-u-md-1-2 no-vspace">
@@ -211,7 +204,7 @@ towards removing the sky.
 Abstract paintings are really cool to play with, especially since artifacts created by poor mask design or
 energy maps are difficult to point out. Even removing 450 horizontal seams from the image does not produce
 any noticeable damage.
-<p><br></p>
+<p><br><br></p>
 <h3 class="center">  V. (Bells &amp; Whistles) Seam Removal &amp; Seam Insertion on my Homeowork </h3>
 <div class="pure-g">
     <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p4/baseExamples/hw/scharr_-100__0_homework.jpg"><img src="../images/p4/baseExamples/hw/scharr_-100__0_homework.jpg" title="100 Horizontal Seams Added" alt="100 Horizontal Seams Added" /></a></div>
@@ -256,8 +249,8 @@ Original Image <br>
 Rather than removing seams with the lowest cumulative cost, one can insert them back into the image to
 increase scale. Notice how the whitespace changes between the regular and contrasted images. Even at high levels
 of seam removal, the text is as readable as it was to begin with.
-<p><br></p>
-<h4 class='center'>  VI. (Bells &amp; Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, &amp; Spice </h4>
+<p><br> <br></p>
+<h4 class='center'>  VI. (Bells &amp; Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, &amp; Spice </h4> <p><br></p>
 <div class="pure-g">
 <div class="pure-u-1-2 pure-u-md-1 center">
 <p><a href="http://zzeleznick.github.io/cs194-fma/images/p4/popArt/popArtCollage2.jpg"><img src="../images/p4/popArt/popArtCollage2.jpg" title="&#39;Pop Art Collage&#39;" alt="&#39;Pop Art Collage&#39;" /></a></p>
@@ -320,10 +313,11 @@ While creating a rough vector mask of the person helped to preserve his face (or
 without generating a smooth 2D mask, the shape of the seam removed will be jagged due to sharp gradients of change.
 For the preservative mask, I combined the weight of the edges and a scaled version of the mask to prevent paths from passing
 through the region. For the targeted removal mask, I lowered regions in which a pixel could pass through. Seam insertion, which
-I ran after masking, can be largely run analogously, since you do not want to keep inserting the same pixels to the same
-place.
-<p><br>
-<br></p>
+I programmed after incorporating a masking or anti-masking parameter shared many similar
+implementation details, since after finding a seam, you want to preserve those pixels as to prevent
+repeated insertion of the same seam. Without modifying the energy map to reflect this constraint, the produced images
+have noticeable blurring as though someone dragged a clone tool over one seam.
+<p><br><br></p>
 <h3 class='center'> <span class="caps">VIII</span>. (Bells &amp; Whistles ) Mask on the Moon </h3>
 <div class="pure-g">
     <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p4/specialExamples/moo/h100maskedseams.jpg"><img src="../images/p4/specialExamples/moo/h100maskedseams.jpg" title="100 Horizontal Seam Removal Display" alt="100 Horizontal Seam Removal Display" /></a></div>
@@ -356,6 +350,7 @@ Mask used (Blended Gaussian, Gaussian, Vector path, None) <br>  <br>
 </div>
 </div>
 Mask design can be used
+<p><br><br></p>
 <h3 class='center'> IX. Failure Cases </h3>
 
 
@@ -396,6 +391,8 @@ Blended 8 Levels
 <p class="footnote" id="fn7"><a href="#fnr7"><sup>7</sup></a> <a href="https://www.flickr.com/photos/kate_williams/3229244633/">Stonehenge during Lightning Strike</a></p>
 <p class="footnote" id="fn8"><a href="#fnr8"><sup>8</sup></a> <a href="http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg">Stonehenge by Mike Parker Pearson</a></p>
 <p class="footnote" id="fn9"><a href="#fnr9"><sup>9</sup></a> <a href="http://www.lichtensteinfoundation.org/0278.htm">Girl with Hair Ribbon, 1965 by Roy Lichtenstein</a></p>
+<p><a target="_blank" href="/pj4/logs/"> <h5 class="center"> See the logs produced for my test files </h5> </a></p>
+<p><a target="_blank" href="/pj4/docs/"> <h5 class="center"> Read More about my Code </h5></a></p>
 <comment>
 
         <ol>
