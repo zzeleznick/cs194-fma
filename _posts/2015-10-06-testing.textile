@@ -1,18 +1,10 @@
 ---
-layout: post_plus
+layout: post
 title: Context-Aware Image Resizing
 subtitle: Seam Removal, Seam Insertion and More
 images: site.images
 ---
 
-{% comment %}
-{% dchart %}
-| title of first table  | Unit of given values | comments on the table as a whole |
-| 09.09.2013            |                =1000 | comment on this specific element |
-| 10.10.2013            |               =+1000 | comment on this specific element |
-| 11.11.2013            |                +1000 | comment on this specific element |
-{% enddchart %}
-{% endcomment %}
 
 h2(anchor#main). %(octicon octicon-link)I. Introduction%
 
