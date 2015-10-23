@@ -412,23 +412,43 @@ p4_alg:
 p4_docs: 'p4/docs/'
 p4_logs: 'p4/logs/'
 
-
-
-
-
-
-#'''
-#scharr_250__250_fireworks.jpg
-#250h_seams_remove_fireworks.jpg
-#250v_seams_remove_fireworks.jpg
-#scharr_200__-300_fireworks.jpg
-#300v_seams_remove_fireworks.jpg
-#200h_seams_remove_fireworks.jpg
-#'''
-
-
-
 ## END OF P4 ##
+
+## START P5 ##
+
+p5_path: 'images/p5/'
+
+p5_morphs:
+- title: Paris Hilton
+  ref:            morphs/Paris.jpg
+- title: Bradis
+  ref:            morphs/ParisBrad.gif
+- title: Brad Pitt
+  ref:            morphs/Brad.jpg
+- title: Martin
+  ref:            morphs/Martin.jpg
+- title: Geortin
+  ref:             morphs/MartinGeorge.gif
+- title: George Clooney
+  ref:             morphs/George.jpg
+- title: Obama
+  ref:             morphs/Obama.jpg
+- title: Kobama
+  ref:             morphs/ObamaKobe.gif
+- title: Kobe
+  ref:             morphs/Kobe.jpg
+- title: Woz
+  ref:             morphs/Woz.jpg
+- title: Wobuccini
+  ref:             morphs/StevenWoz.gif
+- title: Buccini
+  ref:             morphs/Steven.jpg
+
+
+
+## END OF P5 ##
+
+
 
 
 
