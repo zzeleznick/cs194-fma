@@ -13,6 +13,12 @@ h2(anchor#main). %(octicon octicon-link)I. Introduction%
 Here, we will explore the beauty of determining facial features, triangulation, and morphing in great detail. Shape and symmetry of individual faces enable us to distinguish identities, and we will see how to morph someone’s face into someone else's face, compute the average face of a population, and extrapolate from a population mean to create a caricature.
 </notextile>
 
+<h4> But First a Presidential Face Morph!</h4>
+<div class="videoWrapper">
+    <iframe width="560" height="349" src="http://player.vimeo.com/video/143365166?autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div>
+
+
 <h4> Brief Overview of Key Challenges </h4>
 
 1) Mapping correspondence of features between faces
@@ -22,6 +28,7 @@ Here, we will explore the beauty of determining facial features, triangulation, 
 3) Ensuring consistency between feature space labeling and dimensions
 
 
+
 <h2>  II. Defining Correspondences </h2>
 <notextile>
 Distinctive features such as eyes and eyebrows, lips and nose, ears and chin, are important to preserve — and act as the key areas of interest to morph between faces. In this project, I used the
@@ -29,7 +36,6 @@ Distinctive features such as eyes and eyebrows, lips and nose, ears and chin, ar
 I then selected n points [30-40] for faces A,B, selecting each pair of corresponding point side-by-side.
 </notextile>
 
-<h3> Triangulation Here....[1] </h3>
 
 <h2 class="center"> III. Face Morphs </h2>
 
@@ -103,72 +109,36 @@ For each of the input images above, each pair of faces was morphed to the midway
 </div>
 
 
-<h3 class='center'> IX. Failure Cases </h3>
+<h3 class='center'> VI. Caricatures </h3>
 
-
-<notextile>
-Faces are really tough to scale down properly, especially when they fill the frame of the image.
-Standard rescaling would be more appropriate in this case.
-</notextile>
-
-<div class="videoWrapper">
-    <!-- Copy & Pasted from YouTube -->
-    <iframe width="560" height="349" src="http://vimeo.com/143365166" frameborder="0" allowfullscreen></iframe>
+<div class="pure-g">
+{% for image in site.p5_char offset:0%}
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p5_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p5_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
+    </div>
+{% endfor %}
 </div>
 
-<object width="WIDTH" height="HEIGHT">
- <param name="allowfullscreen" value="true" />
- <param name="allowscriptaccess" value="always" />
- <param name="movie" value="https://vimeo.com/143365166&amp;server=vimeo.com&amp;autoplay=1&amp;loop=1&amp;fullscreen=1" />
- <embed src="https://vimeo.com/143365166&amp;server=vimeo.com&amp;autoplay=1&amp;loop=1&amp;fullscreen=1" allowfullscreen="true" allowscriptaccess="always" width="WIDTH" height="HEIGHT"></embed>
- </object>
+<notextile>
+Rather than keep the weight values in the range [0,1], we can morph faces beyond the typical geometry bounds to produce caricatures.
+Formula for weights given as </notextile> <code> (1-alpha) * imA_Pts + alpha * imB_Pts </code>
+</notextile>
 
-<h3 class="center"> 6 Lessons Learned: </h3>
 
-# Use image objects and classes instead of passing around variables in global scope.
-# Use small test cases and modular designs to save time.
-# If you are doing a visual project, DO visual testing.
-# Vectorization can speed up @numpy@ routines by a factor of 10.
-# Precomputation trades memory for speed, but is great for preloading expected user input.
-# The best output comes from the best input.
+<h3 class="center"> Bells & Whistles </h3>
+1) Presidential Morph Video
+
+2) Facial Gender Bender
+
+3) Participation in Class Morph
 
 <br>
 {% comment %}
 Failure cases
 Precomputation
 Demo
-Timing
 {% endcomment %}
-
-
-fn0. "Seam Carving for Content-Aware Image Resizing":http://portal.acm.org/citation.cfm?id=1276390
-
-fn1. While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as @argmin@, @amin@, and @np.delete@
-
-fn2. The cumulative energy paths were based from applying an edge detection filter that mapped pixel gradients to preserve high-contrast features.
-
-fn3. Storing whether the pixel was left (red), straight (yellow), or right (green) was a recomended strategy for runtime optimization, but was more helpful for crude seam visualizations.
-
-fn4. This problem is akin to trying to climb up a mountain that shrinks with each step and then trying to backtrack to find your path from your starting location. While you may have finished the proccess, you have lost crucial information. The picture should show some insight on how I solved this problem, but I would be happy to explain if you're curious.
-
-
-<!--script src="https://gist.github.com/zzeleznick/e146e30205393b4ad9ec.js"></script-->
-
-fn6. "Stonehenge by Day":http://www.premiumtours.co.uk/images/product/original/181_1.jpg
-
-fn7. "Stonehenge during Lightning Strike":https://www.flickr.com/photos/kate_williams/3229244633/
-
-fn8. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
-
-
-fn9. "Girl with Hair Ribbon, 1965 by Roy Lichtenstein":http://www.lichtensteinfoundation.org/0278.htm
-
-
-
-<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_logs}}> <h5 class="center"> See the logs produced for my test files </h5> </a>
-
-<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_docs}}> <h5 class="center"> Read More about my Code </h5></a>
-
 
 <comment>
 

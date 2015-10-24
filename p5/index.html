@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Face Morphing</title>
+    <meta name="author" content="Zachary Zeleznick">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href=../stylesheets/normalize.css  media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href=../stylesheets/stylesheet.css  media="screen">
+    <link rel="stylesheet" type="text/css" href=../stylesheets/github-light.css  media="screen">
+    <link rel="stylesheet" type="text/css" href=../stylesheets/grid.css  media="screen">
+    <!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"-->
+    <script type="text/javascript" src=../javascripts/scale.fix.js></script>
+    <script type="text/javascript" src=../javascripts/salvattore.js></script>
+
+</head>
+<body>
+
+    <section class="page-header-small">
+      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h2 class="project-tagline">Face Morphing</h2>
+      <h3 class="project-subline">Warping, Averaging, and Caricatures</h2>
+    </section>
+
+<div id="post">
+    <section class="main-content">
+        <h2 class="anchor" id="main"><span class="octicon octicon-link">I. Introduction</span></h2>
+Here, we will explore the beauty of determining facial features, triangulation, and morphing in great detail. Shape and symmetry of individual faces enable us to distinguish identities, and we will see how to morph someone’s face into someone else's face, compute the average face of a population, and extrapolate from a population mean to create a caricature.
+<h4> But First a Presidential Face Morph!</h4>
+<div class="videoWrapper">
+<iframe width="560" height="349" src="http://player.vimeo.com/video/143365166?autoplay=1" frameborder="0" allowfullscreen></iframe>
+</div>
+<h4> Brief Overview of Key Challenges </h4>
+<p>1) Mapping correspondence of features between faces</p>
+<p>2) Determining the affine transformation matrix to warp one face to another</p>
+<p>3) Ensuring consistency between feature space labeling and dimensions</p>
+<h2>  II. Defining Correspondences </h2>
+<p>Distinctive features such as eyes and eyebrows, lips and nose, ears and chin, are important to preserve — and act as the key areas of interest to morph between faces. In this project, I used the
+ <code> ginput </code> function from <code> matplotlib.pyplot</code>. I then selected n points [30-40] for faces A,B, selecting each pair of corresponding point side-by-side.
+</p>
+<h2 class="center"> <span class="caps">III</span>. Face Morphs </h2>
+<div class="pure-g">
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Paris.jpg"><img src="=../images/p5/morphs/Paris.jpg" title="Paris Hilton" alt="Paris Hilton" /></a><br />
+         Paris Hilton<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/ParisBrad.gif"><img src="=../images/p5/morphs/ParisBrad.gif" title="Bradis" alt="Bradis" /></a><br />
+         Bradis<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Brad.jpg"><img src="=../images/p5/morphs/Brad.jpg" title="Brad Pitt" alt="Brad Pitt" /></a><br />
+         Brad Pitt<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Martin.jpg"><img src="=../images/p5/morphs/Martin.jpg" title="Martin" alt="Martin" /></a><br />
+         Martin<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/MartinGeorge.gif"><img src="=../images/p5/morphs/MartinGeorge.gif" title="Geortin" alt="Geortin" /></a><br />
+         Geortin<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/George.jpg"><img src="=../images/p5/morphs/George.jpg" title="George Clooney" alt="George Clooney" /></a><br />
+         George Clooney<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Obama.jpg"><img src="=../images/p5/morphs/Obama.jpg" title="Obama" alt="Obama" /></a><br />
+         Obama<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/ObamaKobe.gif"><img src="=../images/p5/morphs/ObamaKobe.gif" title="Kobama" alt="Kobama" /></a><br />
+         Kobama<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Kobe.jpg"><img src="=../images/p5/morphs/Kobe.jpg" title="Kobe" alt="Kobe" /></a><br />
+         Kobe<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Woz.jpg"><img src="=../images/p5/morphs/Woz.jpg" title="Woz" alt="Woz" /></a><br />
+         Woz<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/StevenWoz.gif"><img src="=../images/p5/morphs/StevenWoz.gif" title="Wobuccini" alt="Wobuccini" /></a><br />
+         Wobuccini<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/morphs/Steven.jpg"><img src="=../images/p5/morphs/Steven.jpg" title="Buccini" alt="Buccini" /></a><br />
+         Buccini<br />
+       <br><br>    </div>
+</div>
+<p></notextile></p>
+<p><!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script--></p>
+<h2 class="center"> IV. Average Faces </h2>
+<div class="pure-g">
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/midway/ParisBrad.jpg"><img src="=../images/p5/midway/ParisBrad.jpg" title="Bradis" alt="Bradis" /></a><br />
+         Bradis<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/midway/MartinGeorge.jpg"><img src="=../images/p5/midway/MartinGeorge.jpg" title="Geortin" alt="Geortin" /></a><br />
+         Geortin<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/midway/ObamaKobe.jpg"><img src="=../images/p5/midway/ObamaKobe.jpg" title="Kobama" alt="Kobama" /></a><br />
+         Kobama<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/midway/StevenWoz.jpg"><img src="=../images/p5/midway/StevenWoz.jpg" title="Wobuccini" alt="Wobuccini" /></a><br />
+         Wobuccini<br />
+       <br><br>    </div>
+</div>
+<p>For each of the input images above, each pair of faces was morphed to the midway shape and then cross disolved to simulate the average of the two faces.
+ <br> <br></p>
+<h2 class="center"> V. Population Average Faces </h2>
+<div class="pure-g">
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/AveMResult.jpg"><img src="=../images/p5/popAve/AveMResult.jpg" title="Danish Male" alt="Danish Male" /></a><br />
+         Danish Male<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/AveDane.gif"><img src="=../images/p5/popAve/AveDane.gif" title="Joe Dane" alt="Joe Dane" /></a><br />
+         Joe Dane<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/AveFResult.jpg"><img src="=../images/p5/popAve/AveFResult.jpg" title="Danish Female" alt="Danish Female" /></a><br />
+         Danish Female<br />
+       <br><br>    </div>
+</div>
+<div class="pure-g">
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/AveMToZHalf.jpg"><img src="=../images/p5/popAve/AveMToZHalf.jpg" title="Danish to Half Zach" alt="Danish to Half Zach" /></a><br />
+         Danish to Half Zach<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/AveMToZ.jpg"><img src="=../images/p5/popAve/AveMToZ.jpg" title="Danish to Zach" alt="Danish to Zach" /></a><br />
+         Danish to Zach<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/ZToAveMHalf.jpg"><img src="=../images/p5/popAve/ZToAveMHalf.jpg" title="Zach to Half Danish" alt="Zach to Half Danish" /></a><br />
+         Zach to Half Danish<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/popAve/ZToAveM.jpg"><img src="=../images/p5/popAve/ZToAveM.jpg" title="Zach to Danish" alt="Zach to Danish" /></a><br />
+         Zach to Danish<br />
+       <br><br>    </div>
+</div>
+<h3 class='center'> VI. Caricatures </h3>
+<div class="pure-g">
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/char/AveMResult_wc2.jpg"><img src="=../images/p5/char/AveMResult_wc2.jpg" title="Danish-Zach Caricature" alt="Danish-Zach Caricature" /></a><br />
+         Danish-Zach Caricature<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/char/AveMResult_wc16.jpg"><img src="=../images/p5/char/AveMResult_wc16.jpg" title="Danish-Danish Caricature" alt="Danish-Danish Caricature" /></a><br />
+         Danish-Danish Caricature<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/char/Z_wc2.jpg"><img src="=../images/p5/char/Z_wc2.jpg" title="Zach-Zach Caricature" alt="Zach-Zach Caricature" /></a><br />
+         Zach-Zach Caricature<br />
+       <br><br>    </div>
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p5/char/Z_wc16.jpg"><img src="=../images/p5/char/Z_wc16.jpg" title="Zach-Danish Caricature" alt="Zach-Danish Caricature" /></a><br />
+         Zach-Danish Caricature<br />
+       <br><br>    </div>
+</div>
+<p>Rather than keep the weight values in the range [0,1], we can morph faces beyond the typical geometry bounds to produce caricatures.
+Formula for weights given as  <code> (1-alpha) * imA_Pts + alpha * imB_Pts </code><br />
+</notextile></p>
+<h3 class="center"> Bells &amp; Whistles </h3>
+<p>1) Presidential Morph Video</p>
+<p>2) Facial Gender Bender</p>
+<p>3) Participation in Class Morph</p>
+<p><br></p>
+<comment>
+
+        <ol>
+            <li>A list!</li>
+        </ol><p>http://redcloth.org/textile/phrase-modifiers/#links</p>
+<p>I&#8217;m really excited about <a href="redcloth">RedCloth</a>.<br />
+I love it so much, I think I&#8217;ll name my first child <a href="redcloth">RedCloth</a>.<br />
+[redcloth]http://redcloth.org</p>
+</comment>
+<p><br>
+<h5 class='center'>  &#8211; Zachary Zeleznick </h5></p>
+    </section>
+</div>
+
+
+</body>
+</html>

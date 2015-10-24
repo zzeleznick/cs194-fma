@@ -472,6 +472,23 @@ p5_popAve:
   ref:            popAve/ZToAveM.jpg
 
 
+p5_char:
+- title: Danish-Zach Caricature
+  alpha: .70
+  ref:            char/AveMResult_wc2.jpg
+- title: Danish-Danish Caricature
+  alpha: 1.5
+  ref:            char/AveMResult_wc16.jpg
+- title: Zach-Zach Caricature
+  alpha: .70
+  ref:            char/Z_wc2.jpg
+- title: Zach-Danish Caricature
+  alpha: 1.5
+  ref:            char/Z_wc16.jpg
+
+
+
+
 
 
 ## END OF P5 ##
