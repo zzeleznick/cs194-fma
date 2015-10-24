@@ -31,7 +31,8 @@ I then selected n points [30-40] for faces A,B, selecting each pair of correspon
 
 <h3> Triangulation Here....[1] </h3>
 
-<h3> Face Morphs </h3>
+<h2 class="center"> III. Face Morphs </h2>
+
 
 <div class="pure-g">
 {% for image in site.p5_morphs offset:0%}
@@ -41,6 +42,7 @@ I then selected n points [30-40] for faces A,B, selecting each pair of correspon
     </div>
 {% endfor %}
 </div>
+<notextile></notextile>
 
 
 {% comment %}
@@ -66,50 +68,60 @@ I then selected n points [30-40] for faces A,B, selecting each pair of correspon
 <!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script-->
 
 
-<h2 class="center"> III. Seam Removal on Stonehenge </h2>
+<h2 class="center"> IV. Average Faces </h2>
 
 <div class="pure-g">
-{% for image in site.p4_stonehenge limit: 2 offset:0%}
-    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
-{% endfor %}
-</div>
-<div class="pure-g">
-{% for image in site.p4_stonehenge limit: 2 offset:0%}
-    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
-    {{image.title}} <br>
+{% for image in site.p5_ave offset:0%}
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p5_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p5_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
     </div>
 {% endfor %}
-</div> <br>
+</div>
+<notextile>
+For each of the input images above, each pair of faces was morphed to the midway shape and then cross disolved to simulate the average of the two faces.
+</notextile> <br> <br>
 
-
-
+<h2 class="center"> V. Population Average Faces </h2>
 
 <div class="pure-g">
-{% for image in site.p4_stonehenge limit: 2 offset:8%}
-    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% for image in site.p5_popAve limit:3 offset:0%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p5_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p5_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
+    </div>
 {% endfor %}
 </div>
 
 <div class="pure-g">
-{% for image in site.p4_stonehenge limit: 2 offset:8%}
-    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% for image in site.p5_popAve offset:3%}
+    <div class="pure-u-1-4 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p5_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p5_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
+    </div>
 {% endfor %}
 </div>
+
 
 <h3 class='center'> IX. Failure Cases </h3>
 
-<div class="pure-g">
-{% for image in site.p4_failures limit: 10 offset:0%}
-    <div class="pure-u-1-3 pure-u-md-1-3 center constrain">
-    !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}
-    </div>
-{% endfor %}
-</div><br>
+
 <notextile>
 Faces are really tough to scale down properly, especially when they fill the frame of the image.
 Standard rescaling would be more appropriate in this case.
 </notextile>
 
+<div class="videoWrapper">
+    <!-- Copy & Pasted from YouTube -->
+    <iframe width="560" height="349" src="http://vimeo.com/143365166" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<object width="WIDTH" height="HEIGHT">
+ <param name="allowfullscreen" value="true" />
+ <param name="allowscriptaccess" value="always" />
+ <param name="movie" value="https://vimeo.com/143365166&amp;server=vimeo.com&amp;autoplay=1&amp;loop=1&amp;fullscreen=1" />
+ <embed src="https://vimeo.com/143365166&amp;server=vimeo.com&amp;autoplay=1&amp;loop=1&amp;fullscreen=1" allowfullscreen="true" allowscriptaccess="always" width="WIDTH" height="HEIGHT"></embed>
+ </object>
 
 <h3 class="center"> 6 Lessons Learned: </h3>
 

@@ -444,6 +444,34 @@ p5_morphs:
 - title: Buccini
   ref:             morphs/Steven.jpg
 
+p5_ave:
+- title: Bradis
+  ref:            midway/ParisBrad.jpg
+- title: Geortin
+  ref:            midway/MartinGeorge.jpg
+- title: Kobama
+  ref:            midway/ObamaKobe.jpg
+- title: Wobuccini
+  ref:            midway/StevenWoz.jpg
+
+
+p5_popAve:
+- title: Danish Male
+  ref:            popAve/AveMResult.jpg
+- title: Joe Dane
+  ref:            popAve/AveDane.gif
+- title: Danish Female
+  ref:            popAve/AveFResult.jpg
+- title: Danish to Half Zach
+  ref:            popAve/AveMToZHalf.jpg
+- title: Danish to Zach
+  ref:            popAve/AveMToZ.jpg
+- title: Zach to Half Danish
+  ref:            popAve/ZToAveMHalf.jpg
+- title: Zach to Danish
+  ref:            popAve/ZToAveM.jpg
+
+
 
 
 ## END OF P5 ##
