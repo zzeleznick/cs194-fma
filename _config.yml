@@ -495,13 +495,24 @@ p5_gender:
 - title: Zach to Half Danish Female
   ref:            gender/Z_w9.jpg
 
-
-
 ## END OF P5 ##
 
+## START P6 ##
+
+p6_path: 'images/p6/'
+
+p6_depth:
+- title: Focus Shift X-Direction
+  ref:           combo8.gif
+- title: Focus Shift Y-Direction
+  ref:           comboY.gif
+
+p6_aperature:
+- title: Aperature Adjustment
+  ref:           aperature.gif
 
 
-
+## END OF P6 ##
 
 
 eecs_images:
