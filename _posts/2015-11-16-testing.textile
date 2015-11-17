@@ -70,13 +70,17 @@ have better results, but a linear blend produced comparable results.
 {% endfor %}
 </div>
 
-<h2 class="center"> IV. Summary </h2>
+<h2 class="center"> VI. Summary </h2>
 
 <notextile>
-Overall, I found this to be an interesting project that reinforced my understanding of the properties of cameras and lightfields.
-I was initially surprised to learn that increasing the relative aperature size was reducing the quality dramatically,
-but I then recalled my the knowledge I gleaned from constructing our pinhole camera: a smaller aperature
-can create a sharper image. If I revisit this project, I would like to play around with generating a photosphere.
+Overall, this project was quite challenging, but I felt huge a wave of relief once I was finally able to
+generate the photo mosiac. I encountered significant delays mapping the new coordinates in the canvas back
+to the original image, namely due to determining the proper bounds of the canvas and pixels coordinates
+to pull from. Shifting conventions between labeling x,y and row, column order from human and numpy
+coordinates, and then accounting for top vs bottom offsets with new coordinate axes systems added
+additional complexity. I thought the final product was a great achievement, although the built-in
+panorama feature on the iPhone is superior. If I revisit this project,
+I want to generate an explorable photosphere.
 </notextile>
 <br>
 
