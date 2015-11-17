@@ -520,14 +520,50 @@ p6_aperature:
 p7_path: 'images/p7/'
 
 p7_rect:
-- title: LH Aerial SF
+- title: L-Rectified Aerial SF
   ref:           rect/rectified-aerial-city2.jpg
-- title: RH Aerial SF
+- title: R-Rectified Aerial SF
   ref:           rect/rectified-aerial-city4.jpg
-- title: LH Intersection SF
+- title: L-Rectified Intersection SF
   ref:           rect/rectified-sf-intersection3.jpg
-- title: RH Intersection SF
+- title: R-Rectified Intersection SF
   ref:           rect/rectified-sf-intersection5.jpg
+
+p7_panos:
+- title: Panoramic Aerial SF
+  ref:           panos/Aerial-SF.jpg
+- title: Cropped Aerial SF
+  ref:           panos/Aerial-SF-CROPPED.jpg
+- title: Panoramic SF Crosswalk
+  ref:           panos/SF-Crosswalk.jpg
+- title: Cropped SF Crosswalk
+  ref:           panos/SF-Crosswalk-Cropped.jpg
+- title: Panoramic SF Intersection
+  ref:           panos/SF-Intersection.jpg
+- title: Cropped SF Intersection
+  ref:           panos/SF-Intersection-CROPPED.jpg
+
+
+p7_originals:
+- title: Left Aerial City Image
+  ref: originals/aerial/3-aerial-city.JPG
+- title:  Base Aerial City Image
+  ref: originals/aerial/4-aerial-city.JPG
+- title:  Right Aerial City Image
+  ref: originals/aerial/5-aerial-city.JPG
+- title: Left SF Crosswalk Image
+  ref: originals/cross/sf-crosswalk1.JPG
+- title:  Base SF Crosswalk Image
+  ref: originals/cross/sf-crosswalk2.JPG
+- title:  Right SF Crosswalk Image
+  ref: originals/cross/sf-crosswalk3.JPG
+- title: Left SF Intersection Image
+  ref: originals/int/3-sf-intersection.JPG
+- title:  Base SF Intersection Image
+  ref: originals/int/4-sf-intersection.JPG
+- title: Right SF Intersection Image
+  ref: originals/int/5-sf-intersection.JPG
+
 
 
 ## END OF P7 ##

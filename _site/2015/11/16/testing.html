@@ -42,30 +42,82 @@ determine a perspective transformation matrix (3 x 3) that will rectify our targ
 match the same perspective of our base image. This paper illustrates the math behind our
 operations <sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>.<br />
 <br></p>
+<h2> <span class="caps">III</span>. Image Rectification </h2>
 <div class="pure-g">
-    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city2.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city2.jpg" title="LH Aerial SF" alt="LH Aerial SF" /></a><br />
-         LH Aerial SF<br />
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city2.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city2.jpg" title="L-Rectified Aerial SF" alt="L-Rectified Aerial SF" /></a><br />
+         L-Rectified Aerial SF<br />
        <br><br>    </div>
-    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city4.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city4.jpg" title="RH Aerial SF" alt="RH Aerial SF" /></a><br />
-         RH Aerial SF<br />
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city4.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city4.jpg" title="R-Rectified Aerial SF" alt="R-Rectified Aerial SF" /></a><br />
+         R-Rectified Aerial SF<br />
        <br><br>    </div>
-    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection3.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection3.jpg" title="LH Intersection SF" alt="LH Intersection SF" /></a><br />
-         LH Intersection SF<br />
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection3.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection3.jpg" title="L-Rectified Intersection SF" alt="L-Rectified Intersection SF" /></a><br />
+         L-Rectified Intersection SF<br />
        <br><br>    </div>
-    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection5.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection5.jpg" title="RH Intersection SF" alt="RH Intersection SF" /></a><br />
-         RH Intersection SF<br />
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection5.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection5.jpg" title="R-Rectified Intersection SF" alt="R-Rectified Intersection SF" /></a><br />
+         R-Rectified Intersection SF<br />
        <br><br>    </div>
 </div>
-<h2> <span class="caps">III</span>. Aperature Adjustment </h2>
-The resulting rectified image wi
-By averaging over a large image array (sampled over the grid perpendicular to the optical axis), we can mimic
-a camera with a much larger aperture. In essence we are allowing more light to enter the camera,
-which blurs the pixels closest to the lens. With fewer images, the result models an
-image taken with a smaller aperture.
+Once we have the transformation matrix H, we must determine the offsets for our canvas
+in which we will display our rectified image. This can be done by taking the dot product of H
+with the four corners of our target image and adjusting the canvas dimensions to fit the desired shape.
+The pixels of the canvas can then be iterated through, and pullled from our target image to fill the display.
+<p><br></p>
+<h2> IV. Image Stitching </h2>
+Following the warp of our target image, we can combine the base and rectified image to
+produce an image mosiac. The base and target image will have an overlapping region encompassing 40-70%
+of the image mosiac. In order to reduce artifacts, we can use a weighted linear blend (alpha, 1-alpha) such that as we move away from
+one image to the next, our weight (alpha) decreases. Other methods of blending (such as Laplacian or Poisson) could
+have better results, but a linear blend produced comparable results.
 <p><br>
 <div class="pure-g"></p>
-    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p6/aperature.gif"><img src="http://0.0.0.0:4000/images/p6/aperature.gif" title="Aperature Adjustment" alt="Aperature Adjustment" /></a><br />
-         Aperature Adjustment<br />
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/Aerial-SF.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/Aerial-SF.jpg" title="Panoramic Aerial SF" alt="Panoramic Aerial SF" /></a><br />
+         Panoramic Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/Aerial-SF-CROPPED.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/Aerial-SF-CROPPED.jpg" title="Cropped Aerial SF" alt="Cropped Aerial SF" /></a><br />
+         Cropped Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/SF-Crosswalk.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/SF-Crosswalk.jpg" title="Panoramic SF Crosswalk" alt="Panoramic SF Crosswalk" /></a><br />
+         Panoramic SF Crosswalk<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/SF-Crosswalk-Cropped.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/SF-Crosswalk-Cropped.jpg" title="Cropped SF Crosswalk" alt="Cropped SF Crosswalk" /></a><br />
+         Cropped SF Crosswalk<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/SF-Intersection.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/SF-Intersection.jpg" title="Panoramic SF Intersection" alt="Panoramic SF Intersection" /></a><br />
+         Panoramic SF Intersection<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/panos/SF-Intersection-CROPPED.jpg"><img src="http://0.0.0.0:4000/images/p7/panos/SF-Intersection-CROPPED.jpg" title="Cropped SF Intersection" alt="Cropped SF Intersection" /></a><br />
+         Cropped SF Intersection<br />
+       <br><br>    </div>
+</div>
+<p><br></p>
+<h2> V. Image Originals </h2>
+<div class="pure-g">
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/3-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/3-aerial-city.JPG" title="Left Aerial City Image" alt="Left Aerial City Image" /></a><br />
+        Left Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/4-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/4-aerial-city.JPG" title="Base Aerial City Image" alt="Base Aerial City Image" /></a><br />
+        Base Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/5-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/5-aerial-city.JPG" title="Right Aerial City Image" alt="Right Aerial City Image" /></a><br />
+        Right Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk1.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk1.JPG" title="Left SF Crosswalk Image" alt="Left SF Crosswalk Image" /></a><br />
+        Left SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk2.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk2.JPG" title="Base SF Crosswalk Image" alt="Base SF Crosswalk Image" /></a><br />
+        Base SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk3.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk3.JPG" title="Right SF Crosswalk Image" alt="Right SF Crosswalk Image" /></a><br />
+        Right SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/3-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/3-sf-intersection.JPG" title="Left SF Intersection Image" alt="Left SF Intersection Image" /></a><br />
+        Left SF Intersection Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/4-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/4-sf-intersection.JPG" title="Base SF Intersection Image" alt="Base SF Intersection Image" /></a><br />
+        Base SF Intersection Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/5-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/5-sf-intersection.JPG" title="Right SF Intersection Image" alt="Right SF Intersection Image" /></a><br />
+        Right SF Intersection Image<br />
        <br><br>    </div>
 </div>
 <h2 class="center"> IV. Summary </h2>
