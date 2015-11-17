@@ -19,6 +19,9 @@ li {
   line-height: 2;
 }
 
+.padded img {
+  padding: 10px
+}
 a.sm img{
   width: 30%;
 }

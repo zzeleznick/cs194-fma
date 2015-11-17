@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Panorama Project</title>
+    <meta name="author" content="Zachary Zeleznick">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    
+    
+    
+    
+    
+
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/normalize.css  media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/stylesheet.css  media="screen">
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/github-light.css  media="screen">
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/grid.css  media="screen">
+    <!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"-->
+    <script type="text/javascript" src=http://0.0.0.0:4000/javascripts/scale.fix.js></script>
+    <script type="text/javascript" src=http://0.0.0.0:4000/javascripts/salvattore.js></script>
+
+</head>
+<body>
+
+    <section class="page-header-small">
+      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h2 class="project-tagline">Panorama Project</h2>
+      <h3 class="project-subline">Image Warping, Stitching, and Homographies</h2>
+    </section>
+
+<div id="post">
+    <section class="main-content">
+        <h2 class="anchor" id="main"><span class="octicon octicon-link">I. Introduction</span></h2>
+Here we will examine how to create photo mosaics from a series of images shot along a rotational axis.
+All images were shot by hand with the iPhone 6 default camera appliction.
+<h2>  II. Image Homographies </h2>
+<p>In order to stitch images shot from different perspectives together, we need to first
+determine a perspective transformation matrix (3 x 3) that will rectify our target image to
+match the same perspective of our base image. This paper illustrates the math behind our
+operations <sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>.<br />
+<br></p>
+<div class="pure-g">
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city2.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city2.jpg" title="LH Aerial SF" alt="LH Aerial SF" /></a><br />
+         LH Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city4.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city4.jpg" title="RH Aerial SF" alt="RH Aerial SF" /></a><br />
+         RH Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection3.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection3.jpg" title="LH Intersection SF" alt="LH Intersection SF" /></a><br />
+         LH Intersection SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection5.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection5.jpg" title="RH Intersection SF" alt="RH Intersection SF" /></a><br />
+         RH Intersection SF<br />
+       <br><br>    </div>
+</div>
+<h2> <span class="caps">III</span>. Aperature Adjustment </h2>
+The resulting rectified image wi
+By averaging over a large image array (sampled over the grid perpendicular to the optical axis), we can mimic
+a camera with a much larger aperture. In essence we are allowing more light to enter the camera,
+which blurs the pixels closest to the lens. With fewer images, the result models an
+image taken with a smaller aperture.
+<p><br>
+<div class="pure-g"></p>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p6/aperature.gif"><img src="http://0.0.0.0:4000/images/p6/aperature.gif" title="Aperature Adjustment" alt="Aperature Adjustment" /></a><br />
+         Aperature Adjustment<br />
+       <br><br>    </div>
+</div>
+<h2 class="center"> IV. Summary </h2>
+Overall, I found this to be an interesting project that reinforced my understanding of the properties of cameras and lightfields.
+I was initially surprised to learn that increasing the relative aperature size was reducing the quality dramatically,
+but I then recalled my the knowledge I gleaned from constructing our pinhole camera: a smaller aperature
+can create a sharper image. If I revisit this project, I would like to play around with generating a photosphere.
+<p><br></p>
+<comment>
+<h3 class="center"> Bells &amp; Whistles </h3>
+<p>1) Presidential Morph Video</p>
+<p>2) Facial Gender Bender</p>
+<p>3) Participation in Class Morph</p>
+</comment>
+<p>1. <a href='https://cseweb.ucsd.edu/classes/wi07/cse252a/homography_estimation/homography_estimation.pdf' target="_blank"> Homography Estimation </a><br />
+<br>
+<h5 class='center'>  &#8211; Zachary Zeleznick </h5></p>
+    </section>
+</div>
+
+<!--div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+  </ul>
+</div-->
+
+</body>
+</html>

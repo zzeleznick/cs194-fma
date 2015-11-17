@@ -515,6 +515,23 @@ p6_aperature:
 ## END OF P6 ##
 
 
+## START OF P7 ##
+
+p7_path: 'images/p7/'
+
+p7_rect:
+- title: LH Aerial SF
+  ref:           rect/rectified-aerial-city2.jpg
+- title: RH Aerial SF
+  ref:           rect/rectified-aerial-city4.jpg
+- title: LH Intersection SF
+  ref:           rect/rectified-sf-intersection3.jpg
+- title: RH Intersection SF
+  ref:           rect/rectified-sf-intersection5.jpg
+
+
+## END OF P7 ##
+
 eecs_images:
 - title: Cathedral
   ref:  cathedral.jpg
