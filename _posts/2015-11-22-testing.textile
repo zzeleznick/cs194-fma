@@ -24,6 +24,12 @@ operations </notextile>[1].
 <br>
 
 <h2> III. Image Rectification </h2>
+<notextile>
+Once we have the transformation matrix H, we must determine the offsets for our canvas
+in which we will display our rectified image. This can be done by taking the dot product of H
+with the four corners of our target image and adjusting the canvas dimensions to fit the desired shape.
+The pixels of the canvas can then be iterated through, and pullled from our target image to fill the display.
+</notextile>
 <div class="pure-g">
 {% for image in site.p7_rect offset:0%}
     <div class="pure-u-1-2 pure-u-md-1-2 center padded"> !{{ site.github_path | escape  }}{{site.p7_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p7_path}}{{image.ref}}
@@ -32,12 +38,6 @@ operations </notextile>[1].
     </div>
 {% endfor %}
 </div>
-<notextile>
-Once we have the transformation matrix H, we must determine the offsets for our canvas
-in which we will display our rectified image. This can be done by taking the dot product of H
-with the four corners of our target image and adjusting the canvas dimensions to fit the desired shape.
-The pixels of the canvas can then be iterated through, and pullled from our target image to fill the display.
-</notextile>
 <br>
 
 
@@ -69,21 +69,49 @@ Suppression, Descriptor Matching, and RANSAC. These methods will be explained in
 
 <h2> V. Automatic VS Manual Image Stitching Results </h2>
 <notextile>
-Here we can see that overall the quality is comparable between the automatic and manual methods.
+Here we can see that overall the quality is comparable between the automatic and manual methods. The most noticeable
+difference between the two images is that they are cropped to different proportions. The seam quality is roughly equivalent,
+and in all three cases seemed to beform better on the inner seams.
 </notextile>
 <div class="pure-g">
 {% for image in site.p8_comps offset:0%}
     <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p8_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p8_path}}{{image.ref}}
-         {{image.title}}
+         <div class="center">{{image.title}} </div>
        <br><br>
     </div>
 {% endfor %}
 </div>
 <br>
 
+<h2> VI. Proccess Flow </h2>
+<notextile>
+Here we demonstrate the selection of features via Harris Corners, which we then use ANMS for to select
+a radially distributed cluster of features. Then we use correspondence matching to select features
+that map 1:1 for both images. Finally, we use RANSAC to directly compute homographies between images
+and select the transformation that maps the best based on least squares distance between inliers and outliers.
+</notextile>
+<h3 class="center"> SF Aerial Cityscape </h3>
+<div class="pure-g">
+{% for image in site.p8_figures offset:0 limit:3%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p8_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p8_path}}{{image.ref}}
+         <div class="center">{{image.title}} </div>
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+<br>
+<h3 class="center"> SF Crosswalk </h3>
+<div class="pure-g">
+{% for image in site.p8_figures offset:3%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p8_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p8_path}}{{image.ref}}
+         <div class="center">{{image.title}} </div>
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+<br>
 
-
-<h2> VI. Image Originals </h2>
+<h2> VII. Image Originals </h2>
 <div class="pure-g">
 {% for image in site.p7_originals offset:0%}
     <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p7_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p7_path}}{{image.ref}}
@@ -93,7 +121,7 @@ Here we can see that overall the quality is comparable between the automatic and
 {% endfor %}
 </div>
 
-<h2 class="center"> VI. Summary </h2>
+<h2 class="center"> VIII. Summary </h2>
 
 <notextile>
 Overall, this project was quite challenging, but I felt huge a wave of relief once I was finally able to

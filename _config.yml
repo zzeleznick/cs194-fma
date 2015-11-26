@@ -593,6 +593,20 @@ p8_comps:
 - title: Manual SF Intersection
   ref:           comps/SF-Intersection-CROPPED.jpg
 
+p8_figures:
+- title: Base Harris Points
+  ref: harris/aerial/0-aerial.png
+- title: ANMS Harris Points
+  ref: harris/aerial/1-aerial.png
+- title: Matching Harris Points
+  ref: harris/aerial/2-aerial.png
+- title: Base Harris Points
+  ref: harris/crosswalk/0-crosswalk.png
+- title: ANMS Harris Points
+  ref: harris/crosswalk/1-crosswalk.png
+- title: Matching Harris Points
+  ref: harris/crosswalk/2-crosswalk.png
+
 
 ## END OF P8 ##
 
