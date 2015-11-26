@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Panorama Project</title>
+    <meta name="author" content="Zachary Zeleznick">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    
+    
+    
+    
+    
+    
+
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/normalize.css  media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/stylesheet.css  media="screen">
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/github-light.css  media="screen">
+    <link rel="stylesheet" type="text/css" href= http://0.0.0.0:4000/stylesheets/grid.css  media="screen">
+    <!--link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css"-->
+    <script type="text/javascript" src=http://0.0.0.0:4000/javascripts/scale.fix.js></script>
+    <script type="text/javascript" src=http://0.0.0.0:4000/javascripts/salvattore.js></script>
+
+</head>
+<body>
+
+    <section class="page-header-small">
+      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h2 class="project-tagline">Panorama Project</h2>
+      <h3 class="project-subline">( Automatic ) Image Warping, Stitching, and Homographies</h2>
+    </section>
+
+<div id="post">
+    <section class="main-content">
+        <h2 class="anchor" id="main"><span class="octicon octicon-link">I. Introduction</span></h2>
+Here we will examine how to automatically create photo mosaics from a series of images shot along a rotational axis.
+All images were shot by hand with the iPhone 6 default camera appliction.
+<h2>  II. Image Homographies </h2>
+<p>In order to stitch images shot from different perspectives together, we need to first
+determine a perspective transformation matrix (3 x 3) that will rectify our target image to
+match the same perspective of our base image. This paper illustrates the math behind our
+operations <sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup>.<br />
+<br></p>
+<h2> <span class="caps">III</span>. Image Rectification </h2>
+<div class="pure-g">
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city2.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city2.jpg" title="L-Rectified Aerial SF" alt="L-Rectified Aerial SF" /></a><br />
+         L-Rectified Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-aerial-city4.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-aerial-city4.jpg" title="R-Rectified Aerial SF" alt="R-Rectified Aerial SF" /></a><br />
+         R-Rectified Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection3.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection3.jpg" title="L-Rectified Intersection SF" alt="L-Rectified Intersection SF" /></a><br />
+         L-Rectified Intersection SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/rect/rectified-sf-intersection5.jpg"><img src="http://0.0.0.0:4000/images/p7/rect/rectified-sf-intersection5.jpg" title="R-Rectified Intersection SF" alt="R-Rectified Intersection SF" /></a><br />
+         R-Rectified Intersection SF<br />
+       <br><br>    </div>
+</div>
+Once we have the transformation matrix H, we must determine the offsets for our canvas
+in which we will display our rectified image. This can be done by taking the dot product of H
+with the four corners of our target image and adjusting the canvas dimensions to fit the desired shape.
+The pixels of the canvas can then be iterated through, and pullled from our target image to fill the display.
+<p><br></p>
+<h2> IV. Image Stitching </h2>
+Following the warp of our target image, we can combine the base and rectified image to
+produce an image mosiac. The base and target image will have an overlapping region encompassing 40-70%
+of the image mosiac. In order to reduce artifacts, we can use a weighted linear blend (alpha, 1-alpha) such that as we move away from
+one image to the next, our weight (alpha) decreases. Other methods of blending (such as Laplacian or Poisson) could
+have better results, but a linear blend produced comparable results.
+<p><br></p>
+<h2> V. Automatic Image Stitching Results </h2>
+Right off the gun, here are the results from automatic stitching via Harris Corner Detection, Adaptive Non-Maximal
+Suppression, Descriptor Matching, and RANSAC. These methods will be explained in more detail shortly.
+<p><br>
+<div class="pure-g"></p>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/aerial-city-3-4-5.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/aerial-city-3-4-5.jpg" title="Auto Aerial SF" alt="Auto Aerial SF" /></a><br />
+         Auto Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/sf-crosswalk-1-2-3.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/sf-crosswalk-1-2-3.jpg" title="Auto SF Crosswalk" alt="Auto SF Crosswalk" /></a><br />
+         Auto SF Crosswalk<br />
+       <br><br>    </div>
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/sf-intersection-3-4-5.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/sf-intersection-3-4-5.jpg" title="Auto SF Intersection" alt="Auto SF Intersection" /></a><br />
+         Auto SF Intersection<br />
+       <br><br>    </div>
+</div>
+<p><br></p>
+<h2> V. Automatic VS Manual Image Stitching Results </h2>
+Here we can see that overall the quality is comparable between the automatic and manual methods.
+<div class="pure-g">
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/aerial-city-3-4-5.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/aerial-city-3-4-5.jpg" title="Auto Aerial SF" alt="Auto Aerial SF" /></a><br />
+         Auto Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/comps/Aerial-SF-CROPPED.jpg"><img src="http://0.0.0.0:4000/images/p8/comps/Aerial-SF-CROPPED.jpg" title="Manual Aerial SF" alt="Manual Aerial SF" /></a><br />
+         Manual Aerial SF<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/sf-crosswalk-1-2-3.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/sf-crosswalk-1-2-3.jpg" title="Auto SF Crosswalk" alt="Auto SF Crosswalk" /></a><br />
+         Auto SF Crosswalk<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/comps/SF-Crosswalk-Cropped.jpg"><img src="http://0.0.0.0:4000/images/p8/comps/SF-Crosswalk-Cropped.jpg" title="Manual SF Crosswalk" alt="Manual SF Crosswalk" /></a><br />
+         Manual SF Crosswalk<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/autos/sf-intersection-3-4-5.jpg"><img src="http://0.0.0.0:4000/images/p8/autos/sf-intersection-3-4-5.jpg" title="Auto SF Intersection" alt="Auto SF Intersection" /></a><br />
+         Auto SF Intersection<br />
+       <br><br>    </div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p8/comps/SF-Intersection-CROPPED.jpg"><img src="http://0.0.0.0:4000/images/p8/comps/SF-Intersection-CROPPED.jpg" title="Manual SF Intersection" alt="Manual SF Intersection" /></a><br />
+         Manual SF Intersection<br />
+       <br><br>    </div>
+</div>
+<p><br></p>
+<h2> VI. Image Originals </h2>
+<div class="pure-g">
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/3-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/3-aerial-city.JPG" title="Left Aerial City Image" alt="Left Aerial City Image" /></a><br />
+        Left Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/4-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/4-aerial-city.JPG" title="Base Aerial City Image" alt="Base Aerial City Image" /></a><br />
+        Base Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/aerial/5-aerial-city.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/aerial/5-aerial-city.JPG" title="Right Aerial City Image" alt="Right Aerial City Image" /></a><br />
+        Right Aerial City Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk1.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk1.JPG" title="Left SF Crosswalk Image" alt="Left SF Crosswalk Image" /></a><br />
+        Left SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk2.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk2.JPG" title="Base SF Crosswalk Image" alt="Base SF Crosswalk Image" /></a><br />
+        Base SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/cross/sf-crosswalk3.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/cross/sf-crosswalk3.JPG" title="Right SF Crosswalk Image" alt="Right SF Crosswalk Image" /></a><br />
+        Right SF Crosswalk Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/3-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/3-sf-intersection.JPG" title="Left SF Intersection Image" alt="Left SF Intersection Image" /></a><br />
+        Left SF Intersection Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/4-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/4-sf-intersection.JPG" title="Base SF Intersection Image" alt="Base SF Intersection Image" /></a><br />
+        Base SF Intersection Image<br />
+       <br><br>    </div>
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/p7/originals/int/5-sf-intersection.JPG"><img src="http://0.0.0.0:4000/images/p7/originals/int/5-sf-intersection.JPG" title="Right SF Intersection Image" alt="Right SF Intersection Image" /></a><br />
+        Right SF Intersection Image<br />
+       <br><br>    </div>
+</div>
+<h2 class="center"> VI. Summary </h2>
+Overall, this project was quite challenging, but I felt huge a wave of relief once I was finally able to
+generate the photo mosiac. I encountered significant delays mapping the new coordinates in the canvas back
+to the original image, namely due to determining the proper bounds of the canvas and pixels coordinates
+to pull from. Shifting conventions between labeling x,y and row, column order from human and numpy
+coordinates, and then accounting for top vs bottom offsets with new coordinate axes systems added
+additional complexity. I thought the final product was a great achievement, although the built-in
+panorama feature on the iPhone is superior. If I revisit this project,
+I want to generate an explorable photosphere.
+<p><br></p>
+<comment>
+<h3 class="center"> Bells &amp; Whistles </h3>
+<p>1) Presidential Morph Video</p>
+<p>2) Facial Gender Bender</p>
+<p>3) Participation in Class Morph</p>
+</comment>
+<p>1. <a href='https://cseweb.ucsd.edu/classes/wi07/cse252a/homography_estimation/homography_estimation.pdf' target="_blank"> Homography Estimation </a><br />
+<br>
+<h5 class='center'>  &#8211; Zachary Zeleznick </h5></p>
+    </section>
+</div>
+
+<!--div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+  </ul>
+</div-->
+
+</body>
+</html>

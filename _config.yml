@@ -564,9 +564,37 @@ p7_originals:
 - title: Right SF Intersection Image
   ref: originals/int/5-sf-intersection.JPG
 
-
-
 ## END OF P7 ##
+
+
+## START OF P8 ##
+
+p8_path: 'images/p8/'
+
+p8_autos:
+- title: Auto Aerial SF
+  ref:           autos/aerial-city-3-4-5.jpg
+- title: Auto SF Crosswalk
+  ref:           autos/sf-crosswalk-1-2-3.jpg
+- title: Auto SF Intersection
+  ref:           autos/sf-intersection-3-4-5.jpg
+
+p8_comps:
+- title: Auto Aerial SF
+  ref:           autos/aerial-city-3-4-5.jpg
+- title: Manual Aerial SF
+  ref:           comps/Aerial-SF-CROPPED.jpg
+- title: Auto SF Crosswalk
+  ref:           autos/sf-crosswalk-1-2-3.jpg
+- title: Manual SF Crosswalk
+  ref:           comps/SF-Crosswalk-Cropped.jpg
+- title: Auto SF Intersection
+  ref:           autos/sf-intersection-3-4-5.jpg
+- title: Manual SF Intersection
+  ref:           comps/SF-Intersection-CROPPED.jpg
+
+
+## END OF P8 ##
 
 eecs_images:
 - title: Cathedral
