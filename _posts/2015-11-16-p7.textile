@@ -1,0 +1,98 @@
+---
+layout: post
+title: Panorama Project
+subtitle: Image Warping, Stitching, and Homographies
+images: site.images
+---
+
+
+h2(anchor#main). %(octicon octicon-link)I. Introduction%
+
+
+<notextile>
+Here we will examine how to create photo mosaics from a series of images shot along a rotational axis.
+All images were shot by hand with the iPhone 6 default camera appliction.
+</notextile>
+
+
+<h2>  II. Image Homographies </h2>
+<notextile>
+In order to stitch images shot from different perspectives together, we need to first
+determine a perspective transformation matrix (3 x 3) that will rectify our target image to
+match the same perspective of our base image. This paper illustrates the math behind our
+operations </notextile>[1].
+<br>
+
+<h2> III. Image Rectification </h2>
+<div class="pure-g">
+{% for image in site.p7_rect offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center padded"> !{{ site.github_path | escape  }}{{site.p7_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p7_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+<notextile>
+Once we have the transformation matrix H, we must determine the offsets for our canvas
+in which we will display our rectified image. This can be done by taking the dot product of H
+with the four corners of our target image and adjusting the canvas dimensions to fit the desired shape.
+The pixels of the canvas can then be iterated through, and pullled from our target image to fill the display.
+</notextile>
+<br>
+
+
+<h2> IV. Image Stitching </h2>
+<notextile>
+Following the warp of our target image, we can combine the base and rectified image to
+produce an image mosiac. The base and target image will have an overlapping region encompassing 40-70%
+of the image mosiac. In order to reduce artifacts, we can use a weighted linear blend (alpha, 1-alpha) such that as we move away from
+one image to the next, our weight (alpha) decreases. Other methods of blending (such as Laplacian or Poisson) could
+have better results, but a linear blend produced comparable results.
+</notextile>
+<br>
+<div class="pure-g">
+{% for image in site.p7_panos offset:0%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p7_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p7_path}}{{image.ref}}
+         {{image.title}}
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+<br>
+
+<h2> V. Image Originals </h2>
+<div class="pure-g">
+{% for image in site.p7_originals offset:0%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p7_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p7_path}}{{image.ref}}
+        {{image.title}}
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+
+<h2 class="center"> VI. Summary </h2>
+
+<notextile>
+Overall, this project was quite challenging, but I felt huge a wave of relief once I was finally able to
+generate the photo mosiac. I encountered significant delays mapping the new coordinates in the canvas back
+to the original image, namely due to determining the proper bounds of the canvas and pixels coordinates
+to pull from. Shifting conventions between labeling x,y and row, column order from human and numpy
+coordinates, and then accounting for top vs bottom offsets with new coordinate axes systems added
+additional complexity. I thought the final product was a great achievement, although the built-in
+panorama feature on the iPhone is superior. If I revisit this project,
+I want to generate an explorable photosphere.
+</notextile>
+<br>
+
+<comment>
+<h3 class="center"> Bells & Whistles </h3>
+1) Presidential Morph Video
+
+2) Facial Gender Bender
+
+3) Participation in Class Morph
+</comment>
+
+1. <a href='https://cseweb.ucsd.edu/classes/wi07/cse252a/homography_estimation/homography_estimation.pdf' target="_blank"> Homography Estimation </a>
+<br>
+<h5 class='center'>  - Zachary Zeleznick </h5>

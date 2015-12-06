@@ -1,0 +1,422 @@
+---
+layout: post
+title: Context-Aware Image Resizing
+subtitle: Seam Removal, Seam Insertion and More
+images: site.images
+---
+
+
+h2(anchor#main). %(octicon octicon-link)I. Introduction%
+
+
+<notextile>
+Despite the relative ease of cropping and scaling, valuable information tends to be lost as we shrink
+down image proportions. With mobile devices now having more computational power (and more memory) than all
+the computers used to guide the Apollo 11's 1969 mission,it comes as no surprise that we are able to
+take photos at ultra-resolution and than shrink to our hearts' content. Yet, by harnessing the power of
+seam carving, we are able to preserve critical information and image detail that would otherwise be lost.
+Furthermore, we can dynamically resize images to better fit the area of interest to a variety of different
+screen sizes and resolutions. Following the lead of Shai Avidan and Ariel Shamir
+</notextile>[0]<notextile>, I used tailored energy functions to find seams within in image for removal
+or insertion, depending on the desired output size.
+</notextile>
+
+<h4> Brief Overview of Key Challenges </h4>
+
+1) Improving the run time of my algorithm for increased throughput and decreased latency
+
+2) Keeping track of the original pixel indices of an image in order to regenerate the seams for display post-processing. See the timing logs <a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_logs}}>here.</a>
+
+
+3) Generating smooth masks for seam insertion and removal to preserve areas of interest.
+
+
+
+<h2>  II. Seam Removal and Visual Displays </h2>
+<notextile>
+As mentioned by Avidan in the seam carving paper, determination of an energy function to base seam removals is
+a critical component for program success. However, defining the cost matrix for each image is contextually dependent
+and can be very computationally intensive to fully explore each path. The gist of the algorithm presented is to find a path (that passes exactly through
+one pixel from each row for a vertical seam) such that the total cost of a seam is minimized. I typically used a sobel edge detection filter to find seams within in image
+and would successively remove or insert seams until the image was of the desired output size.
+</notextile>
+
+<h3> Quicky & Dirty Explanation of my Algorithm[1] </h3>
+
+<div class="pure-g">
+{% for image in site.p4_alg offset:0%}
+    <div class="pure-u-1-3 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}
+
+        {% if image.ref == 'alg/DP2.png' %}  {{image.title}}[2]
+         {% elsif image.ref == 'alg/DP3.png' %} {{image.title}}[3]
+         {% elsif image.ref == 'alg/DP5.png' %} {{image.title}}[4]
+         {% else %} {{image.title}} {% endif %}
+       <br><br>
+    </div>
+{% endfor %}
+</div>
+<notextile>
+    For a closer look at the implementation details, check out the <a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_docs}}>README </a>
+    for my package.
+</notextile> <br><br>
+
+
+
+<!--script src="https://gist.github.com/zzeleznick/bfb5a0c9c3a53d0bfdd6.js"></script-->
+
+
+<h2 class="center"> III. Seam Removal on Stonehenge </h2>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:2%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:2%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:4%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:4%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:6%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:6%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:8%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge limit: 2 offset:8%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+
+<h3 class="center"> Seam Removal on Stonehenge Lightning Shot[2] </h3>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge_lightning limit: 2 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_lightning limit: 2 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_lightning limit: 3 offset:2%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_lightning limit: 3 offset:2%}
+    <div style="background-color: initial; " class="pure-u-1-3 pure-u-md-1-3 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+<h3 class="center"> Seam Removal on Stonehenge at Night[3] </h3>
+
+<div class="pure-g">
+{% for image in site.p4_stonehenge_night limit: 2 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_night limit: 2 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_night limit: 1 offset:2%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_stonehenge_night limit: 1 offset:2%}
+    <div style="background-color: initial; " class="pure-u-1-1 pure-u-md-1-1 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+<notextile>
+Stonehenge in addition to be a great historic site, is a prime example of how information can be preserved,
+such as the columns and reduced in size via an energy function. While there are some artifacts, namely due to
+the high relative weight of the grass, a mask of feature-weight system would be able to compensate for this skew
+towards removing the sky.
+</notextile>
+<br> <br>
+
+
+<h2 class="center"> IV. Seam Removal on Starry Night </h2>
+
+<div class="pure-g">
+<div class="pure-u-1-2 pure-u-md-1-2 no-vspace">
+!{{ site.github_path | escape  }}{{site.p4_path}}originals/staryNight.jpg('Starry Night Original')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}originals/staryNight.jpg
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/100h_seams_remove_staryNight.jpg('Starry Night Original')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/100h_seams_remove_staryNight.jpg
+</div>
+<div class="pure-u-1-2 pure-u-md-1-2 no-vspace">
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/scharr_100__0_staryNight.jpg('100 Horizontal Seam Removal')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/scharr_100__0_staryNight.jpg
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/scharr_200__0_staryNight.jpg('200 Horizontal Seam Removal')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/scharr_200__0_staryNight.jpg
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/staryNight/sobel_450__0_staryNight.jpg('455 Horizontal Seam Removal')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/staryNight/sobel_450__0_staryNight.jpg
+</div>
+</div>
+
+<notextile>
+Abstract paintings are really cool to play with, especially since artifacts created by poor mask design or
+energy maps are difficult to point out. Even removing 450 horizontal seams from the image does not produce
+any noticeable damage.
+</notextile>
+<br><br>
+
+<h3 class="center">  V. (Bells & Whistles) Seam Removal & Seam Insertion on my Homeowork </h3>
+
+<div class="pure-g">
+{% for image in site.p4_hw limit: 2 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_hw limit: 2 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div><br>
+<div class="pure-g">
+{% for image in site.p4_hw limit: 2 offset: 2%}
+    <div class="pure-u-1-2 pure-u-md-1-2 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+{% endfor %}
+</div>
+<div class="pure-g">
+{% for image in site.p4_hw limit: 2 offset:2%}
+    <div style="background-color: initial; " class="pure-u-1-2 pure-u-md-1-2 center">
+    {{image.title}} <br>
+    </div>
+{% endfor %}
+</div> <br>
+
+<div class="pure-g">
+<div class="pure-u-2-3 pure-u-md-2-3 no-vspace">
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/hw/scharr_0__-200_homework.jpg('200 Vertical Seams Inserted')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/hw/scharr_0__-200_homework.jpg
+</div>
+<div class="pure-u-1-3 pure-u-md-1-3 no-vspace">
+!{{ site.github_path | escape  }}{{site.p4_path}}baseExamples/hw/scharr_0__200_homework.jpg('200 Vertical Seams Removed')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}baseExamples/hw/scharr_0__200_homework.jpg
+</div>
+</div>
+<div class="pure-g">
+<div class="pure-u-2-3 pure-u-md-2-3 center">
+    200 Vertical Seams Added <br>
+</div>
+<div class="pure-u-1-3 pure-u-md-1-3 center">
+    200 Vertical Seams Removed<br>
+</div>
+</div>
+
+<notextile>
+Rather than removing seams with the lowest cumulative cost, one can insert them back into the image to
+increase scale. Notice how the whitespace changes between the regular and contrasted images. Even at high levels
+of seam removal, the text is as readable as it was to begin with.
+</notextile>
+<br> <br>
+
+<h4 class='center'>  VI. (Bells & Whistles) An Engaging Scene Showcasing Seam Insertion, Seam Removal, & Spice </h4> <br>
+
+<div class="pure-g">
+<div class="pure-u-1-2 pure-u-md-1 center">
+!{{ site.github_path | escape  }}{{site.p4_path}}popArt/popArtCollage2.jpg('Pop Art Collage')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}popArt/popArtCollage2.jpg
+</div>
+<div class="pure-u-1-2 pure-u-md-1 center">
+!{{ site.github_path | escape  }}{{site.p4_path}}popArt/popArtCollage.jpg('Pop Art Collage')!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}popArt/popArtCollage.jpg
+</div>
+</div>
+
+<notextile>
+Here, I experimented by combining computational techniques with photoshop on an oil and magna art piece by Roy Lichtenstein[8]
+Beginning at the top-left corner, I took the original image and performed 250 vertical
+seam insertions followed by 200 horizontal seam insertions using a </notextile> @scharr@ filter from @skimage@, <notextile> followed
+by a manual saturation enhancement to make the colors pop.  The bottom-left image was also a vertical seam insertion,
+which can be gleaned from the insertion of white space that reduce average color intensity of the image.
+No saturation levels were adjusted, but the image was scaled in photoshop to match the dimensions
+above. The top right image is the original piece, and the bottom right is the same piece with 200 seams
+highlighted in a neon color. Directly between the original and the seam image is a de-saturated and hue-shifted
+image, respectively, that help show the beauty of pop art.
+</notextile>
+<br>
+
+<h3 class='center'> VII. (Bells & Whistles) The case for intelligent mask design </h3>
+<br>
+<notextile>
+While we have seen a curated selection of stunning scenery and abstract art, we have yet to see the algorithm
+take on human faces. We are naturally trained to be attuned to nonverbal cues such as the simple nod for understanding,
+to sense aversion in gaze, and more critically, recognizing friend from family from foe.
+</notextile> <br> <br>
+<notextile>
+The first three examples compare the results of a 100 horizontal seam removal, with 2 different masks, and the naive
+impementation. Notice the artifacts produced by the non-smoothed mask in the following images.
+</notextile>
+
+
+<div class="pure-g">
+{% for image in site.p4_pc offset:0%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+        <div style="background-color: initial; " class="pure-u-1-1 pure-u-md-1-1 center">
+           {{image.title}} <br>  <br>
+        </div>
+{% endfor %}
+</div>
+
+<notextile>
+While creating a rough vector mask of the person helped to preserve his face (or remove it for a targeted seam removal),
+without generating a smooth 2D mask, the shape of the seam removed will be jagged due to sharp gradients of change.
+For the preservative mask, I combined the weight of the edges and a scaled version of the mask to prevent paths from passing
+through the region. For the targeted removal mask, I lowered regions in which a pixel could pass through. Seam insertion, which
+I programmed after incorporating a masking or anti-masking parameter shared many similar
+implementation details, since after finding a seam, you want to preserve those pixels as to prevent
+repeated insertion of the same seam. Without modifying the energy map to reflect this constraint, the produced images
+have noticeable blurring as though someone dragged a clone tool over one seam.
+</notextile>
+<br><br>
+
+<h3 class='center'> VIII. (Bells & Whistles ) Mask on the Moon </h3>
+
+<div class="pure-g">
+{% for image in site.p4_moon offset:0%}
+    <div class="pure-u-1-1 pure-u-md-1-1 center"> !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}</div>
+        <div style="background-color: initial; " class="pure-u-1-1 pure-u-md-1-1 center">
+           {{image.title}} <br>  <br>
+        </div>
+{% endfor %}
+</div>
+
+<notextile>
+Here, I experimented with three different masks and compared the result to the naive implementation. In the last pair of images
+you can see how the astronaut is deformed by seam removal, constrasted with the preserve mask implementation with
+a smooth mask design. Having consistency within the X and Y direction for the mask proved quite challenging,
+as poor blending resulted in jagged edges. I went through several design iterations to refine the total energy cumulative
+cost matrix, parameterizing the values within the mask to match the desired energy map that can  protect the image.
+</notextile>
+<br><br>
+
+<h3 class='center'> IX. Failure Cases </h3>
+
+<div class="pure-g">
+{% for image in site.p4_failures limit: 10 offset:0%}
+    <div class="pure-u-1-3 pure-u-md-1-3 center constrain">
+    !{{ site.github_path | escape  }}{{site.p4_path}}{{image.ref}}({{image.title}})!:http://zzeleznick.github.io/cs194-fma/{{site.p4_path}}{{image.ref}}
+    </div>
+{% endfor %}
+</div><br>
+<notextile>
+Faces are really tough to scale down properly, especially when they fill the frame of the image.
+Standard rescaling would be more appropriate in this case.
+</notextile>
+
+
+<h3 class="center"> 6 Lessons Learned: </h3>
+
+# Use image objects and classes instead of passing around variables in global scope.
+# Use small test cases and modular designs to save time.
+# If you are doing a visual project, DO visual testing.
+# Vectorization can speed up @numpy@ routines by a factor of 10.
+# Precomputation trades memory for speed, but is great for preloading expected user input.
+# The best output comes from the best input.
+
+<br>
+{% comment %}
+Failure cases
+Precomputation
+Demo
+Timing
+{% endcomment %}
+
+
+fn0. "Seam Carving for Content-Aware Image Resizing":http://portal.acm.org/citation.cfm?id=1276390
+
+fn1. While the implementation was relatively straight forward for basic functionality, speed was horrendously slow until I learned to utilize numpy vector operations such as @argmin@, @amin@, and @np.delete@
+
+fn2. The cumulative energy paths were based from applying an edge detection filter that mapped pixel gradients to preserve high-contrast features.
+
+fn3. Storing whether the pixel was left (red), straight (yellow), or right (green) was a recomended strategy for runtime optimization, but was more helpful for crude seam visualizations.
+
+fn4. This problem is akin to trying to climb up a mountain that shrinks with each step and then trying to backtrack to find your path from your starting location. While you may have finished the proccess, you have lost crucial information. The picture should show some insight on how I solved this problem, but I would be happy to explain if you're curious.
+
+
+<!--script src="https://gist.github.com/zzeleznick/e146e30205393b4ad9ec.js"></script-->
+
+fn6. "Stonehenge by Day":http://www.premiumtours.co.uk/images/product/original/181_1.jpg
+
+fn7. "Stonehenge during Lightning Strike":https://www.flickr.com/photos/kate_williams/3229244633/
+
+fn8. "Stonehenge by Mike Parker Pearson":http://i.telegraph.co.uk/multimedia/archive/02066/Stonehenge_2066365b.jpg
+
+
+fn9. "Girl with Hair Ribbon, 1965 by Roy Lichtenstein":http://www.lichtensteinfoundation.org/0278.htm
+
+
+
+<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_logs}}> <h5 class="center"> See the logs produced for my test files </h5> </a>
+
+<a target="_blank" href= {{ site.github_path | escape  }}{{site.p4_docs}}> <h5 class="center"> Read More about my Code </h5></a>
+
+
+<comment>
+
+### A list!
+
+http://redcloth.org/textile/phrase-modifiers/#links
+
+I'm really excited about "RedCloth":redcloth.
+I love it so much, I think I'll name my first child "RedCloth":redcloth.
+[redcloth]http://redcloth.org
+ </comment>
+
+<br>
+<h5 class='center'>  - Zachary Zeleznick </h5>

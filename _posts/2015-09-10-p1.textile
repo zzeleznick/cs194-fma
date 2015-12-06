@@ -1,0 +1,155 @@
+---
+layout: post
+title: Images of the Russian Empire
+subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+im2: "http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/cathedral.jpg"
+images: site.images
+---
+
+h2. {{ page.title }}
+
+h2. {{ page.im1 }}
+
+h3(anchor#main). %(octicon octicon-link)I. Background%
+
+Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar's special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges... thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later -- he envisioned special projectors to be installed in "multimedia"classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his RGB glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available online[0].
+
+h3(anchor#inputs). <div class="center octicon octicon-link"> Original Glass Slides </div>
+
+<div class="pure-g">
+{% for image in site.eecs_images limit: 5 offset:0%}
+    <div class="pure-u-1-5 pure-u-md-1-5 center"> !{{site.eecs_path}}{{image.ref}}!</div>
+{% endfor %}
+</div>
+
+<div class="pure-g">
+{% for image in site.eecs_images limit: 5 offset:0%}
+    <div style="background-color: initial; " class="pure-u-1-5 pure-u-md-1-5 center"> {{image.title}}
+    </div>
+{% endfor %}
+</div>
+
+h3(anchor#approach). %(octicon octicon-link)II. Approach%
+
+I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.
+
+For alignment, the first function I implemented to test the "goodness of fit" was the sum of squared displacement (ssd). In python, this was extremely simple to code @sum(sum((image1-image2)**2))@ and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like "emir.tif" required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.
+
+After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.
+
+h3(anchor#intermission). III. Early Results
+
+
+{% comment %}
+{% include thirds-row.html im1= page.im2 im2 = page.im2 im3 = page.im2 %}
+{% endcomment %}
+
+{% comment %}
+<!--div id="grid" class = "gg" data-columns>
+    <div> !{{im2}}! </div>
+    <div> !{{im2}}! </div>
+    <div> !{{im3}}! </div>
+        {% for image in site.images limit: 6 offset:0%}
+            <div>
+                <div> !{{ site.github_path | escape }}{{image.ref}}({{image.title}})!:{{image.link}} </div>
+                <div>{{image.title}} {{image.data[0].size}}</div>
+                <div>{{image.data[0].vector}}</div>
+            </div>
+        {% endfor %}
+</div-->
+{% endcomment %}
+
+|\2=. Output Images, Original Sizes, & Displacement Vectors[1] |
+| !{{ site.github_path | escape }}images/output/out_cathedral.jpg(Cathedral)!:http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg | !{{ site.github_path | escape  }}images/output/out_tobolsk.jpg(Tobolsk)!:http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg |
+|=. Cathedral (1024, 390) |=. Tobolsk (1024, 396) |
+|=. Green =  <2, -2>;  Red =   <6, -3> |=. Green =  <3, -4>;  Red =   <3, -7> |
+| !{{ site.github_path | escape  }}images/output/out_nativity.jpg(Nativity)!:http://zzeleznick.github.io/cs194-fma/images/output/out_nativity.jpg | !{{ site.github_path | escape  }}images/output/out_settlers.jpg(Settlers)!:http://zzeleznick.github.io/cs194-fma/images/output/out_settlers.jpg |
+|=. Nativity (1024, 395) |=. Settlers (1024, 396) |
+|=. Green =  <1, -4>;  Red =   <0, -6> |=. Green = <0, 0>;  Red = <-1, 1>  |
+| !{{ site.github_path | escape  }}images/output/out_monastery.jpg(Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg | !{{ site.github_path | escape  }}images/output/de_out_monastery.jpg(White-Balanced Monastery)!:http://zzeleznick.github.io/cs194-fma/images/output/de_out_monastery.jpg |
+|=. Monastery (1024, 391) |=. White-Balanced Monastery (1024, 391)[2] |
+|=. Green = <2, -10>;  Red = <2, -11> |=. Green = <2, -10>;  Red = <2, -11>   |
+
+h3(anchor#learnedlessons1). IV. Early Results Lessons Learned
+
+After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.
+
+h3(anchor#imagepyramid). V. Image Pyramid
+
+The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger TIF files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with.
+
+|\2=. Output Images, Original Sizes, & Displacement Vectors[1] |
+| !{{ site.github_path | escape  }}images/output/bridge.jpg(Bridge)!:http://zzeleznick.github.io/cs194-fma/images/output/bridge.jpg | !{{ site.github_path | escape  }}images/output/turkmen.jpg(Turkmen)!:http://zzeleznick.github.io/cs194-fma/images/output/turkmen.jpg |
+|=. Bridge (9675, 3742) |=. Turkmen (9627, 3762) |
+|=. Green =  <7, -33>;  Red =   <9, -38> |=. Green = <9, -12>;  Red = <19, -16> |
+| !{{ site.github_path | escape  }}images/output/harvesters.jpg(Harvesters)!:http://zzeleznick.github.io/cs194-fma/images/output/harvesters.jpg | !{{ site.github_path | escape  }}images/output/icon.jpg(Icon)!:http://zzeleznick.github.io/cs194-fma/images/output/icon.jpg |
+|=. Harvesters (9656, 3683) |=. Icon (9656, 3683) |
+|=. Green =  <0, 8>;  Red =   <2, 5> |=. Green = <15, -17>;  Red = <17, -28>  |
+| !{{ site.github_path | escape  }}images/output/lady.jpg(Lady)!:http://zzeleznick.github.io/cs194-fma/images/output/lady.jpg | !{{ site.github_path | escape  }}images/output/melons.jpg(Melons)!:http://zzeleznick.github.io/cs194-fma/images/output/melons.jpg |
+|=. Monastery (9637, 3761) |=. Melons (9724, 3770) |
+|=. Green = <0, -6>;  Red = <5, -10> |=. Green = <0, 13>;  Red = <8, 22>   |
+| !{{ site.github_path | escape  }}images/output/onion_church.jpg(Onion Church)!:http://zzeleznick.github.io/cs194-fma/images/output/onion_church.jpg | !{{ site.github_path | escape  }}images/output/self_portrait.jpg(Self Portrait)!:http://zzeleznick.github.io/cs194-fma/images/output/self_portrait.jpg |
+|=. Onion Church (9646, 3781) |=. Self Portrait (9754, 3810) |
+|=. Green = <4, -13>;  Red = <9, -17> |=. Green = <8, 6>;  Red = <13, 9>   |
+| !{{ site.github_path | escape  }}images/output/workshop.jpg(Workshop)!:http://zzeleznick.github.io/cs194-fma/images/output/workshop.jpg | !{{ site.github_path | escape  }}images/output/village.jpg(Village)!:http://zzeleznick.github.io/cs194-fma/images/output/village.jpg |
+|=. Workshop (9627, 3741) |=. Village (9812, 3819) |
+|=. Green = <0, -11>;  Red = <-14, -11> |=. Green = <13, -1>;  Red = <9, 6>   |
+| !{{ site.github_path | escape  }}images/output/three_generations.jpg(Three Generations)!:http://zzeleznick.github.io/cs194-fma/images/output/three_generations.jpg | !{{ site.github_path | escape  }}images/output/train.jpg(Self Portrait)!:http://zzeleznick.github.io/cs194-fma/images/output/train.jpg |
+|=. Three Generations (9629, 3714) |=. Train (9715, 3741) |
+|=. Green = <-1, -3>;  Red = <10, -21> |=. Green = <-5, -18>;  Red = <24, -31>   |
+| !{{ site.github_path | escape  }}images/output/emir.jpg(Emir)!:http://zzeleznick.github.io/cs194-fma/images/output/emir.jpg | !{{ site.github_path | escape  }}images/output/emir.jpg(Enhanced Emir)!:http://zzeleznick.github.io/cs194-fma/images/output/gamma_emir.jpg |
+|=. Emir (9627, 3702) ) |=. Enhanced[3] Emir (9627, 3702) |
+|=. Green =  <14, -17>;  Red =   <30, -18>  |=. Green =  <14, -17>;  Red =   <30, -18> |
+
+
+h3(anchor#cropping). VI. Cropping
+
+For my image cropping algorithm, I first conservatively trimmed the top and bottom by 1%, and then left and right sides of the image by 2.5%. Here, the goal was to remove the majority of the noise from the image, but since each image has different boundaries where the useful pixels begin, automatic cropping cannot be done independently of the pixel values. I first tried cropping rows and columns on the basis of deviation from the row and column norm. I approximated that a true dark frame edge on a row_i would have a sum below some constant plus the mean (e.g.
+<pre>@def TrueDarkEdge(i, image, k):
+sum(image[i]) < k + mean( [ mean(image[row]) for row in range(image.shape[0]) ] )@</pre>
+However, with some stray pale edges, I had to include a second test with deviations above the mean, and this became very verbose as I checked all 4 sides of each image. Secondly, the equation wasn’t as precise as I intended, and left a lot of wiggle room for optimization. Without setting a boundary on the number of rows and columns the algorithm could crop, the script produced inconsistent output image quality.
+
+With my next iteration, I passed in a section of the input image’s sobel edge map, and cropped again on deviation from the mean, but instead used the values of the pixels from the edges. This enabled me to detect edges irrespective of color from the original image, and produced cleaner masks.[4]
+
+<pre>...
+tolerance = edges.shape[0] * ( np.mean(edges[1:-1, 1:-1]) + np.std(edges) * (1+adjustment))
+for i in range(start, end):
+    if sum(sum(edges[4:-4, i-1:i])) > tolerance:
+        edge_r = i  #found our right edge
+...
+</pre>
+
+<div class="pure-g">
+    <div class="pure-u-1-2 pure-u-md-1-2 center" >
+     <h3> Before Cropping: (9627, 3702) </h3>
+     <a href="{{ site.eecs_path }}emir.tif"> <img style="max-height: 600px;" src="{{ site.github_path | escape }}images/data/emir_raw.jpg"> </a></div>
+    <div class="pure-u-1-2 pure-u-md-1-2 center">
+      <h3> After Cropping: (9435, 3518) </h3>
+     <a href="http://zzeleznick.github.io/cs194-fma/images/output/cropped_emir.jpg"> <img style="max-height: 600px;" src="{{ site.github_path | escape }}images/output/cropped_emir.jpg"> </a> </div>
+</div>
+
+
+h3(anchor#extra). VII. Extra Images
+
+<div class="pure-g">
+{% for image in site.extra_images limit: 4 offset:0%}
+    <div class="pure-u-1-2 pure-u-md-1-4 center"> <a href="http://zzeleznick.github.io/cs194-fma/images/output/{{image.ref}}"><img style="padding: 2px 6px;" src="http://zzeleznick.github.io/cs194-fma/images/output/{{image.ref}}"> </a>
+    <div class="center" style="margin-bottom: 5px">{{image.title}} </div>
+    </div>
+{% endfor %}
+</div>
+
+
+
+
+fn0. <a href="http://www.loc.gov/pictures/collection/prok/" > http://www.loc.gov/pictures/collection/prok/ </a>
+
+fn1. Displacement Vectors are given as <dx, dy>, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.
+
+fn2. I was quite excited to test out my white-balance algorithm -- so exicted in fact that I hadn't even finished my image pyramid implementation yet! This bell & whistle was achieved by finding the @max(sum(r,g,b values))@ along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See "White Balance":https://en.wikipedia.org/wiki/White_balance for more.
+
+fn3. Enhanced via an auto-contrast adjustment in which each pixel(x,y) was scaled by p(x,y)^1.5, and then normalized.
+
+fn4. Note that the values on the boundaries of the edge map should be discarded in calculation of the mean.s
+
+- Zachary Zeleznick
