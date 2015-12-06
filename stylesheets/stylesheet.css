@@ -31,6 +31,37 @@ h2.center, h3.center, h4.center {
 
 }
 
+.caption {
+   position: absolute;
+   bottom: 150px;
+   left: 0;
+   width: 100%;
+}
+
+.caption > span {
+   color: white;
+   font: bold  6rem/12rem Helvetica, Sans-Serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 1rem 3rem;
+}
+.light-painting {
+  position: relative;
+  overflow: hidden;
+}
+
+.light-painting .imgcont{
+  max-height: 600px;
+}
+
+.light-painting img{
+  max-width: 100%;
+  resize: both;
+  padding: 0rem 0rem;
+}
+
+
 video {
   width: 100%    !important;
   height: auto   !important;

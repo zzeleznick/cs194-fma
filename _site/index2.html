@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Images of the Russian Empire</title>
+    <meta name="author" content="Zachary Zeleznick">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css"  media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css"  media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css"  media="screen">
+</head>
+<body>
+
+    <section class="page-header-small">
+      <h1 class="project-name"><a href= "http://zzeleznick.github.io/cs194-fma"> CS194-ZZ </a></h1>
+      <h2 class="project-tagline">Images of the Russian Empire</h2>
+      <h3 class="project-subline">Colorizing the Prokudin-Gorskii Photo Collection</h2>
+    </section>
+
+<div id="post">
+    <section class="main-content">
+        <h2>Images of the Russian Empire</h2>
+<h3 class="anchor" id="main"><span class="octicon octicon-link">I. Background</span></h3>
+<p>Sergei Mikhailovich Prokudin-Gorskii (1863-1944) [Сергей Михайлович Прокудин- Горский, to his Russian friends] was a man well ahead of his time. Convinced, as early as 1907, that color photography was the wave of the future, he won Tzar&#8217;s special permission to travel across the vast Russian Empire and take color photographs of everything he saw including the only color portrait of Leo Tolstoy. And he really photographed everything: people, buildings, landscapes, railroads, bridges&#8230; thousands of color pictures! His idea was simple: record three exposures of every scene onto a glass plate using a red, a green, and a blue filter. Never mind that there was no way to print color photographs until much later &#8212; he envisioned special projectors to be installed in &quot;multimedia&quot;classrooms all across Russia where the children would be able to learn about their vast country. Alas, his plans never materialized: he left Russia in 1918, right after the revolution, never to return again. Luckily, his <span class="caps">RGB</span> glass plate negatives, capturing the last years of the Russian Empire, survived and were purchased in 1948 by the Library of Congress. The LoC has recently digitized the negatives and made them available on-line.</p>
+<h3 class="anchor" id="approach"><span class="octicon octicon-link">II. Approach</span></h3>
+<p>I first started by testing the provided python skeleton code with a few input images in order to evaluate the baseline functionality of our naive colorize program. I noticed that naively assuming that the images were already nearly aligned (small displacement) and well balanced (centered on frame) proved to be a good starting point.</p>
+<p>For alignment, the first function I implemented to test the &#8220;goodness of fit&#8221; was the sum of squared displacement (ssd). In python, this was extremely simple to code <code>sum(sum((image1-image2)**2))</code> and I used ssd as my primary alignment function for the majority of the project. However, as I will note later, some images, like &#8220;emir.tif&#8221; required testing of multiple functions, feature inputs, and hyperparameters. Calculating the normalized dot product seemed to take slightly longer and did not produce as strong of results for my intial tests.</p>
+<p>After running a few sample from the starter python skeleton code, I began to take note of the easiest improvements to implement. My first aim was to remove at least 60% of the white and black borders  — which I could do on a deterministic basis by trimming the the image matrices by a fixed percentage. Edge detection would come in later to remove the remaining junk pixels via a systematic approach. Secondly, I was really interested in exploring auto-contrast and white-balancing as low-hanging fruit. Thirdly, I wanted to experiment with edge detection as a better means for alignment and cropping.</p>
+<h3 class="anchor" id="intermission"><span class="caps">III</span>. Early Results</h3>
+<table>
+  <tr>
+    <td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_cathedral.jpg"><img src="images/output/out_cathedral.jpg" title="Cathedral" alt="Cathedral" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_tobolsk.jpg"><img src="images/output/out_tobolsk.jpg" title="Tobolsk" alt="Tobolsk" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Cathedral (1024, 390) </td>
+    <td style="text-align:center;">Tobolsk (1024, 396) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green =  &lt;2, -2&gt;;  Red =   &lt;6, -3&gt; </td>
+    <td style="text-align:center;">Green =  &lt;3, -4&gt;;  Red =   &lt;3, -7&gt; </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_nativity.jpg"><img src="images/output/out_nativity.jpg" title="Nativity" alt="Nativity" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_settlers.jpg"><img src="images/output/out_settlers.jpg" title="Settlers" alt="Settlers" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Nativity (1024, 395) </td>
+    <td style="text-align:center;">Settlers (1024, 396) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green =  &lt;1, -4&gt;;  Red =   &lt;0, -6&gt; </td>
+    <td style="text-align:center;">Green = &lt;0, 0&gt;;  Red = &lt;-1, 1&gt;  </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/out_monastery.jpg"><img src="images/output/out_monastery.jpg" title="Monastery" alt="Monastery" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/de_out_monastery.jpg"><img src="images/output/de_out_monastery.jpg" title="White-Balanced Monastery" alt="White-Balanced Monastery" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Monastery (1024, 391) </td>
+    <td style="text-align:center;">White-Balanced Monastery (1024, 391)<sup class="footnote" id="fnr2"><a href="#fn2">2</a></sup> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green = &lt;2, -10&gt;;  Red = &lt;2, -11&gt; </td>
+    <td style="text-align:center;">Green = &lt;2, -10&gt;;  Red = &lt;2, -11&gt;   </td>
+  </tr>
+</table>
+<h3 class="anchor" id="learnedlessons1">IV. Early Results Lessons Learned</h3>
+<p>After successfully running my program on the five smaller jpg files, I was pumped and completed my white-balance b&amp;W and started to work on automatic cropping. I must admit that I was a little intimidated at first to create my own functions for edge detection, which was a crucial step for determining borders, since a watching a sharp change in pixels requires a lot of tuning to get right. I believe I spent more than 4 hours just tuning hyperparameters for cropping margins, adjusting cutoff values on the basis of deviation from the mean, median, and even some chained operations along specified rows. Hence, the need for edge detection.</p>
+<h3 class="anchor" id="imagepyramid">V. Image Pyramid</h3>
+<p>The first images we tested were relatively small, with a max size of 405,504 pixels. I quickly realized that trying to use the same algorithm on one of the larger <span class="caps">TIF</span> files was extremely slow, and produced poor results due to the comparatively larger domain for alignment vectors. To resolve this issue, I created an image pyramid by scaling down the 3 channels by 2^i. Starting with the smallest image, the best alignment is found, and generated vector is used as the domain bounds for the next iteration. At each iteration, the image becomes closer to fullscale, but we are able to dramatically reduce the number of total steps we must traverse through the search space. Originally I used a pyramid height of 3, which mapped to {1/8, 1/4, 1/2, full} scale. However, for the emir image, I found that using a height of 2 helped prevent becoming stuck on a local minimum and produced a better result. Sadly, this reduced the quality of a few of the other images, and I was not able to adjust the hyperparameters of my evaluation function and search boundaries well enough for a single run through that I felt satisfied with. #todo.</p>
+<table>
+  <tr>
+    <td style="text-align:center;" colspan="2">Output Images, Original Sizes, &amp; Displacement Vectors<sup class="footnote" id="fnr1"><a href="#fn1">1</a></sup> </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/bridge.jpg"><img src="images/output/bridge.jpg" title="Bridge" alt="Bridge" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/turkmen.jpg"><img src="images/output/turkmen.jpg" title="Turkmen" alt="Turkmen" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Bridge (9675, 3742) </td>
+    <td style="text-align:center;">Turkmen (9627, 3762) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green =  &lt;7, -33&gt;;  Red =   &lt;9, -38&gt; </td>
+    <td style="text-align:center;">Green = &lt;9, -12&gt;;  Red = &lt;19, -16&gt; </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/harvesters.jpg"><img src="images/output/harvesters.jpg" title="Harvesters" alt="Harvesters" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/icon.jpg"><img src="images/output/icon.jpg" title="Icon" alt="Icon" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Harvesters (9656, 3683) </td>
+    <td style="text-align:center;">Icon (9656, 3683) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green =  &lt;0, 8&gt;;  Red =   &lt;2, 5&gt; </td>
+    <td style="text-align:center;">Green = &lt;15, -17&gt;;  Red = &lt;17, -28&gt;  </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/lady.jpg"><img src="images/output/lady.jpg" title="Lady" alt="Lady" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/melons.jpg"><img src="images/output/melons.jpg" title="Melons" alt="Melons" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Monastery (9637, 3761) </td>
+    <td style="text-align:center;">Melons (9724, 3770) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green = &lt;0, -6&gt;;  Red = &lt;5, -10&gt; </td>
+    <td style="text-align:center;">Green = &lt;0, 13&gt;;  Red = &lt;8, 22&gt;   </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/onion_church.jpg"><img src="images/output/onion_church.jpg" title="Onion Church" alt="Onion Church" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/self_portrait.jpg"><img src="images/output/self_portrait.jpg" title="Self Portrait" alt="Self Portrait" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Onion Church (9646, 3781) </td>
+    <td style="text-align:center;">Self Portrait (9754, 3810) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green = &lt;4, -13&gt;;  Red = &lt;9, -17&gt; </td>
+    <td style="text-align:center;">Green = &lt;8, 6&gt;;  Red = &lt;13, 9&gt;   </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/workshop.jpg"><img src="images/output/workshop.jpg" title="Workshop" alt="Workshop" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/village.jpg"><img src="images/output/village.jpg" title="Village" alt="Village" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Workshop (9627, 3741) </td>
+    <td style="text-align:center;">Village (9812, 3819) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green = &lt;0, -11&gt;;  Red = &lt;-14, -11&gt; </td>
+    <td style="text-align:center;">Green = &lt;13, -1&gt;;  Red = &lt;9, 6&gt;   </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/three_generations.jpg"><img src="images/output/three_generations.jpg" title="Three Generations" alt="Three Generations" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/train.jpg"><img src="images/output/train.jpg" title="Self Portrait" alt="Self Portrait" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Three Generations (9629, 3714) </td>
+    <td style="text-align:center;">Train (9715, 3741) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green = &lt;-1, -3&gt;;  Red = &lt;10, -21&gt; </td>
+    <td style="text-align:center;">Green = &lt;-5, -18&gt;;  Red = &lt;24, -31&gt;   </td>
+  </tr>
+  <tr>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/emir.jpg"><img src="images/output/emir.jpg" title="Emir" alt="Emir" /></a> </td>
+    <td> <a href="http://zzeleznick.github.io/cs194-fma/images/output/gamma_emir.jpg"><img src="images/output/emir.jpg" title="Enhanced Emir" alt="Enhanced Emir" /></a> </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Emir (9627, 3702) ) </td>
+    <td style="text-align:center;">Enhanced<sup class="footnote" id="fnr3"><a href="#fn3">3</a></sup> Emir (9627, 3702) </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Green =  &lt;14, -17&gt;;  Red =   &lt;30, -18&gt;  </td>
+    <td style="text-align:center;">Green =  &lt;14, -17&gt;;  Red =   &lt;30, -18&gt; </td>
+  </tr>
+</table>
+<p class="footnote" id="fn1"><a href="#fnr1"><sup>1</sup></a> Displacement Vectors are given as &lt;dx, dy&gt;, and were generated via comparing the ssd of the corresponding rolled image with baseline blue image.</p>
+<p class="footnote" id="fn2"><a href="#fnr2"><sup>2</sup></a> I was quite excited to test out my white-balance algorithm &#8212; so exicted in fact that I hadn&#8217;t even finished my image pyramid implementation yet! This bell &amp; whistle was achieved by finding the <code>max(sum(r,g,b values))</code> along the centermost row and column, and then scaling all values by the appropriate transformation matrix. See <a href="https://en.wikipedia.org/wiki/White_balance">White Balance</a> for more.</p>
+<p class="footnote" id="fn3"><a href="#fnr3"><sup>3</sup></a> Enhanced via an auto-contrast adjustment in which each pixel(x,y) was scaled by p(x,y)^1.5, and then normalized.</p>
+    </section>
+</div>
+
+<!--div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+  </ul>
+</div-->
+
+</body>
+</html>

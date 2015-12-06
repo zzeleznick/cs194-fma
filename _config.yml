@@ -8,6 +8,9 @@ eecs_path: http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/
 # START P2 #
 p2_path: 'images/p2/'
 
+p2_fig: 'images/p2/pinhole.jpg'
+p2_final: 'images/p2/Lights/goodbye.jpg'
+
 p2_design:
 - title: Our Pinhole Camera
   ref: Design/1.jpg
@@ -32,7 +35,6 @@ p2_arch:
 - title: Arches 5cm
   ref:  Arches/arches-5.jpg
 
-
 p2_stairs:
 - title: Stairs 100mm
   ref: Stairs/stairs-1.jpg
@@ -41,6 +43,27 @@ p2_stairs:
 - title: Stairs 5cm
   ref:  Stairs/stairs-5.jpg
 
+p2_lights:
+- title: Team Rocketship
+  ref: Lights/rocket.jpg
+- title: Light Zoo
+  ref:  Lights/zoo.jpg
+
+p2_lasers:
+- title: I am BOLT
+  ref:  Lasers/lightning.jpg
+- title: BOLT v.2.0
+  ref:  Lasers/lightning-ultra.jpg
+
+p2_text:
+- title: Go Bears!
+  ref: Typography/bears.jpg
+- title: Leave it to Bernie
+  ref: Typography/bern.jpg
+
+
+
+# Lights/goodbye.jpg
 
 
 
