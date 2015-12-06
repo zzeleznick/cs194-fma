@@ -5,7 +5,51 @@ github_path: "http://0.0.0.0:4000/"
 #"" #for upload to eecs
 eecs_path: http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/
 
+# START P2 #
+p2_path: 'images/p2/'
+
+p2_design:
+- title: Our Pinhole Camera
+  ref: Design/1.jpg
+- title: Testing Our Aperatures
+  ref:  Design/2.jpg
+- title: Photographing Campus
+  ref:  Design/3.jpg
+
+p2_uni:
+- title: Unicorn 100mm
+  ref: Unicorn/unicorn-1.jpg
+- title: Unicorn 3cm
+  ref:  Unicorn/unicorn-3.jpg
+- title: Unicorn 5cm
+  ref:  Unicorn/unicorn-5.jpg
+
+p2_arch:
+- title: Arches 100mm
+  ref: Arches/arches-1.jpg
+- title: Arches 3cm
+  ref:  Arches/arches-3.jpg
+- title: Arches 5cm
+  ref:  Arches/arches-5.jpg
+
+
+p2_stairs:
+- title: Stairs 100mm
+  ref: Stairs/stairs-1.jpg
+- title: Stairs 3cm
+  ref:  Stairs/stairs-3.jpg
+- title: Stairs 5cm
+  ref:  Stairs/stairs-5.jpg
+
+
+
+
+# END P2 #
+
+# START P3 #
+
 p3_path: 'images/p3/'
+
 p3_images:
 - title: Grand Canyon Original
   alpha: 0
@@ -225,6 +269,7 @@ p3_mask_images:
 - title: Blended 8 Levels
   ref: blended_8_Mars2.jpg
 
+# END P3 #
 
 ## P4 IMAGES ##
 
