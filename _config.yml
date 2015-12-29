@@ -1,9 +1,72 @@
 # explicitly defining variables from http://jekyllrb.com/docs/configuration/
 github_path: "http://0.0.0.0:4000/"
-#"http://0.0.0.0:4000/"  #for local dev
-#"cs194-fma/"  #for github pages
-#"" #for upload to eecs
+#for local dev
 eecs_path: http://inst.eecs.berkeley.edu/~cs194-26/fa15/hw/proj1/data/
+
+# START MAIN #
+
+# END MAIN #
+main_path: 'images/main/'
+
+main_images:
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 1.png
+  text: >
+        Designed an alignment classifier to produce color images
+        from archived RGB glass plate negatives. Implemented
+        automatic cropping via edge detection, alignment via SSD vectors,
+        and image enhancements such as auto-contrasting and white-balancing.
+
+- title: Building a Pinhole Camera
+  subtitle: Exploring New Photographic Techniques
+  ref: 2.png
+  text: >
+        Constructed a portable pinhole camera from household
+        materials and a DSLR camera. Experimented with various light sources
+        such as laser and LED to create novel displays and effects.
+
+- title: Fun with Frequencies
+  subtitle: Creating Hybrid Images and More
+  ref: 3.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
+
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 4.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
+
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 5.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
+
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 6.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
+
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 7.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
+
+- title: Images of the Russian Empire
+  subtitle: Colorizing the Prokudin-Gorskii Photo Collection
+  ref: 8.png
+  text: >
+        Implemented an unsharp filter, Laplacian and Gaussian stacks for image analysis,
+        and multi-resolution blending for native and masked images.
 
 # START P2 #
 p2_path: 'images/p2/'

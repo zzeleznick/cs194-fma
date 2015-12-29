@@ -18,69 +18,37 @@ And we have no money for surgeries. She can't take it. I just wanna see her smil
 
 <div class="project-list">
   <div class="pure-g">
-     <div class="project-element">
-       <div class="pure-u-1-4 pure-u-md-1-4">
-          !{{ site.github_path | escape  }}{{ site.p2_fig }}!
-      </div>
-       <div class="pure-u-3-4 pure-u-md-3-4">
+    {% for image in site.main_images offset:0%}
+      <div class="project-element">
+        <div class="pure-u-1-4 pure-u-md-1-4">
+        !{{ site.github_path | escape  }}{{site.main_path}}{{image.ref}}({{image.title}})!
+        </div>
+        <div class="pure-u-3-4 pure-u-md-3-4">
           <div class='padded-text'>
-            <h3> Images of the Russian Empire</h3>
-            <h4> Colorizing the Prokudin-Gorskii Photo Collection </h4>
+            <h3> {{image.title}} </h3>
+            <h4> {{image.subtitle}} </h4>
             <div class="project-text">
                <notextile>
-                In this project...
+                {{image.text}}
               </notextile>
-            </div>
-          </div>
-      </div>
-    </div>
+            </div> <!--End Project Text-->
+          </div> <!--End Project Text Content -->
+      </div>  <!--End Project Text Container -->
+    </div>  <!--End Project Element-->
     <spacer> </spacer>
-    <div class="project-element">
-       <div class="pure-u-1-4 pure-u-md-1-4">
-          !{{ site.github_path | escape  }}{{ site.p2_fig }}!
-      </div>
-       <div class="pure-u-3-4 pure-u-md-3-4">
-          <div class='padded-text'>
-            <h3> Project 1. ZZZZZ </h3>
-            <h4> Subheading </h4>
-            <notextile>
-            In this project we designed a pinhole camera ("camera obscura"),
-            which is essentially a dark box with a pinhole on one face,
-            and a screen on the opposite side.
-            </notextile>
-          </div>
-      </div>
-    </div>
-    <!--End Project Element-->
-  </div>
-  <!--End Project List-->
-</div>
-<!--End Grid-->
-
+    {% endfor %}
+  </div> <!--End Grid-->
+</div> <!--End Project List -->
 
 <h2 class="center"> VIII. Summary </h2>
 
 <notextile>
-Overall, this project was quite challenging, but I felt huge a wave of relief once I was finally able to
-generate the photo mosiac. I encountered significant delays mapping the new coordinates in the canvas back
-to the original image, namely due to determining the proper bounds of the canvas and pixels coordinates
-to pull from. Shifting conventions between labeling x,y and row, column order from human and numpy
-coordinates, and then accounting for top vs bottom offsets with new coordinate axes systems added
-additional complexity. I thought the final product was a great achievement, although the built-in
-panorama feature on the iPhone is superior. If I revisit this project,
-I want to generate an explorable photosphere.
+I spent more time per week on this course
+than I hours put it for one semester of my humanities courses -- both of which
+I received highest marks.
 </notextile>
 <br>
 
-<comment>
-<h3 class="center"> Bells & Whistles </h3>
-1) Presidential Morph Video
 
-2) Facial Gender Bender
 
-3) Participation in Class Morph
-</comment>
-
-1. <a href='https://cseweb.ucsd.edu/classes/wi07/cse252a/homography_estimation/homography_estimation.pdf' target="_blank"> Homography Estimation </a>
-<br>
 <h5 class='center'>  - Zachary Zeleznick </h5>
