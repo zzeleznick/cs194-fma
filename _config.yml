@@ -770,7 +770,8 @@ unpublished: false
 
 # Plugins
 whitelist: []
-gems:      []
+gems:
+- jekyll-textile-converter
 
 # 10.8 --> reading_time
 # 10.8 --> pageless_redirects, https://github.com/nquinlan/jekyll-pageless-redirects

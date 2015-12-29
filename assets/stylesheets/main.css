@@ -24,8 +24,9 @@ li {
 }
 
 .padded-text{
-  padding: 10px;
+  padding: 1rem 1.5rem;
   margin: 5px 30px;
+  position: relative;
 }
 
 spacer{
@@ -39,8 +40,34 @@ a.sm img{
 }
 
 h2.center, h3.center, h4.center {
-  margin-bottom: 1.25rem !important;
+  margin-bottom: 1.25rem !important;}
 
+.project-list .project-element  h3,
+.project-list .project-element h4,
+.project-list .project-element h5,
+.project-list .project-element h6 {
+   margin-top: .5rem;
+   margin-bottom: .5rem;
+ }
+
+.project-element .pure-u-1-6 > img,
+.project-element .pure-u-1-4 > img {
+  margin-top: 20px;
+ }
+
+.project-element .pure-u-1-3 > img{
+  margin-top: 10px;
+ }
+
+.project-text {
+margin-top: 1.75rem;
+font-size: 1rem
+}
+
+.project-date {
+position: relative;
+right: 10px;
+float: right;
 }
 
 .caption {
