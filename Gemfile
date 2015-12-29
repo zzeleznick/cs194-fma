@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+gem 'jekyll-textile-converter'
+gem 'kramdown'
+gem 'pygments.rb'
+gem 'jekyll-watch'
+gem 'jekyll_date_chart'

@@ -6,12 +6,14 @@
     <meta name="author" content="Zachary Zeleznick">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% capture path %}{{ site.github_path }}{% endcapture %}
-    {% assign css1 = path | append: "stylesheets/normalize.css" %}
-    {% assign css2 = path | append: "stylesheets/stylesheet.css" %}
-    {% assign css3 = path | append: "stylesheets/github-light.css" %}
-    {% assign css4 = path | append: "stylesheets/grid.css" %}
-    {% assign js1 = path | append: "javascripts/scale.fix.js" %}
-    {% assign js2 = path | append: "javascripts/salvattore.js" %}
+    {% assign css1 = path | append: "assets/stylesheets/normalize.css" %}
+    {% assign css2 = path | append: "assets/stylesheets/main.css" %}
+    {% assign css3 = path | append: "assets/stylesheets/github-light.css" %}
+    {% assign css4 = path | append: "assets/stylesheets/grid.css" %}
+    {% assign js1 = path | append: "assets/javascripts/scale.fix.js" %}
+    {% comment %}
+    {% assign js2 = path | append: "assets/javascripts/salvattore.js" %}
+    {% endcomment %}
 
     <link rel="stylesheet" type="text/css" href= {{ css1 }}  media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>

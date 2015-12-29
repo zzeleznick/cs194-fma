@@ -2,11 +2,11 @@
 layout: post
 title: Testing Index
 subtitle:
+date:  2015-12-01 21:11:29 -0800
+categories:
 ---
 
-
 h2(anchor#main). %(octicon octicon-link)Welcome%
-
 
 <notextile>
 You wanna know how I got them? So I had a wife.
